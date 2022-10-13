@@ -1,6 +1,7 @@
 ﻿using FluidHTN.Contexts;
 using FluidHTN.Debug;
 using FluidHTN.Factory;
+using PokerShark.Core.Poker;
 using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
 using System;
@@ -65,6 +66,9 @@ namespace PokerShark.Core.HTN.Context
 
             // init action History
             DirectSet(State.ActionHistory, new List<PyAction>());
+
+            // init Players Models
+            DirectSet(State.PlayersModels, new List<PlayerModel>());
         }
 
         #endregion

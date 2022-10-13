@@ -22,7 +22,7 @@ namespace PokerShark.Core.Helpers
             return new GameInfo(playersNumber, initialStack, maxRound, smallBlind, bigBlind, ante, seats);
         }
 
-        public static PyAction getAction(JToken payload)
+        public static PyAction getAction(JToken payload, StreetState streetState)
         {
             PyAction action = null;
             switch ((String)payload["action"])
@@ -30,14 +30,17 @@ namespace PokerShark.Core.Helpers
                 case "fold":
                     action = new FoldAction();
                     action.PlayerId = (String)payload["player_uuid"];
+                    action.Stage = streetState;
                     break;
                 case "call":
                     action = new CallAction((Double)payload["amount"]);
                     action.PlayerId = (String)payload["player_uuid"];
+                    action.Stage = streetState;
                     break;
                 case "raise":
                     action = new RaiseAction((Double)payload["amount"], (Double)payload["amount"]);
                     action.PlayerId = (String)payload["player_uuid"];
+                    action.Stage = streetState;
                     break;
             }
             return action;

@@ -30,8 +30,8 @@ namespace PokerShark.Core.Poker
             Name = name;
             Id = id;
             History = new List<PyAction>();
-            LooseIndex = 0.5;
-            AggressionIndex = 0.5;
+            LooseIndex = 50;
+            AggressionIndex = 50;
             PlayingStyle = PlayingStyle.Balanced;
         }
 
@@ -49,10 +49,10 @@ namespace PokerShark.Core.Poker
             var roundCount = History.Count(x => x.Stage == StreetState.Preflop);
 
             // find number of raises in preflop
-            var raiseCount = History.Count(x => x.Stage == StreetState.Preflop && x is RaiseAction);
+            var raiseCount = History.Count(x => x.Stage == StreetState.Preflop && (x is RaiseAction || x is CallAction));
 
             // calculate loose index
-            LooseIndex = ((raiseCount / roundCount) * 100);
+            LooseIndex = (((double)raiseCount /roundCount) * 100);
         }
 
         private void UpdateAggressionIndex()
@@ -61,7 +61,7 @@ namespace PokerShark.Core.Poker
             var raiseCount = History.Count(x => x is RaiseAction);
 
             // calculate aggression index
-            AggressionIndex = ((raiseCount / History.Count) * 100);
+            AggressionIndex = (((double)raiseCount / History.Count) * 100);
         }
 
         private void UpdatePlayingStyle()

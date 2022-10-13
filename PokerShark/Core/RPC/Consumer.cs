@@ -132,7 +132,7 @@ namespace PokerShark.Core.RPC
         {
             var result = JObject.Parse(payload);
             var round = PyPokerHelper.getRoundState(result["round_state"]);
-            var action = PyPokerHelper.getAction(result["new_action"]);
+            var action = PyPokerHelper.getAction(result["new_action"], round.StreetState);
             Bot.GameUpdated(round, action);
         }
 

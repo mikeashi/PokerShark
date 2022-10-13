@@ -67,8 +67,11 @@ namespace PokerShark.Core.Poker
         public override void GameUpdated(RoundState state, PyAction action)
         {
             Context.SetCurrentRound(state);
-
+            
             var name = DeckHelper.GetPlayerNameFromId(state.Seats, action.PlayerId);
+            
+            Context.UpdatePlayerModel(name, action);
+            
             if (name != "PokerShark")
                 Log.Information(string.Format("New Action From {0}, Type: {1}, Amount: {2}", name, action.Name, action.Amount));
         }

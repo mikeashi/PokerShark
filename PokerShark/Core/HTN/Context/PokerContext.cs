@@ -7,6 +7,7 @@ using FluidHTN.Contexts;
 using FluidHTN.Debug;
 using FluidHTN.Factory;
 using PokerShark.Core.HTN.Utility;
+using PokerShark.Core.Poker;
 using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
 
@@ -18,22 +19,60 @@ namespace PokerShark.Core.HTN.Context
         {
 
         }
+        #region state methods 
         
-        #region State setters
+        public void UpdatePlayerModel(String name, PyAction action)
+        {
+            var models = GetPlayersModels();
+            var playerId = action.PlayerId;
+            var playerModel = models.Find(m => m.Id == playerId);
+
+            // creates player model if it doesn't exist
+            if (playerModel == null)
+            {
+                playerModel = new PlayerModel(name, action.PlayerId);
+                models.Add(playerModel);
+            }
+            playerModel.UpdateHistory(action);
+            SetPlayersModels(models);
+        }
+
 
         public void ResetBoardCards()
         {
             SetState((int)State.BoardCards, new List<Card>());
         }
 
-        public void SetBoardCards(List<Card> boardCards)
-        {
-            SetState((int)State.BoardCards, boardCards);
-        }
-
         public void ResetDecision()
         {
             SetDecision((0, 0, 0));
+        }
+
+        public void AddDeadCards(List<Card> deadCards)
+        {
+            List<Card> cards = (List<Card>)GetState((int)State.DeadCards);
+            cards.AddRange(deadCards);
+            SetState((int)State.DeadCards, cards);
+        }
+
+        public void StoreRoundHistory()
+        {
+            List<PyAction> history = (List<PyAction>)GetState((int)State.ActionHistory);
+            var currentRound = GetCurrentRound();
+            if (currentRound.ActionHistory.Count > 0)
+            {
+                history.AddRange(currentRound.ActionHistory);
+                SetState((int)State.ActionHistory, history);
+            }
+        }
+
+        #endregion
+
+        #region State setters
+
+        public void SetBoardCards(List<Card> boardCards)
+        {
+            SetState((int)State.BoardCards, boardCards);
         }
 
         public void SetDecision((float Fold, float Call, float Raise) decision)
@@ -69,33 +108,25 @@ namespace PokerShark.Core.HTN.Context
             SetState((int)State.ValidActions, validActions);
         }
 
-        public void AddDeadCards(List<Card> deadCards)
-        {
-            List<Card> cards = (List<Card>)GetState((int)State.DeadCards);
-            cards.AddRange(deadCards);
-            SetState((int)State.DeadCards, cards);
-        }
-
         public void SetLastRoundWinners(List<Seat> winners)
         {
             SetState((int)State.LastRoundWinners, winners);
         }
 
-        public void StoreRoundHistory()
+        public void SetPlayersModels(List<PlayerModel> models)
         {
-            List<PyAction> history = (List<PyAction>)GetState((int)State.ActionHistory);
-            var currentRound = GetCurrentRound();
-            if (currentRound.ActionHistory.Count> 0)
-            {
-                history.AddRange(currentRound.ActionHistory);
-                SetState((int)State.ActionHistory, history);
-            }
+            SetState((int)State.PlayersModels, models);
         }
 
         #endregion
 
         #region State getters
 
+        public List<PlayerModel> GetPlayersModels()
+        {
+            return (List<PlayerModel>)GetState((int)State.PlayersModels);
+        }
+        
         public Position GetPosition()
         {
             var position = Position.Early;
@@ -127,11 +158,11 @@ namespace PokerShark.Core.HTN.Context
             return ((float Fold, float Call, float Raise))GetState((int)State.Decision);
         }
 
-        #endregion
-
         public StaticUtilityFunction GetAttitude()
         {
             return new RiskNeutral();
         }
+
+        #endregion
     }
 }

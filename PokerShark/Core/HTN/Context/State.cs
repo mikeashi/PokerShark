@@ -19,5 +19,6 @@ namespace PokerShark.Core.HTN.Context
         LastRoundWinners,
         Decision,
         ActionHistory,
+        PlayersModels,
     }
 }
