@@ -15,7 +15,7 @@ namespace PokerShark.UnitTests.Core
     [TestClass]
     public class BotPreflopTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void TestStartGame()
         {
             // setup game

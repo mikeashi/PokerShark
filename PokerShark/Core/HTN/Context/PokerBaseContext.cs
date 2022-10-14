@@ -24,6 +24,7 @@ namespace PokerShark.Core.HTN.Context
         public override bool LogDecomposition { get; } = true;
         public override object[] WorldState => _worldState;
         public bool Done { get; set; } = false;
+        public bool CheckRaise { get; set; } = false;
 
         #endregion
 

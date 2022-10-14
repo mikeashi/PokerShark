@@ -51,17 +51,17 @@ namespace PokerShark.Core.HTN
         private Domain<PokerContext, object> BuildDomain()
         {
             return new PokerDomainBuilder("PokerDomain")
-                .PreflopSequence()
-                .Select("Done")
-                    .Action("Done")
-                        .Do((ctx) => 
-                                {
-                                    Console.WriteLine("Done");
-                                    ctx.Done = true;
-                                    return TaskStatus.Continue;
+                .Select("Check-Raise")
+                    .Condition("Check-Raise", (ctx) => ctx.CheckRaise)
+                        .Action("Raise")
+                            .Do((ctx) => { 
+                                ctx.CheckRaise = false;
+                                ctx.SetDecision((0,0,1));
+                                return TaskStatus.Success;
                             })
                         .End()
-                    .End()
+                .End()
+                .PreflopSequence()
                 .Build();
         }
 

@@ -142,7 +142,20 @@ namespace PokerShark.Core.RPC
             var pocket = PyPokerHelper.getPocketCards(result["hole_card"]);
             var round = PyPokerHelper.getRoundState(result["round_state"]);
             var actions = PyPokerHelper.getValidActions(result["valid_actions"]);
-            return Bot.DeclareAction(actions, round, pocket).ToString();
+            
+            // get bot action
+            var action = Bot.DeclareAction(actions, round, pocket);
+
+            // if preflop store bot action and round in csv file
+            if (round.StreetState == StreetState.Preflop)
+            {
+                var csv = new StringBuilder();
+                var newLine = string.Format("{0},{1},{2}", action.Name,String.Join(" - ", pocket), Convert.ToBase64String(Encoding.UTF8.GetBytes(payload)));
+                csv.AppendLine(newLine);
+                System.IO.File.AppendAllText("preflop.csv", csv.ToString());
+            }
+
+            return action.ToString();
         }
 
         private void HandleStreetStartedMessage(string payload)

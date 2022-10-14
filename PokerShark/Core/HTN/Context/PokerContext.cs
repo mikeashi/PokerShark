@@ -152,6 +152,10 @@ namespace PokerShark.Core.HTN.Context
             return ((RoundState)GetState((int)State.CurrentRound));
         }
 
+        public List<Card> GetPocket()
+        {
+            return ((List<Card>)GetState((int)State.PocketCards));  
+        }
 
         public (float Fold, float Call, float Raise) GetDecision()
         {

@@ -61,6 +61,7 @@ namespace PokerShark.Core.Poker
 
             // return action.
             var planner = new PokerPlanner();
+
             return planner.GetAction(Context);
         }
 
