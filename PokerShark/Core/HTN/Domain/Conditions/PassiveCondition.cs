@@ -11,25 +11,25 @@ using System.Threading.Tasks;
 
 namespace PokerShark.Core.HTN.Domain.Conditions
 {
-    public class LooseCondition : ICondition<Object>
+    public class PassiveCondition : ICondition<Object>
     {
-        public string Name { get; } = "If Loose game";
+        public string Name { get; } = "If Passive game";
 
         public bool IsValid(IContext<object> ctx)
         {
             if (ctx is PokerContext c)
             {
                 var models = c.GetPlayersModels();
-                var loose = 0;
-                var tight = 0;
+                var aggressive = 0;
+                var passive = 0;
                 foreach(var model in models)
                 {
-                    if (model.PlayingStyle == Poker.PlayingStyle.LooseAggressive || model.PlayingStyle == Poker.PlayingStyle.LoosePassive || model.PlayingStyle == Poker.PlayingStyle.Balanced)
-                        loose++;
+                    if (model.PlayingStyle == Poker.PlayingStyle.LooseAggressive || model.PlayingStyle == Poker.PlayingStyle.TightAggressive)
+                        aggressive++;
                     else
-                        tight++;
+                        passive++;
                 }
-                return loose >= tight;
+                return passive >= aggressive;
             }
 
             throw new Exception("Unexpected context type!");

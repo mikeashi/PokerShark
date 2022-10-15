@@ -1,6 +1,7 @@
 ﻿using FluidHTN.Contexts;
 using FluidHTN.Debug;
 using FluidHTN.Factory;
+using PokerShark.Core.Helpers;
 using PokerShark.Core.Poker;
 using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
@@ -25,6 +26,7 @@ namespace PokerShark.Core.HTN.Context
         public override object[] WorldState => _worldState;
         public bool Done { get; set; } = false;
         public bool CheckRaise { get; set; } = false;
+        public double RaiseAmount { get; set; }
 
         #endregion
 

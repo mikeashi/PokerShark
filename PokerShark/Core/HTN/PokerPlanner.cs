@@ -33,10 +33,10 @@ namespace PokerShark.Core.HTN
             ctx.Done = false;
             
             // run planner
-            while (!ctx.Done)
-            {
+            //while (!ctx.Done)
+            //{
                 Planner.Tick(Domain, ctx);
-            }
+            //}
 
             // planner decision
             var decision = ctx.GetDecision();
@@ -54,9 +54,10 @@ namespace PokerShark.Core.HTN
                 .Select("Check-Raise")
                     .Condition("Check-Raise", (ctx) => ctx.CheckRaise)
                         .Action("Raise")
-                            .Do((ctx) => { 
+                            .Do((ctx) =>
+                            {
                                 ctx.CheckRaise = false;
-                                ctx.SetDecision((0,0,1));
+                                ctx.SetDecision((0, 0, 1));
                                 return TaskStatus.Success;
                             })
                         .End()

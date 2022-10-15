@@ -24,63 +24,54 @@ namespace PokerShark.Core.HTN.Domain
         }
 
         #region Conditions
-        
         public PokerDomainBuilder IfInPreflop()
         {
             var condition = new InPreflopCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInEarlyPosition()
         {
             var condition = new InEarlyPositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInMiddlePosition()
         {
             var condition = new InMiddlePositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInLatePosition()
         {
             var condition = new InLatePositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInBlindPosition()
         {
             var condition = new InBlindPositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInSmallBlindPosition()
         {
             var condition = new InSmallBlindPositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInBigBlindPosition()
         {
             var condition = new InBigBlindPositionCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfNoDecisionYet()
         {
             var condition = new NoDecisionYetCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfNoRaises()
         {
             var condition = new NoRaisesCondition();
@@ -93,50 +84,84 @@ namespace PokerShark.Core.HTN.Domain
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfInGroups(params int[] groups)
         {
             var condition = new InGroupCondition() { GroupsQuery= groups.ToList<int>() };
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfPocketIn(params PocketHand[] cards)
         {
             var condition = new PocketInCondition() { Hands = cards.ToList<PocketHand>() };
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfLoose()
         {
             var condition = new LooseCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
-
         public PokerDomainBuilder IfTight()
         {
             var condition = new TightCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
         public PokerDomainBuilder IfSuitedHand()
         {
             var condition = new SuitedHandCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
+        public PokerDomainBuilder IfCalls()
+        {
+            var condition = new IfCallsCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
         public PokerDomainBuilder IfNoCalls()
         {
             var condition = new NoCallesCondition();
             Pointer.AddCondition(condition);
             return this;
         }
-
+        public PokerDomainBuilder IfAggressive()
+        {
+            var condition = new AggressiveCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
+        public PokerDomainBuilder IfPassive()
+        {
+            var condition = new PassiveCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
+        public PokerDomainBuilder Occasionally()
+        {
+            var condition = new OccasionallyCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
+        public PokerDomainBuilder IfOneRaiseOnly()
+        {
+            var condition = new OneRaiseCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
+        public PokerDomainBuilder IfLooseRaiser()
+        {
+            var condition = new LooseRaiserCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
+        public PokerDomainBuilder IfTwoOrMoreRaises()
+        {
+            var condition = new TwoOrMoreRaisesCondition();
+            Pointer.AddCondition(condition);
+            return this;
+        }
 
         #endregion
 
@@ -176,22 +201,18 @@ namespace PokerShark.Core.HTN.Domain
                 PreflopMiddlePosition();
                 PreflopLatePosition();
                 PreflopBlindPosition();
-                Select("Check-Raise");
+                Action("Check raise ocecunally");
                 {
                     Condition("If Strong Raise", (ctx) => ctx.GetDecision().Raise > 0.5f);
-                    Action("Check raise ocecunally");
+                    Do((ctx) =>
                     {
-                        Do((ctx) =>
+                        if (new Random().Next(1, 11) > 2)
                         {
-                            if (new Random().Next(1, 11) > 2)
-                            {
-                                ctx.SetDecision((0, 1, 0));
-                                ctx.CheckRaise = true;
-                            }
-                            return TaskStatus.Success;
-                        });
-                    }
-                    End();
+                            ctx.SetDecision((0, 1, 0));
+                            ctx.CheckRaise = true;
+                        }
+                        return TaskStatus.Success;
+                    });
                 }
                 End();
             }
@@ -201,126 +222,199 @@ namespace PokerShark.Core.HTN.Domain
 
         public PokerDomainBuilder PreflopEarlyPosition()
         {
-            // In early positions we are out of position on all bettings rounds,
-            // so we need a superior hand to call or raise.
             Select("EarlyPosition");
             {
                 IfInEarlyPosition();
                 IfNoDecisionYet();
-                Select("NoRaises");
+
+                // No one called yet.
+                Select("No Calls Yet");
                 {
-                    IfNoRaises();
-                    
-                    Action("Raise 2/3 of time on AKs, AQs, Ajs, KQs");
+                    IfNoCalls();
+                    Action("Always raise on AA, KK, QQ, AK, AQ");
                     {
-                        IfPocketIn( new PocketHand(Rank.Ace, Rank.King, true),
-                                    new PocketHand(Rank.Ace, Rank.Queen, true),
-                                    new PocketHand(Rank.Ace, Rank.Jack, true),
-                                    new PocketHand(Rank.King, Rank.Queen, true));
-                        
-                        // Fold:0 , Call: 0.25, Raise: 0.75
-                        Do((ctx) => { ctx.SetDecision((0, 0.25f, 0.75f)); return TaskStatus.Success;});
-                    }
-                    End();
-
-                    Action("Usually Raise on 1,2");
-                    {
-                        IfInGroups(1, 2);
-                        
-                        // Fold:0 , Call: 0.1, Raise: 0.9
-                        Do((ctx) => { ctx.SetDecision((0, 0.1f, 0.9f)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Call on 1,2,3,4,5 in loose game");
-                    {
-                        IfLoose();
-                        IfInGroups(1,2,3,4,5);
-                        
-                        // Fold:0.4 , Call: 0.6, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.4f, 0.6f, 0)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Call on 1,2,3 in tight game");
-                    {
-                        IfTight();
-                        IfInGroups(1, 2, 3);
-
-                        // Fold:0.3 , Call: 0.7, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.3f, 0.7f, 0)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Call 0.4 of the time on suited hand");
-                    {
-                        IfSuitedHand();
-
-                        // Fold:0.6 , Call: 0.4, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.6f, 0.4f, 0)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Call on 5,6");
-                    {
-                        IfInGroups(5, 6);
-
-                        // Fold:0.7 , Call: 0.3, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.7f, 0.3f, 0)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Call on 7");
-                    {
-                        IfInGroups(7);
-
-                        // Fold:0.8 , Call: 0.2, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.8f, 0.2f, 0)); return TaskStatus.Success; });
-                    }
-                    End();
-
-                    Action("Fold if no other decision has been made");
-                    {
-                        // Fold:0.9 , Call: 0.1, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.9f, 0.1f, 0)); return TaskStatus.Success; });
+                        IfPocketIn( new PocketHand(Rank.Ace, Rank.Ace),
+                                    new PocketHand(Rank.King, Rank.King),
+                                    new PocketHand(Rank.Queen, Rank.Queen),
+                                    new PocketHand(Rank.Ace, Rank.King),
+                                    new PocketHand(Rank.Ace,Rank.Queen));
+                        Do(AlwaysRaise);
                     }
                     End();
                 }
                 End();
-                
-                
-                Select("Raises");
+
+                // No one raised yet
+                Select("No Raises Yet");
                 {
-                    IfOneOrMoreRaises();
-                    
-                    Action("Call on 1,2 if tight game");
+                    IfNoRaises();
+
+                    Action("Usually Raise on Groups 1,2");
                     {
-                        IfTight();
                         IfInGroups(1, 2);
-                        
-                        // Fold:0.1 , Call: 0.8, Raise: 0.1
-                        Do((ctx) => { ctx.SetDecision((0.1f, 0.8f, 0.1f)); return TaskStatus.Success; });
+                        Do(UsuallyRaise);
                     }
                     End();
 
-                    Action("Call on 1,2,3 if loose game");
+                    Action("Usually Raise on AQ");
+                    {
+                        IfPocketIn(new PocketHand(Rank.Ace, Rank.Queen));
+                        Do(UsuallyRaise);
+                    }
+                    End();
+
+                    Action("Sometimes Raise on Group 3");
+                    {
+                        IfInGroups(3);
+                        Do(SometimesRaise);
+                    }
+                    End();
+
+                    Select("Loose Game");
                     {
                         IfLoose();
-                        IfInGroups(1, 2, 3);
 
-                        // Fold:0.2 , Call: 0.7, Raise: 0.1
-                        Do((ctx) => { ctx.SetDecision((0.2f, 0.7f, 0.1f)); return TaskStatus.Success; });
+                        Action("Fold AJ, KTs if Aggressive");
+                        {
+                            IfAggressive();
+                            IfPocketIn(new PocketHand(Rank.Ace,Rank.Jack), new PocketHand(Rank.King, Rank.Ten, true));
+                            Do(Fold);
+                        }
+                        End();
+
+                        Action("Call or Raise on group 4");
+                        {
+                            IfInGroups(4);
+                            Do(CallOrRaise);
+                        }
+                        End();
+
+                        Select("Passive Game");
+                        {
+                            IfPassive();
+
+                            Action("Call or Raise on 87s 76s 65s");
+                            {
+                                IfPocketIn( new PocketHand(Rank.Eight, Rank.Seven, true),
+                                            new PocketHand(Rank.Seven, Rank.Six, true),
+                                            new PocketHand(Rank.Six, Rank.Five, true));
+                                Do(CallOrRaise);
+                            }
+                            End();
+
+                            Action("Sometimes call on group 5");
+                            {
+                                IfInGroups(5);
+                                Do(SometimesCall);
+                            }
+                            End();
+                        }
+                        End();
                     }
                     End();
-                    
 
-                    Action("Fold if no other decision has been made");
+                    Select("Occasionally Raise suited connectors");
                     {
-                        // Fold:0.9 , Call: 0.1, Raise: 0
-                        Do((ctx) => { ctx.SetDecision((0.9f, 0.1f, 0)); return TaskStatus.Success; });
+                        Action("Raise on suited connectors");
+                        {
+                            Occasionally();
+                            IfPocketIn(new PocketHand(Rank.Eight, Rank.Seven, true),
+                                            new PocketHand(Rank.Seven, Rank.Six, true),
+                                            new PocketHand(Rank.Six, Rank.Five, true));
+                            Do(AlwaysRaise);
+                        }
+                        End();
                     }
                     End();
 
+                }
+                End();
+
+                // Only one raise
+                Select("One Raise");
+                {
+                    IfOneRaiseOnly();
+                    
+                    Action("Call On AJs, KQs");
+                    {
+                        IfPocketIn(new PocketHand(Rank.Ace,Rank.Jack, true), new PocketHand(Rank.King, Rank.Queen, true));
+                        Do(Call);
+                    }
+                    End();
+
+                    Action("Usually Raise on group 1,2");
+                    {
+                        IfInGroups(1, 2);
+                        Do(UsuallyRaise);
+                    }
+                    End();
+
+                    Select("Defend against Loose Raiser");
+                    {
+                        IfLooseRaiser();
+                        Action("Rasie on AQ, 99, 88");
+                        {
+                            IfPocketIn( new PocketHand(Rank.Ace, Rank.Queen),
+                                        new PocketHand(Rank.Nine, Rank.Nine),
+                                        new PocketHand(Rank.Eight, Rank.Eight));
+                            Do(UsuallyRaise);
+                        }
+                        End();
+                    }
+                    End();
+                }
+                End();
+
+                // Two or more raises
+                Select("Two or more Raises");
+                {
+                    IfTwoOrMoreRaises();
+
+                    Select("Loose Game");
+                    {
+                        IfLoose();
+                        Action("Fold on AQ");
+                        {
+                            IfPocketIn(new PocketHand(Rank.Ace, Rank.Queen));
+                            Do(Fold);
+                        }
+                        End();
+
+                        Action("Usually raise on group 1,2,3");
+                        {
+                            IfInGroups(1, 2, 3);
+                            Do(UsuallyRaise);
+                        }
+                        End();
+                    }
+                    End();
+
+
+                    Select("Tight Game");
+                    {
+                        IfTight();
+                        Action("Fold on AJs, KQs");
+                        {
+                            IfPocketIn(new PocketHand(Rank.Ace, Rank.Jack, true), new PocketHand(Rank.King, Rank.Queen, true));
+                            Do(Fold);
+                        }
+                        End();
+
+                        Action("Usually raise on group 1,2");
+                        {
+                            IfInGroups(1, 2, 3);
+                            Do(UsuallyRaise);
+                        }
+                        End();
+                    }
+                    End();
+                }
+                End();
+
+                Action("Fold if no decision was made");
+                {
+                    IfNoDecisionYet();
+                    Do(Fold);
                 }
                 End();
             }
@@ -335,62 +429,144 @@ namespace PokerShark.Core.HTN.Domain
             {
                 IfInMiddlePosition();
                 IfNoDecisionYet();
+
+                Action("Always Raise with group 1,2");
+                {
+                    IfInGroups(1, 2);
+                    Do(AlwaysRaise);
+                }
+                End();
+
+                Select("Raise on Callers");
+                {
+                    IfCalls();
+
+                    Action("Always Raise on AQ");
+                    {
+                        IfPocketIn(new PocketHand(Rank.Ace, Rank.Queen));
+                        Do(AlwaysRaise);
+                    }
+                    End();
+
+                    Action("Call on JTs");
+                    {
+                        IfPocketIn(new PocketHand(Rank.Jack, Rank.Ten , true));
+                        Do(Call);
+                    }
+                    End();
+
+                    Action("Sometimes Raise on AJ, KQ");
+                    {
+                        IfPocketIn(new PocketHand(Rank.Ace, Rank.Jack), new PocketHand(Rank.King, Rank.Queen));
+                        Do(SometimesRaise);
+                    }
+                    End();
+
+                    Action("Sometimes Raise on group 3");
+                    {
+                        IfInGroups(3);
+                        Do(SometimesRaise);
+                    }
+                    End();
+
+                }
+                End();
+
+                Select("No Raises");
+                {
+                    IfNoRaises();
+
+                    Action("Always raise group 3");
+                    {
+                        IfInGroups(3);
+                        Do(AlwaysRaise);
+                    }
+                    End();
+
+                    Select("Loose game");
+                    {
+                        IfLoose();
+
+                        Action("Fold KJ, T8s on aggressive");
+                        {
+                            IfAggressive();
+                            IfPocketIn(new PocketHand(Rank.King, Rank.Jack), new PocketHand(Rank.Ten, Rank.Eight, true));
+                            Do(Fold);
+                        }
+                        End();
+
+                        Action("Always raise groups 4,5,6");
+                        {
+                            IfInGroups(4, 5, 6);
+                            Do(AlwaysRaise);
+                        }
+                        End();
+                    }
+                    End();
+
+                    Select("Tight game");
+                    {
+                        IfTight();
+
+                        Action("Usually raise groups 4,5");
+                        {
+                            IfInGroups(4, 5);
+                            Do(UsuallyRaise);
+                        }
+                        End();
+                    }
+                    End();
+                }
+                End();
+
+                Select("One Raiser");
+                {
+                    IfOneRaiseOnly();
+
+                    Action("Defend against Loose Raiser");
+                    {
+                        IfLooseRaiser();
+                        IfPocketIn(new PocketHand(Rank.Ace, Rank.Queen),
+                                       new PocketHand(Rank.Nine, Rank.Nine),
+                                       new PocketHand(Rank.Eight, Rank.Eight));
+                        Do(UsuallyRaise);
+                    }
+                    End();
+                }
+                End();
+
+                Select("Two or more Raises");
+                {
+                    IfTwoOrMoreRaises();
+
+                    Action("Always raise on AA, KK, QQ, AKs, AK");
+                    {
+                        IfPocketIn( new PocketHand(Rank.Ace, Rank.Ace),
+                                    new PocketHand(Rank.King, Rank.King),
+                                    new PocketHand(Rank.Queen, Rank.Queen),
+                                    new PocketHand(Rank.Ace, Rank.King, true),
+                                    new PocketHand(Rank.Ace, Rank.King));
+                        Do(AlwaysRaise);
+                    }
+                    End();
+
+                    Action("Occasionally raise on T9s, 88");
+                    {
+                        Occasionally();
+                        IfPocketIn(new PocketHand(Rank.Ten, Rank.Nine, true), new PocketHand(Rank.Eight, Rank.Eight));
+                        Do(AlwaysRaise);
+                    }
+                    End();
+
+                }
+                End();
                 
-                Action("Raise on 1,2,3");
+                Action("Fold if no decision was made");
                 {
-                    IfInGroups(1, 2, 3);
-
-                    // Fold:0 , Call: 0.25, Raise: 0.75
-                    Do((ctx) => { ctx.SetDecision((0, 0.25f, 0.75f)); return TaskStatus.Success; });
+                    IfNoDecisionYet();
+                    Do(Fold);
                 }
                 End();
-
-                Action("Call on 4,5 in tight game");
-                {
-                    IfTight();
-                    IfInGroups(4, 5);
-
-                    // Fold:0 , Call: 0.40, Raise: 0.60
-                    Do((ctx) => { ctx.SetDecision((0, 0.6f, 0.4f)); return TaskStatus.Success; });
-                }
-                End();
-
-                Action("Call on 4,5,6 in loose game");
-                {
-                    IfLoose();
-                    IfInGroups(4, 5, 6);
-
-                    // Fold:0 , Call: 0.60, Raise: 0.40
-                    Do((ctx) => { ctx.SetDecision((0, 0.6f, 0.4f)); return TaskStatus.Success; });
-                }
-                End();
-
-
-                Action("Call on 5,6");
-                {
-                    IfInGroups(5, 6);
-
-                    // Fold:0.7 , Call: 0.3, Raise: 0
-                    Do((ctx) => { ctx.SetDecision((0.7f, 0.3f, 0)); return TaskStatus.Success; });
-                }
-                End();
-
-                Action("Call on 7");
-                {
-                    IfInGroups(7);
-
-                    // Fold:0.8 , Call: 0.2, Raise: 0
-                    Do((ctx) => { ctx.SetDecision((0.8f, 0.2f, 0)); return TaskStatus.Success; });
-                }
-                End();
-                
-                Action("Fold if no other decision has been made");
-                {
-                    // Fold:0.9 , Call: 0.1, Raise: 0
-                    Do((ctx) => { ctx.SetDecision((0.9f, 0.1f, 0)); return TaskStatus.Success; });
-                }
-                End();
-
             }
             End();
             return this;
@@ -407,13 +583,13 @@ namespace PokerShark.Core.HTN.Domain
                 IfInLatePosition();
                 IfNoDecisionYet();
 
-                Action("Raise on 1,2,3,4,5,6,7 if no callers");
+                Action("Raise on 1,2,3,4,5,6,7 if no raises");
                 {
-                    IfNoCalls();
+                    IfNoRaises();
                     IfInGroups(1, 2, 3, 4, 5, 6, 7);
                     
                     // Fold:0 , Call: 0.2, Raise: 0.8
-                    Do((ctx) => { ctx.SetDecision((0, 0.2f, 0.8f)); return TaskStatus.Success; });
+                    Do(AlwaysRaise);
                 }
                 End();
 
@@ -422,7 +598,7 @@ namespace PokerShark.Core.HTN.Domain
                     IfInGroups(1, 2, 3);
 
                     // Fold:0 , Call: 0.2, Raise: 0.8
-                    Do((ctx) => { ctx.SetDecision((0, 0.2f, 0.8f)); return TaskStatus.Success; });
+                    Do(AlwaysRaise);
                 }
                 End();
 
@@ -431,7 +607,7 @@ namespace PokerShark.Core.HTN.Domain
                     IfInGroups(4);
 
                     // Fold:0 , Call: 0.5, Raise: 0.5
-                    Do((ctx) => { ctx.SetDecision((0, 0.5f, 0.5f)); return TaskStatus.Success; });
+                    Do(SometimesRaise);
                 }
                 End();
 
@@ -502,6 +678,7 @@ namespace PokerShark.Core.HTN.Domain
 
                     Select("Calls");
                     {
+                        IfCalls();
                         Action("Call on 1,2,3,4");
                         {
                             IfInGroups(1, 2 ,3 ,4);
@@ -553,6 +730,7 @@ namespace PokerShark.Core.HTN.Domain
 
                     Select("Calls");
                     {
+                        IfCalls();
                         Action("Call on 1,2,3,4");
                         {
                             IfInGroups(1, 2, 3, 4);
@@ -577,6 +755,59 @@ namespace PokerShark.Core.HTN.Domain
             return this;
         }
 
+        #endregion
+
+        #region actions
+       
+        public static TaskStatus Fold(PokerContext context)
+        {
+            context.SetDecision((1, 0, 0));
+            return TaskStatus.Success;
+        }
+
+        public static TaskStatus AlwaysRaise(PokerContext context)
+        {
+            context.SetDecision((0, 0, 1));
+            // Raise 4xBB 80%, 3xBB 20% of the time 
+            context.SetRaiseAmount((3, 0.2f), (4, 0.8f));
+            return TaskStatus.Success;
+        }
+
+        public static TaskStatus UsuallyRaise(PokerContext context)
+        {
+            context.SetDecision((0, 0.2f, 0.8f));
+            // Raise 4xBB 80%, 3xBB 20% of the time 
+            context.SetRaiseAmount((3, 0.2f), (4, 0.8f));
+            return TaskStatus.Success;
+        }
+
+        public static TaskStatus SometimesRaise(PokerContext context)
+        {
+            context.SetDecision((0, 0.4f, 0.6f));
+            // Raise 4xBB 50%, 3xBB 50% of the time 
+            context.SetRaiseAmount((3, 0.5f), (4, 0.5f));
+            return TaskStatus.Success;
+        }
+
+        public static TaskStatus CallOrRaise(PokerContext context)
+        {
+            context.SetDecision((0, 0.6f, 0.4f));
+            // Raise 2xBB 60%, 3xBB 40% of the time 
+            context.SetRaiseAmount((2, 0.6f), (3, 0.4f));
+            return TaskStatus.Success;
+        }
+        public static TaskStatus SometimesCall(PokerContext context)
+        {
+            context.SetDecision((0.4f, 0.6f, 0));
+            return TaskStatus.Success;
+        }
+
+        public static TaskStatus Call(PokerContext context)
+        {
+            context.SetDecision((0, 1, 0));
+            return TaskStatus.Success;
+        }
+        
         #endregion
     }
 }

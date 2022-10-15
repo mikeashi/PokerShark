@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace PokerShark.Core.HTN.Domain.Conditions
 {
-    public class NoCallesCondition : ICondition<Object>
+    public class OneRaiseCondition : ICondition<Object>
     {
-        public string Name { get; } = "If No Calles";
+        public string Name { get; } = "If Only one Raise";
 
         public bool IsValid(IContext<object> ctx)
         {
             if (ctx is PokerContext c)
             {
-                return !c.GetCurrentRound().ActionHistory.Any(a => a is CallAction || a is RaiseAction);
+                return c.GetCurrentRound().ActionHistory.Count(a => a is RaiseAction) == 1;
             }
 
             throw new Exception("Unexpected context type!");

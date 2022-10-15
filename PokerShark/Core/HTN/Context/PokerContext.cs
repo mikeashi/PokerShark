@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluidHTN.Contexts;
 using FluidHTN.Debug;
 using FluidHTN.Factory;
+using PokerShark.Core.Helpers;
 using PokerShark.Core.HTN.Utility;
 using PokerShark.Core.Poker;
 using PokerShark.Core.Poker.Deck;
@@ -20,6 +21,19 @@ namespace PokerShark.Core.HTN.Context
 
         }
         #region state methods 
+
+        public void SetRaiseAmount(params (int Factor, float Weight)[] amounts)
+        {
+            Dictionary<int, float> WeightedFactors = new Dictionary<int, float>();
+            foreach (var amount in amounts)
+            {
+                WeightedFactors.Add(amount.Factor, amount.Weight);
+            }
+
+            var factor = WeightedFactors.RandomElementByWeight(e => e.Value).Key;
+
+            RaiseAmount = factor * GetGameInfo().BigBlind;
+        }
         
         public void UpdatePlayerModel(String name, PyAction action)
         {
@@ -122,6 +136,11 @@ namespace PokerShark.Core.HTN.Context
 
         #region State getters
 
+        public GameInfo GetGameInfo()
+        {
+            return (GameInfo)GetState((int)State.GameInfo);
+        }
+        
         public List<PlayerModel> GetPlayersModels()
         {
             return (List<PlayerModel>)GetState((int)State.PlayersModels);

@@ -1,6 +1,7 @@
 ﻿using FluidHTN;
 using FluidHTN.Conditions;
 using PokerShark.Core.HTN.Context;
+using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,19 @@ using System.Threading.Tasks;
 
 namespace PokerShark.Core.HTN.Domain.Conditions
 {
-    public class NoCallesCondition : ICondition<Object>
+    public class OccasionallyCondition : ICondition<Object>
     {
-        public string Name { get; } = "If No Calles";
+        public string Name { get; } = "Randomly true less than 30% of the time";
 
         public bool IsValid(IContext<object> ctx)
         {
             if (ctx is PokerContext c)
             {
-                return !c.GetCurrentRound().ActionHistory.Any(a => a is CallAction || a is RaiseAction);
+                if (new Random().Next(1, 11) > 4)
+                {
+                    return true;
+                }
+                return false;
             }
 
             throw new Exception("Unexpected context type!");

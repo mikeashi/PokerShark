@@ -150,9 +150,9 @@ namespace PokerShark.Core.RPC
             if (round.StreetState == StreetState.Preflop)
             {
                 var csv = new StringBuilder();
-                var newLine = string.Format("{0},{1},{2}", action.Name,String.Join(" - ", pocket), Convert.ToBase64String(Encoding.UTF8.GetBytes(payload)));
+                var newLine = string.Format("{0},{1}", action.Name,String.Join(" - ", pocket));
                 csv.AppendLine(newLine);
-                System.IO.File.AppendAllText("preflop.csv", csv.ToString());
+                File.AppendAllText("preflop.csv", csv.ToString());
             }
 
             return action.ToString();

@@ -157,7 +157,8 @@ namespace PokerShark.Core.Poker.Deck
             // 97s
             AddPocketHand(new PocketHand(Rank.Nine, Rank.Seven,true));
 
-            // Axs (8,7,6,5,4,3,2)
+            // Axs (9,8,7,6,5,4,3,2)
+            AddPocketHand(new PocketHand(Rank.Ace, Rank.Nine, true));
             AddPocketHand(new PocketHand(Rank.Ace, Rank.Eight, true));
             AddPocketHand(new PocketHand(Rank.Ace, Rank.Seven, true));
             AddPocketHand(new PocketHand(Rank.Ace, Rank.Six, true));
