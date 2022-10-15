@@ -39,7 +39,7 @@ namespace PokerShark.Core.Poker
             Context.SetPocketCards(pocketCards);
             Context.SetSeats(seats);
 
-            DeckHelper.VerboseRoundStarted(roundCount, pocketCards, seats);
+            PyPokerHelper.VerboseRoundStarted(roundCount, pocketCards, seats);
         }
 
         public override void StreetStarted(RoundState state)
@@ -53,7 +53,7 @@ namespace PokerShark.Core.Poker
 
         public override PyAction DeclareAction(List<PyAction> validActions, RoundState state, List<Card> pocketCards)
         {
-            Log.Information("Action requestd, available actions : " + DeckHelper.GetValidActions(validActions));
+            Log.Information("Action requestd, available actions : " + PyPokerHelper.GetValidActions(validActions));
 
             Context.SetCurrentRound(state);
             Context.SetPocketCards(pocketCards);
@@ -69,7 +69,7 @@ namespace PokerShark.Core.Poker
         {
             Context.SetCurrentRound(state);
             
-            var name = DeckHelper.GetPlayerNameFromId(state.Seats, action.PlayerId);
+            var name = PyPokerHelper.GetPlayerNameFromId(state.Seats, action.PlayerId);
             
             Context.UpdatePlayerModel(name, action);
             

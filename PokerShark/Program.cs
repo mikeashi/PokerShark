@@ -16,7 +16,20 @@ namespace PokerShark
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
+        {
+            List<Card> Pocket = new List<Card>() { new Card(StateCard.SevenOfHearts), new Card(StateCard.NineOfHearts) };    
+            List<Card> Board = new List<Card>() { 
+                new Card(StateCard.EightOfHearts),
+                new Card(StateCard.SixOfClubs),
+                new Card(StateCard.FourOfHearts),
+            };
+            Console.WriteLine(Oracle.RawHandStrength(Pocket, Board));
+            Console.WriteLine(Oracle.HandPotential(Pocket, Board));
+            // Oracle.PrintPossibleOpponentsHandCombinations(Pocket, Board);
+        }
+        
+        static void Main_()
         {
             // initialize logger
             Log.Logger = new LoggerConfiguration()

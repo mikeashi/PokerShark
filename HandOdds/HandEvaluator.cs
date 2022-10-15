@@ -1016,6 +1016,22 @@ namespace HoldemHand
 
         #region Evaluate Hand
 
+
+        public static List<string> MaskToPockerShark(ulong mask)
+        {
+            List<string> cards = new List<string>();
+            int count = 0;
+            for (int i = 51; i >= 0; i--)
+            {
+                if (((1UL << i) & mask) != 0)
+                {
+                    cards.Add(Hand.PockerSharkCards[i]);
+                    count++;
+                }
+            }
+            return cards;
+        }
+        
         /// <summary>
         /// Turns a card mask into the equivalent human readable string.
         /// </summary>
@@ -42669,6 +42685,15 @@ namespace HoldemHand
         #endregion
 
         #region Card Table
+        /// <exclude/>
+        public static readonly string[] PockerSharkCards =
+        {
+            "TwoOfClubs", "ThreeOfClubs", "FourOfClubs", "FiveOfClubs", "SixOfClubs", "SevenOfClubs", "EightOfClubs", "NineOfClubs", "TenOfClubs", "JackOfClubs", "QueenOfClubs", "KingOfClubs", "AceOfClubs",
+            "TwoOfDiamonds", "ThreeOfDiamonds", "FourOfDiamonds", "FiveOfDiamonds", "SixOfDiamonds", "SevenOfDiamonds", "EightOfDiamonds", "NineOfDiamonds", "TenOfDiamonds", "JackOfDiamonds", "QueenOfDiamonds", "KingOfDiamonds", "AceOfDiamonds",
+            "TwoOfHearts", "ThreeOfHearts", "FourOfHearts", "FiveOfHearts", "SixOfHearts", "SevenOfHearts", "EightOfHearts", "NineOfHearts", "TenOfHearts", "JackOfHearts", "QueenOfHearts", "KingOfHearts", "AceOfHearts",
+            "TwoOfSpades", "ThreeOfSpades", "FourOfSpades", "FiveOfSpades", "SixOfSpades", "SevenOfSpades", "EightOfSpades", "NineOfSpades", "TenOfSpades", "JackOfSpades", "QueenOfSpades", "KingOfSpades", "AceOfSpades",
+        };
+
         // converts card number into the equivalent text string.
         /// <exclude/>
         public static readonly string[] CardTable =

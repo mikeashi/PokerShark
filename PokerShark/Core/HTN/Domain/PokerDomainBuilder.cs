@@ -298,7 +298,7 @@ namespace PokerShark.Core.HTN.Domain
                                 IfPocketIn( new PocketHand(Rank.Eight, Rank.Seven, true),
                                             new PocketHand(Rank.Seven, Rank.Six, true),
                                             new PocketHand(Rank.Six, Rank.Five, true));
-                                Do(CallOrRaise);
+                                Do(SometimesRaise);
                             }
                             End();
 
@@ -402,7 +402,7 @@ namespace PokerShark.Core.HTN.Domain
 
                         Action("Usually raise on group 1,2");
                         {
-                            IfInGroups(1, 2, 3);
+                            IfInGroups(1, 2);
                             Do(UsuallyRaise);
                         }
                         End();
@@ -775,7 +775,7 @@ namespace PokerShark.Core.HTN.Domain
 
         public static TaskStatus UsuallyRaise(PokerContext context)
         {
-            context.SetDecision((0, 0.2f, 0.8f));
+            context.SetDecision((0, 0.1f, 0.9f));
             // Raise 4xBB 80%, 3xBB 20% of the time 
             context.SetRaiseAmount((3, 0.2f), (4, 0.8f));
             return TaskStatus.Success;
@@ -783,7 +783,7 @@ namespace PokerShark.Core.HTN.Domain
 
         public static TaskStatus SometimesRaise(PokerContext context)
         {
-            context.SetDecision((0, 0.4f, 0.6f));
+            context.SetDecision((0, 0.3f, 0.7f));
             // Raise 4xBB 50%, 3xBB 50% of the time 
             context.SetRaiseAmount((3, 0.5f), (4, 0.5f));
             return TaskStatus.Success;
@@ -791,7 +791,7 @@ namespace PokerShark.Core.HTN.Domain
 
         public static TaskStatus CallOrRaise(PokerContext context)
         {
-            context.SetDecision((0, 0.6f, 0.4f));
+            context.SetDecision((0, 0.4f, 0.6f));
             // Raise 2xBB 60%, 3xBB 40% of the time 
             context.SetRaiseAmount((2, 0.6f), (3, 0.4f));
             return TaskStatus.Success;
