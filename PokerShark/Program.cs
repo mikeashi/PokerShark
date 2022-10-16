@@ -10,7 +10,9 @@ using PokerShark.Core.RPC;
 using PokerShark.Core.HTN;
 using PokerShark.Core.Poker;
 using PokerShark.Core.Poker.Deck;
-
+using HoldemHand;
+using PokerShark.Core.PyPoker;
+using PokerShark.Core.Helpers;
 
 namespace PokerShark
 {
@@ -18,17 +20,20 @@ namespace PokerShark
     {
         static void Main()
         {
-            List<Card> Pocket = new List<Card>() { new Card(StateCard.SevenOfHearts), new Card(StateCard.NineOfHearts) };    
-            List<Card> Board = new List<Card>() { 
-                new Card(StateCard.EightOfHearts),
-                new Card(StateCard.SixOfClubs),
-                new Card(StateCard.FourOfHearts),
-            };
-            Console.WriteLine(Oracle.RawHandStrength(Pocket, Board));
-            Console.WriteLine(Oracle.HandPotential(Pocket, Board));
-            // Oracle.PrintPossibleOpponentsHandCombinations(Pocket, Board);
+            // define pocket cards
+            var pocket = new List<Card>() { new Card(StateCard.AceOfDiamonds), new Card(StateCard.QueenOfClubs) };
+            // define board cards
+            var board = new List<Card>() { new Card(StateCard.JackOfHearts), new Card(StateCard.FourOfClubs), new Card(StateCard.ThreeOfHearts) };
+            
+            WeightTable weightTable = new WeightTable();
+            weightTable.UpdateTable(Core.PyPoker.StreetState.Preflop, 100, new FoldAction());
+            List<double[]> weights = new List<double[]>() { weightTable.Table};
+            Console.WriteLine(Oracle.RawHandStrength(pocket, board, 2));
+            Console.WriteLine(Oracle.WeightedHandStrength(pocket, board, weights));
+            Console.WriteLine(Oracle.HandPotential(pocket, board));
+            Console.WriteLine(Oracle.WeightedHandPotential(pocket, board, weights));
         }
-        
+
         static void Main_()
         {
             // initialize logger
