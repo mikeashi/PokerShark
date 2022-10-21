@@ -16,7 +16,7 @@ namespace PokerShark.Core.HTN.Utility
 
         public override double CalculateUtility(double cost)
         {
-            return cost * -1;
+            return cost;
         }
     }
 
@@ -27,7 +27,7 @@ namespace PokerShark.Core.HTN.Utility
 
         public override double CalculateUtility(double cost)
         {
-            cost = cost * -1;
+            //cost = cost * -1;
 
             return attitude * (Math.Exp(attitude * sensitivity * cost) - 1) / sensitivity;
         }
@@ -40,7 +40,7 @@ namespace PokerShark.Core.HTN.Utility
 
         public override double CalculateUtility(double cost)
         {
-            cost = cost * -1;
+            //cost = cost * -1;
 
             return attitude * (Math.Exp(attitude * sensitivity * cost) - 1) / sensitivity;
         }

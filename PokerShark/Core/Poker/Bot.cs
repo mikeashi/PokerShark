@@ -6,6 +6,7 @@ using PokerShark.Core.HTN.Context;
 using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
 using Serilog;
+using System.Xml.Linq;
 
 namespace PokerShark.Core.Poker
 {
@@ -13,6 +14,7 @@ namespace PokerShark.Core.Poker
     {
         public PokerContext Context { get; internal set; }
         private bool hasStarted = false;
+        private string gameId = null;
 
         public Bot()
         {
@@ -22,6 +24,8 @@ namespace PokerShark.Core.Poker
         public override void GameStarted(GameInfo gameInfo)
         {
             hasStarted = true;
+            // generate unique id for game
+            gameId = Guid.NewGuid().ToString();
             Log.Information("New Game started.");
             Context.Initialize(gameInfo);
             gameInfo.Verbose();
@@ -62,7 +66,41 @@ namespace PokerShark.Core.Poker
             // return action.
             var planner = new PokerPlanner();
 
-            return planner.GetAction(Context);
+            // get action from planner.
+            var action = planner.GetAction(Context);
+
+            // for debuging.
+            if (false)
+            {
+                var round = state;
+                var id = round.Seats.First(s => s.Name == "PokerShark").Id;
+                
+                Console.WriteLine("Pot: "+ state.Pot.Amount(id));
+
+                // print hand
+                Console.WriteLine("Hand: " +PyPokerHelper.DebugPocketCards(pocketCards));
+
+                Console.WriteLine("Cost of folding: " + Context.GetPaid());
+
+                // print odds 
+                if (state.StreetState != StreetState.Preflop)
+                {
+                    var raiseOdds = Context.RaiseOdds(Context.GetMinRaiseAmount());
+                    var callOdds = Context.CallOdds();
+                    var foldOdds = Context.FoldOdds();
+
+                    Console.WriteLine("RaiseOdds: " + String.Join(" ,", raiseOdds) + " E =" + raiseOdds.Sum(vc => (Context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability));
+                    Console.WriteLine("CallOdds: " + String.Join(" ,", callOdds) + " E =" + callOdds.Sum(vc => (Context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability));
+                    Console.WriteLine("FoldOdds: " + String.Join(" ,", foldOdds) + " E =" + foldOdds.Sum(vc => (Context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability));
+                }
+
+                // ask user to confirm action or change action
+                action = PyPokerHelper.GetUserAction(action, validActions);
+
+            }
+           
+
+            return action;
         }
 
         public override void GameUpdated(RoundState state, PyAction action)

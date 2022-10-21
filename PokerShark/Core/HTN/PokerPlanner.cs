@@ -2,6 +2,8 @@
 using PokerShark.Core.Helpers;
 using PokerShark.Core.HTN.Context;
 using PokerShark.Core.HTN.Domain;
+using PokerShark.Core.HTN.Utility;
+using PokerShark.Core.Poker;
 using PokerShark.Core.PyPoker;
 using System;
 using System.Collections.Generic;
@@ -20,17 +22,17 @@ namespace PokerShark.Core.HTN
 
         public PokerPlanner()
         {
-            Domain = BuildDomain();
             Planner = new Planner<PokerContext, Object>();
         }
 
         public PyAction GetAction(PokerContext ctx)
         {
+            Domain = BuildDomain(ctx);
+
             // Reset context 
             ctx.Reset();
             ctx.Init();
             ctx.ResetDecision();
-            ctx.Done = false;
             
             // run planner
             //while (!ctx.Done)
@@ -42,13 +44,13 @@ namespace PokerShark.Core.HTN
             var decision = ctx.GetDecision();
 
             // available actions
-            List<PyAction> actions = (List<PyAction>)ctx.GetState((int)State.ValidActions);
+            List<PyAction> actions = ctx.GetValidActions();
             
             // select an action based on decision
-            return SelectAction(decision, actions);
+            return SelectAction(decision, actions, ctx.RaiseDecisionAmount);
         }
 
-        private Domain<PokerContext, object> BuildDomain()
+        private Domain<PokerContext, object> BuildDomain(PokerContext ctx)
         {
             return new PokerDomainBuilder("PokerDomain")
                 .Select("Check-Raise")
@@ -58,20 +60,27 @@ namespace PokerShark.Core.HTN
                             {
                                 ctx.CheckRaise = false;
                                 ctx.SetDecision((0, 0, 1));
+                                ctx.RaiseDecisionAmount = ctx.GetMaxRaiseAmount();
                                 return TaskStatus.Success;
                             })
                         .End()
                 .End()
                 .PreflopSequence()
+                .PostflopSequence(ctx)
                 .Build();
         }
 
-        public static PyAction SelectAction((float Fold, float Call, float Raise) decision, List<PyAction> actions)
+        public static PyAction SelectAction((float Fold, float Call, float Raise) decision, List<PyAction> actions, double raiseAmount)
         {
             Dictionary<PyAction, float> WeightedActions = new Dictionary<PyAction, float>();
 
             foreach (var action in actions)
             {
+                if (action is RaiseAction)
+                {
+                    action.Amount = raiseAmount;
+                }
+                
                 switch (action.Name)
                 {
                     case "fold":

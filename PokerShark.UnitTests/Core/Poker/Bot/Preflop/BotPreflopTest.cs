@@ -13,7 +13,7 @@ using TaskStatus = FluidHTN.TaskStatus;
 namespace PokerShark.UnitTests.Core
 {
     [TestClass]
-    public class BotPreflopTest
+    public class BotTest
     {
         //[TestMethod]
         public void TestStartGame()

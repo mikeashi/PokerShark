@@ -26,7 +26,7 @@ namespace PokerShark.Core.HTN.Context
         public override object[] WorldState => _worldState;
         public bool Done { get; set; } = false;
         public bool CheckRaise { get; set; } = false;
-        public double RaiseAmount { get; set; }
+        public double RaiseDecisionAmount { get; set; }
 
         #endregion
 

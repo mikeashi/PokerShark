@@ -33,6 +33,9 @@ namespace PokerShark.Core.PyPoker
         public string Id { get; private set; }
         public Position Position { get; set; }
 
+        public bool IsSmallBlind { get;  set; }
+        public bool IsBigBlind { get;  set; }
+
 
         public Seat(double stack, PlayerState state, string name, string id)
         {

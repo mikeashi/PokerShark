@@ -13,31 +13,37 @@ namespace PokerShark.Core.Poker
 {
     internal class Oracle
     {
+        /// <summary>
+        ///     Effective Hand Strength
+        /// </summary>
+        /// <param name="Pocket"></param>
+        /// <param name="Board"></param>
+        /// <param name="weights"></param>
+        /// <returns></returns>
+        public static double EHS(List<Card> Pocket, List<Card> Board, List<double[]> weights)
+        {
+            var hs = HandStrength(Pocket, Board, weights);
+            var mhs = MonteCarloHandStrength(Pocket, Board, weights);
+            (double ppot, double npot) = HandPotential(Pocket, Board, weights);
+            hs = (hs + mhs) / 2;
+            //return mhs + (1- mhs) *ppot;
+            return hs + (1-hs) *ppot;
+        }
 
-        public static (double ppot, double npot) WeightedHandPotential(List<Card> Pocket, List<Card> Board, List<double[]> weights)
+        public static (double ppot, double npot) HandPotential(List<Card> Pocket, List<Card> Board, List<double[]> weights)
         {
             return EvaluatorHelper.WeightedHandPotential(Pocket, Board, weights);
         }
-        
-        public static (double ppot, double npot) WeightedHandPotential(List<Card> Pocket, List<Card> Board, double[] weights)
-        {
-            return EvaluatorHelper.WeightedHandPotential(Pocket, Board, weights);
-        }
-        
-        public static (double ppot, double npot) HandPotential(List<Card> Pocket, List<Card> Board)
-        {
-            return EvaluatorHelper.HandPotential(Pocket, Board);
-        }
 
 
-        public static double WeightedHandStrength(List<Card> Pocket, List<Card> Board, List<double[]> weights)
+        public static double HandStrength(List<Card> Pocket, List<Card> Board, List<double[]> weights)
         {
             return EvaluatorHelper.WeightedHandStrength(Pocket, Board, weights);
         }
-        
-        public static double RawHandStrength(List<Card> Pocket, List<Card> Board, int PlayersCount)
+
+        public static double MonteCarloHandStrength(List<Card> Pocket, List<Card> Board, List<double[]> weights)
         {
-            return EvaluatorHelper.RawHandStrength(Pocket, Board, PlayersCount-1);
+            return EvaluatorHelper.MonteCarloHandStrength(Pocket, Board, weights);
         }
     }
 }

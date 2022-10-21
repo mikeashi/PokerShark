@@ -1,23 +1,17 @@
-﻿using System;
+﻿using HoldemHand;
+using PokerShark.Core.Helpers;
+using PokerShark.Poker.Deck;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Deck = PokerShark.Core.Poker.Deck;
-using HoldemHand;
-using MathNet.Numerics.Integration;
-using PokerShark.Core.HTN;
-using PokerShark.Core.PyPoker;
-using Serilog;
-using PokerShark.Core.Poker;
-using PokerShark.Core.Poker.Deck;
 
-namespace PokerShark.Core.Helpers
+namespace PokerShark.AI
 {
-    public class EvaluatorHelper
+    internal class HandEvaluator
     {
-        #region Weights
+        #region HandMap
         public static Dictionary<ulong, TableCard> HandRangeMap = new Dictionary<ulong, TableCard>() {
                 { 0xC000000000000        , TableCard._AKs       },  // AKs
                 { 0xA000000000000        , TableCard._AQs       },  // AQs
@@ -1346,59 +1340,131 @@ namespace PokerShark.Core.Helpers
                 { 0x000000000005         , TableCard._42s       },  // 42s
                 { 0x000000000003         , TableCard._32s       },  // 32s
         };
-        
-        
-        public static void printHandRangeMap()
+        #endregion
+
+        #region HandStrength
+        public static double HandStrength(List<Card> Pocket, List<Card> Board, List<PlayerModel> models)
         {
-            foreach (var mask in Hand.TwoCardMaskTable)
+            double strength = 1;
+            foreach (var model in models)
             {
-                var ph = Hand.MaskToPockerShark(mask);
-                // Console.WriteLine("{ " + String.Format("0x{0:X12} \t , new Tuple<int, int>{1}  \t", mask, RangeTable.GetPosition(FromMask(mask))) + "},  // " + RangeTable.GetName(FromMask(mask)));
-                Console.WriteLine("{ " + String.Format("0x{0:X12} \t , TableCard._{1}  \t", mask, GetName(FromMask(mask))) + "},  // " + GetName(FromMask(mask)));
+                strength *= HandStrength(GetMask(Pocket), GetMask(Board), model.WeightTable.Table);
             }
-
+            return strength;
         }
-        
-        public static string GetName(List<Card> Pocket)
+        private static double HandStrength(ulong pocket, ulong board, double[] weights)
         {
-            if (Pocket.Count != 2) throw new Exception("Pocket has to have 2 cards");
-            return GetRefrenceCardName(Pocket[0].Rank, Pocket[1].Rank, Pocket[0].Suit == Pocket[1].Suit);
+            double win = 0.0, count = 0.0;
+            uint ourrank = Hand.Evaluate(pocket | board);
+            foreach (ulong oppcards in Hand.Hands(0UL, pocket | board, 2))
+            {
+                uint opprank = Hand.Evaluate(oppcards | board);
+                var position = HandRangeMap[oppcards];
+                double weight = weights[(int)position];
+                if (ourrank > opprank)
+                {
+                    win += 1.0 * weight;
+                }
+                else if (ourrank == opprank)
+                {
+                    win += 0.5 * weight;
+                }
+                count += 1.0 * weight;
+            }
+            return win / count;
+        }
+        #endregion
+
+        #region MonteCarlo
+        public static double MonteCarloHandStrength(List<Card> Pocket, List<Card> Board, List<PlayerModel> models)
+        {
+            return MonteCarloHandStrength(GetMask(Pocket), GetMask(Board), models, 0.7);
         }
 
-        private static string GetRefrenceCardName(Rank rank1, Rank rank2, bool suited)
+        public static double MonteCarloHandStrength(ulong pocket, ulong board, List<PlayerModel> models, double duration)
         {
-            if (rank1 < rank2)
-                return GetRankRefrenceName(rank2) + GetRankRefrenceName(rank1) + (suited ? "s" : "");
-            return GetRankRefrenceName(rank1) + GetRankRefrenceName(rank2) + (suited ? "s" : "");
-        }
+            // initialize win counter.
+            double win = 0.0, count = 0.0;
 
-        private static string GetRankRefrenceName(Rank rank)
-        {
-            string name = "" + (int)rank;
+            // store start time.
+            double starttime = Hand.CurrentTime;
 
-            if ((int)rank == 10)
-                name = "T";
+            // seed random. 
+            Random rand = new Random();
 
-            if ((int)rank == 11)
-                name = "J";
+            // check opponent count.
+            if (models.Count < 1 || models.Count > 9) throw new Exception("player count has to be between 1 and 9");
 
-            if ((int)rank == 12)
-                name = "Q";
+            // calculate our pocket evaluation
+            uint ourrank = Hand.Evaluate(pocket | board);
 
-            if ((int)rank == 13)
-                name = "K";
+            // array that holds opponent hands.
+            ulong[] oppcards = new ulong[models.Count];
 
-            if ((int)rank == 14)
-                name = "A";
-            return name;
+            while ((Hand.CurrentTime - starttime) < duration)
+            {
+                // for each opponent generate random hand and calculate its rank.
+
+                for (int i = 0; i < models.Count; i++)
+                {
+                    var dead = pocket | board;
+                    // add opponent cards to dead cards.
+                    for (int j = 0; j < i; j++)
+                    {
+                        dead |= oppcards[j];
+                    }
+                    // generate random opponent hand.
+                    oppcards[i] = Hand.RandomHand(rand, 0UL, dead, 2);
+                }
+
+                // calculate opponent ranks.
+                uint[] oppranks = new uint[models.Count];
+                for (int i = 0; i < models.Count; i++)
+                {
+                    oppranks[i] = Hand.Evaluate(oppcards[i] | board);
+                }
+
+                // find best opponent hand.
+                uint bestopp = oppranks.Max();
+
+                // find opponent index
+                int index = Array.IndexOf(oppranks, bestopp);
+
+                // find opponent hand weight
+                double weight = models[index].WeightTable.Table[(int)HandRangeMap[oppcards[index]]];
+
+                if (ourrank > bestopp)
+                {
+                    win += 1.0 * weight;
+                }
+                else if (ourrank == bestopp)
+                {
+                    win += 0.5 * weight;
+                }
+                count += 1.0;
+            }
+            return win / count;
         }
 
         #endregion
 
         #region HandPotential
-
-        public static void WHandPotential(ulong pocket, ulong board, out double ppot, out double npot, double[] weights)
+        public static (double ppot, double npot) HandPotential(List<Card> Pocket, List<Card> Board, List<PlayerModel> models)
         {
+            double ppot = 1;
+            double npot = 1;
+            foreach (var model in models)
+            {
+                var (pp, np) = HandPotential(GetMask(Pocket), GetMask(Board), model.WeightTable.Table);
+                ppot *= pp;
+                npot *= np;
+            }
+            return (Math.Round(ppot, 4), Math.Round(npot, 4));
+        }
+        private static (double ppot, double npot) HandPotential(ulong pocket, ulong board, double[] weights)
+        {
+            double ppot = 0;
+            double npot = 0;
             const int ahead = 2;
             const int tied = 1;
             const int behind = 0;
@@ -1443,211 +1509,24 @@ namespace PokerShark.Core.Helpers
                 npot = (HP[ahead, behind] + (HP[ahead, tied] / 2) + (HP[tied, behind] / 2)) / den2;
             else
                 npot = 0;
-        }
-        
-        public static (double ppot, double npot) HandPotential(List<Deck.Card> Pocket, List<Deck.Card> Board)
-        {
-            double ppot = 0;
-            double npot = 0;
-            Hand.HandPotential(GetMask(Pocket), GetMask(Board), out ppot, out npot);
+
             return (ppot, npot);
-        }
-
-        public static (double ppot, double npot) WeightedHandPotential(List<Deck.Card> Pocket, List<Deck.Card> Board, List<double[]> weights)
-        {
-            double ppot = 1;
-            double npot = 1;
-            foreach (var w in weights)
-            {
-                var (pp, np) = WeightedHandPotential(Pocket, Board, w);
-                ppot *= pp;
-                npot *= np;
-            }
-            return (Math.Round(ppot, 4), Math.Round(npot, 4));
-        }
-        public static (double ppot, double npot) WeightedHandPotential(List<Deck.Card> Pocket, List<Deck.Card> Board, double[] weights)
-        {
-            double ppot = 0;
-            double npot = 0;
-            WHandPotential(GetMask(Pocket), GetMask(Board), out ppot, out npot, weights);
-            return (ppot, npot);
-        }
-
-        #endregion
-
-        #region HandStrength
-        public static double MonteCarloHandStrength(List<Deck.Card> Pocket, List<Deck.Card> Board, List<double[]> weights)
-        {
-            return MonteCarloHandStrength(GetMask(Pocket), GetMask(Board), weights, 0.7);
-        }
-        
-        public static double MonteCarloHandStrength(ulong pocket, ulong board, List<double[]> weights, double duration)
-        {
-            // initialize win counter.
-            double win = 0.0, count = 0.0;
-            
-            // store start time.
-            double starttime = Hand.CurrentTime;
-            
-            // seed random. 
-            Random rand = new Random();
-
-            // check opponent count.
-            if (weights.Count < 1 || weights.Count > 9) throw new Exception("player count has to be between 1 and 9");
-
-            // calculate our pocket evaluation
-            uint ourrank = Hand.Evaluate(pocket | board);
-
-            // array that holds opponent hands.
-            ulong[] oppcards = new ulong[weights.Count];
-            
-            while ((Hand.CurrentTime - starttime) < duration)
-            {
-                // for each opponent generate random hand and calculate its rank.
-
-                for (int i = 0; i < weights.Count; i++)
-                {
-                    var dead = pocket | board;
-                    // add opponent cards to dead cards.
-                    for (int j = 0; j < i; j++)
-                    {
-                        dead |= oppcards[j];
-                    }
-                    // generate random opponent hand.
-                    oppcards[i] = Hand.RandomHand(rand, 0UL, dead, 2);
-                }
-
-                // calculate opponent ranks.
-                uint[] oppranks = new uint[weights.Count];
-                for (int i = 0; i < weights.Count; i++)
-                {
-                    oppranks[i] = Hand.Evaluate(oppcards[i] | board);
-                }
-
-                // find best opponent hand.
-                uint bestopp = oppranks.Max();
-                
-                // find opponent index
-                int index = Array.IndexOf(oppranks, bestopp);
-
-                // find opponent hand weight
-                double weight = weights[index][(int)EvaluatorHelper.HandRangeMap[oppcards[index]]];
-                
-                if (ourrank > bestopp)
-                {
-                    win += 1.0 * weight ;
-                }
-                else if (ourrank == bestopp)
-                {
-                    win += 0.5 * weight;
-                }
-                count += 1.0;
-            }
-            return win / count;
-        }
-
-        public static double WHandStrength(ulong pocket, ulong board, double[] weights)
-        {
-            double win = 0.0, count = 0.0;
-
-            uint ourrank = Hand.Evaluate(pocket | board);
-            foreach (ulong oppcards in Hand.Hands(0UL, pocket | board, 2))
-            {
-                uint opprank = Hand.Evaluate(oppcards | board);
-                var position = HandRangeMap[oppcards];
-                double weight = weights[(int)position];
-                if (ourrank > opprank)
-                {
-                    win += 1.0 * weight;
-                }
-                else if (ourrank == opprank)
-                {
-                    win += 0.5 * weight;
-                }
-                count += 1.0 * weight;
-            }
-            return win / count;
-        }
-        
-        public static double WeightedHandStrength(List<Deck.Card> Pocket, List<Deck.Card> Board, List<double[]> weights)
-        {
-            double strength = 1;
-            foreach(var w in weights)
-            {
-                strength *= WeightedHandStrength(Pocket, Board, w);
-            }
-            return strength;
-        }
-
-        public static double WeightedHandStrength(List<Deck.Card> Pocket, List<Deck.Card> Board, double[] weights)
-        {
-            return WHandStrength(GetMask(Pocket), GetMask(Board), weights);
-        }
-
-        public static double RawHandStrength(List<Deck.Card> Pocket, List<Deck.Card> Board, int OpponentsCount)
-        {
-            return Math.Pow(Hand.HandStrength(GetMask(Pocket), GetMask(Board)), OpponentsCount);
-        }
-
-        public static double RawHandStrength(List<Deck.Card> Pocket, List<Deck.Card> Board)
-        {
-            return Hand.HandStrength(GetMask(Pocket), GetMask(Board));
-        }
-        #endregion
-
-        #region Outs
-        public static int Outs(List<Deck.Card> pocket, List<Deck.Card> board)
-        {
-            return Hand.Outs(GetMask(pocket), GetMask(board));
-        }
-
-        public static List<Deck.Card> OutsCards(List<Deck.Card> Pocket, List<Deck.Card> Board)
-        {
-            return FromMask(Hand.OutsMask(GetMask(Pocket), GetMask(Board)));
         }
         #endregion
 
         #region Helpers
-        public static List<Deck.Card> FromMask(ulong mask, List<Deck.Card> board)
-        {
-            return FromMask(mask, GetMask(board));
-        }
-
-        public static List<Deck.Card> FromMask(ulong mask, ulong board = 0UL)
-        {
-            if (board != 0UL) mask |= board;
-            List<Deck.Card> cards = new List<Deck.Card>();
-            foreach (var card in Hand.MaskToPockerShark(mask))
-            {
-                cards.Add(new Deck.Card(card));
-            }
-            return cards;
-        }
-
-        public static ulong GetMask(List<Deck.Card> cards)
+        private static ulong GetMask(List<Card> cards)
         {
             return Hand.ParseHand(GetAsString(cards));
         }
-
-        public static string GetAsString(List<Deck.Card> cards)
+        public static string GetAsString(List<Card> cards)
         {
             if (cards == null) return "";
             StringBuilder sb = new StringBuilder();
-            foreach (Deck.Card card in cards)
-                sb.Append(card.ToString() + " ");
+            foreach (Card card in cards)
+                sb.Append(card.ToHoldemCard() + " ");
             return sb.ToString();
         }
-
-        public static String CardsToString(List<Deck.Card> cards)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("[");
-            stringBuilder.Append(String.Join(", ", cards));
-            stringBuilder.Append("]");
-            return stringBuilder.ToString();
-        }
-
         #endregion
-
     }
 }

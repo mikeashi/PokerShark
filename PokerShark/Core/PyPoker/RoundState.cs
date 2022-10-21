@@ -22,11 +22,11 @@ namespace PokerShark.Core.PyPoker
         public int NextPlayer { get; private set; }
         public int RoundCount { get; private set; }
         public List<Card> Board { get; private set; }
-        public double MainPot { get; private set; }
-        public double SidePot { get; private set; }
+        public Pot Pot { get; private set; }
+        
         public List<PyAction> ActionHistory { get; private set; }
 
-        public RoundState(int dealerPosition, int smallBlindPosition, int bigBlindPosition, StreetState streetState, List<Seat> seats, int nextPlayer, int roundCount, List<Card> board, double mainPot, double sidePot, List<PyAction> actionHistory)
+        public RoundState(int dealerPosition, int smallBlindPosition, int bigBlindPosition, StreetState streetState, List<Seat> seats, int nextPlayer, int roundCount, List<Card> board, Pot pot, List<PyAction> actionHistory)
         {
             DealerPosition = dealerPosition;
             SmallBlindPosition = smallBlindPosition;
@@ -36,19 +36,21 @@ namespace PokerShark.Core.PyPoker
             NextPlayer = nextPlayer;
             RoundCount = roundCount;
             Board = board;
-            MainPot = mainPot;
-            SidePot = sidePot;
+            Pot = pot;
             ActionHistory = actionHistory;
             if (Seats.Count > 0) UpdatePositions();
         }
 
         public static RoundState GetEmpty()
         {
-            return new RoundState(0,0,0,StreetState.Preflop, new List<Seat>(),0,0, new List<Card>(),0,0, new List<PyAction>());
+            return new RoundState(0,0,0,StreetState.Preflop, new List<Seat>(),0,0, new List<Card>(),new Pot(), new List<PyAction>());
         }
 
         public void UpdatePositions()
         {
+            Seats[SmallBlindPosition].IsSmallBlind = true;
+            Seats[BigBlindPosition].IsBigBlind = true;
+            
             Seats[SmallBlindPosition].Position = Position.SmallBlind;
             Seats[BigBlindPosition].Position = Position.BigBlind;
 
@@ -118,8 +120,6 @@ namespace PokerShark.Core.PyPoker
             Log.Verbose(StringHelper.Indent(indent + 3) + "Street State: " + StreetState);
             Log.Verbose(StringHelper.Indent(indent + 3) + "Next player: " + NextPlayer);
             Log.Verbose(StringHelper.Indent(indent + 3) + "Round count: " + RoundCount);
-            Log.Verbose(StringHelper.Indent(indent + 3) + "Main pot amount: " + MainPot);
-            Log.Verbose(StringHelper.Indent(indent + 3) + "Side pot amount: " + SidePot);
             Log.Verbose(StringHelper.Indent(indent + 3) + "Seats: ");
             foreach (var seat in Seats)
             {
@@ -133,8 +133,6 @@ namespace PokerShark.Core.PyPoker
             Log.Information("Street Info:");
             Log.Information(StringHelper.Indent(indent + 3) + "State: " + StreetState);
             Log.Information(StringHelper.Indent(indent + 3) + "Round count: " + RoundCount);
-            Log.Information(StringHelper.Indent(indent + 3) + "Main pot amount: " + MainPot);
-            Log.Information(StringHelper.Indent(indent + 3) + "Side pot amount: " + SidePot);
             Log.Information(StringHelper.Indent(indent + 3) + "Players: ");
             int i = 0;
             foreach (var seat in Seats)

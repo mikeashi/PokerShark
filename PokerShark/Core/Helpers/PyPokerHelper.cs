@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PokerShark.Core.Poker.Deck;
 using PokerShark.Core.PyPoker;
 using Serilog;
@@ -155,11 +156,7 @@ namespace PokerShark.Core.Helpers
 
             int roundCount = (int)payload["round_count"];
             List<Card> board = getBoardCards(payload["formated_community_card"]);
-            Double mainPot = (Double)payload["pot"]["main"]["amount"];
-            Double sidePot = 0;
-            // TODO parse side pot
-            // if (payload["pot"]["side"].HasValues)
-            // sidePot = (Double)payload["pot"]["side"]["amount"];
+            Pot pot = JsonConvert.DeserializeObject<Pot>(payload["pot"].ToString());
 
             List<PyAction> actionHistory = new List<PyAction>();
             // parse action History
@@ -197,7 +194,7 @@ namespace PokerShark.Core.Helpers
                     }
                 }
             }
-            return new RoundState(dealerPosition, smallBlindPosition, bigBlindPosition, streetState, seats, nextPlayer, roundCount, board, mainPot, sidePot, actionHistory);
+            return new RoundState(dealerPosition, smallBlindPosition, bigBlindPosition, streetState, seats, nextPlayer, roundCount, board, pot, actionHistory);
         }
 
         public static List<Card> getBoardCards(JToken payload)
@@ -272,6 +269,34 @@ namespace PokerShark.Core.Helpers
                     break;
             }
             return street;
+        }
+
+        internal static PyAction GetUserAction(PyAction action, List<PyAction> validActions)
+        {
+            // ask user for action
+            Console.WriteLine("Please choose an action:");
+            Console.WriteLine(0 + ": " + action);
+            for (int i = 0; i < validActions.Count; i++)
+            {
+                Console.WriteLine(i+1 + ": " + validActions[i]);
+            }
+            
+            int userAction = -1;
+            
+            while (userAction < 0 || userAction >= validActions.Count + 1 )
+            {
+                Console.Write("Action: ");
+                userAction = Convert.ToInt32(Console.ReadLine());
+            }
+
+            if (userAction == 0)
+            {
+                return action;
+            }
+            else
+            {
+                return validActions[userAction - 1];
+            }
         }
     }
 }

@@ -220,6 +220,70 @@ namespace PokerShark.Core.HTN.Domain
             return this;
         }
 
+        public PokerDomainBuilder PostflopSequence(PokerContext ctx)
+        {
+            if (ctx.GetCurrentRound().StreetState == PyPoker.StreetState.Preflop)
+                return this;
+            
+            ExpectedUtilitySelector("Test");
+            {
+                VariableCostAction("max raise", ctx.RaiseOdds(ctx.GetMaxRaiseAmount()));
+                Do((ctx) =>
+                {
+                    ctx.SetDecision((0, 0.2f, 0.8f));
+                    return TaskStatus.Success;
+                });
+                End();
+                
+                VariableCostAction("mid raise", ctx.RaiseOdds(ctx.GetMaxRaiseAmount() + ctx.GetMinRaiseAmount() /2 ));
+                Do((ctx) =>
+                {
+                    ctx.SetDecision((0, 0.2f, 0.8f));
+                    return TaskStatus.Success;
+                });
+                End();
+                
+                VariableCostAction("min raise", ctx.RaiseOdds(ctx.GetMinRaiseAmount()));
+                    Do((ctx) =>
+                    {
+                        ctx.SetDecision((0, 0.2f, 0.8f));
+                        return TaskStatus.Success;
+                    });
+                End();
+                
+                VariableCostAction("call", ctx.CallOdds());
+                    Do((ctx) => {
+                        ctx.SetDecision((0, 0.8f, 0.2f));
+                        return TaskStatus.Success;
+                    });
+                End();
+                
+                //VariableCostAction("raise bluff", ctx.BluffOdds(ctx.GetRaiseAmount()));
+                //    IfNoDecisionYet();
+                //    Do((ctx) => {
+                //        ctx.SetDecision((0, 0.2f, 0.8f));
+                //        return TaskStatus.Success;
+                //    });
+                //End();
+                //VariableCostAction("call bluff", ctx.BluffOdds(ctx.GetCallAmount()));
+                //    IfNoDecisionYet();
+                //    Do((ctx) => {
+                //        ctx.SetDecision((0, 0.8f, 0.2f));
+                //        return TaskStatus.Success;
+                //    });
+                //End();
+                
+                VariableCostAction("fold", ctx.FoldOdds());
+                        Do((ctx) => {
+                            ctx.SetDecision((0.8f, 0.2f, 0));
+                            return TaskStatus.Success;
+                        });
+                End();
+            }
+            End();
+            return this;
+        }
+
         public PokerDomainBuilder PreflopEarlyPosition()
         {
             Select("EarlyPosition");

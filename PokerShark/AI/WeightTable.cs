@@ -1,15 +1,15 @@
-﻿using MathNet.Numerics.LinearAlgebra.Storage;
-using PokerShark.Core.PyPoker;
+﻿using PokerShark.Poker;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = PokerShark.Poker.Action;
 
-namespace PokerShark.Core.Poker
+namespace PokerShark.AI
 {
-    public enum TableCard : int
+    internal enum TableCard : int
     {
         // A
         _AA,
@@ -197,31 +197,72 @@ namespace PokerShark.Core.Poker
 
     public class WeightTable
     {
-        private double[] TableMap = new double[13 * 13] { 1, 1, 2, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5, 2, 1, 2, 3, 4, 6, 7, 7, 7, 7, 7, 7, 7, 3, 4, 1, 3, 4, 5, 7, 9, 9, 9, 9, 9, 9, 4, 5, 5, 1, 3, 4, 6, 8, 9, 9, 9, 9, 9, 6, 6, 6, 5, 2, 4, 5, 7, 9, 9, 9, 9, 9, 8, 8, 8, 7, 7, 3, 4, 5, 8, 9, 9, 9, 9, 10, 10, 10, 8, 8, 7, 4, 5, 6, 8, 9, 9, 9, 10, 10, 10, 10, 10, 10, 8, 5, 5, 6, 8, 9, 9, 10, 10, 10, 10, 10, 10, 10, 8, 6, 5, 7, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 8, 6, 6, 7, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 8, 7, 7, 8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7, 8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7 };
-        private Dictionary<int, double> GroupWeightMap = new Dictionary<int, double>() { { 1, 1 }, { 2, 0.99 }, { 3, 0.85 }, { 4, 0.80 }, { 5, 0.75 }, { 6, 0.7 }, { 7, 0.6 }, { 8, 0.5 }, { 9, 0.3 }, { 10, 0.1 } };
-        public double[] Table = new double[13*13];
+        #region Properties
+        // standard weight table based on card groups.
+        private double[] TableMap = new double[13 * 13] { 
+            1, 1, 2, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5,
+            2, 1, 2, 3, 4, 6, 7, 7, 7, 7, 7, 7, 7,
+            3, 4, 1, 3, 4, 5, 7, 9, 9, 9, 9, 9, 9,
+            4, 5, 5, 1, 3, 4, 6, 8, 9, 9, 9, 9, 9,
+            6, 6, 6, 5, 2, 4, 5, 7, 9, 9, 9, 9, 9,
+            8, 8, 8, 7, 7, 3, 4, 5, 8, 9, 9, 9, 9,
+            10, 10, 10, 8, 8, 7, 4, 5, 6, 8, 9, 9, 9,
+            10, 10, 10, 10, 10, 10, 8, 5, 5, 6, 8, 9, 9,
+            10, 10, 10, 10, 10, 10, 10, 8, 6, 5, 7, 9, 9,
+            10, 10, 10, 10, 10, 10, 10, 10, 8, 6, 6, 7, 9,
+            10, 10, 10, 10, 10, 10, 10, 10, 10, 8, 7, 7, 8,
+            10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7, 8,
+            10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 7
+        };
 
+        // group weights map
+        private Dictionary<int, double> GroupWeightMap = new Dictionary<int, double>() {
+            { 1, 1 },
+            { 2, 0.99 },
+            { 3, 0.85 },
+            { 4, 0.80 },
+            { 5, 0.75 },
+            { 6, 0.7 },
+            { 7, 0.6 },
+            { 8, 0.5 },
+            { 9, 0.3 },
+            { 10, 0.1 }
+        };
+
+        // actual weight table
+        public double[] Table = new double[13 * 13];
+
+        #endregion
+
+        #region Constructors
         public WeightTable()
         {
             Reset();
         }
+        #endregion
 
-        public void UpdateTable(StreetState Stage, double LooseIndex, PyAction action)
+        #region Methods
+        public void ReceiveAction(double LooseIndex, Action action)
         {
-            if (action is CallAction)
+            // reset weight table on each new hand
+            if (action.Stage == RoundState.Preflop)
             {
-                UpdateCall(LooseIndex);
+               Reset();
             }
-            else if (action is RaiseAction)
+
+            if (action.Type == ActionType.Call)
             {
-                UpdateRaise(LooseIndex);
+                ReceiveCall(LooseIndex);
+            }
+            else if (action.Type == ActionType.Raise)
+            {
+                ReceiveRaise(LooseIndex);
             }
             else
             {
-                UpdateFold(LooseIndex);
+                ReceiveFold(LooseIndex);
             }
         }
-
         public void Reset()
         {
             // Reset table
@@ -229,12 +270,9 @@ namespace PokerShark.Core.Poker
             // replace each group with its weight
             for (int i = 0; i < 169; i++)
             {
-                var tmp = Table[i];
-                var tmp2 = GroupWeightMap[(int)Table[i]];
                 Table[i] = GroupWeightMap[(int)Table[i]];
             }
         }
-
         public string ToCSV()
         {
             StringBuilder sb = new StringBuilder();
@@ -255,8 +293,7 @@ namespace PokerShark.Core.Poker
             }
             return sb.ToString();
         }
-
-        private void UpdateCall(double LooseIndex)
+        private void ReceiveCall(double LooseIndex)
         {
             List<TableCard> increase = new List<TableCard>();
             if (LooseIndex < 10)
@@ -289,45 +326,45 @@ namespace PokerShark.Core.Poker
             Increase(increase, 0.3);
             Decrease(decrease, 0.2);
         }
-
-        private void UpdateRaise(double LooseIndex)
+        private void ReceiveRaise(double LooseIndex)
         {
             List<TableCard> increase = new List<TableCard>();
-            if (LooseIndex < 10) {
+            if (LooseIndex < 10)
+            {
                 // 9% 66+,AJs+,KQs,AJo+,KQo
-                increase = new List<TableCard>() { TableCard._KQ,TableCard._KQs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA,};
+                increase = new List<TableCard>() { TableCard._KQ, TableCard._KQs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
             else if (LooseIndex < 30)
             {
                 // 15% 22+, ATs+, KJs+, QJs, JTs, T9s, 98s, 87s, 76s, 65s, AJo+, KJo+, QJo
-                increase = new List<TableCard>() {TableCard._65s,TableCard._76s,TableCard._87s,TableCard._98s,TableCard._T9s,TableCard._JTs,TableCard._QJ,TableCard._QJs,TableCard._KJ,TableCard._KJs,TableCard._KQ,TableCard._KQs,TableCard._ATs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._22,TableCard._33,TableCard._44,TableCard._55,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA, };
+                increase = new List<TableCard>() { TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T9s, TableCard._JTs, TableCard._QJ, TableCard._QJs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
             else if (LooseIndex < 60)
             {
                 // 20% 22+, ATs+, KTs+, QTs+, J9s+, T8s+, 98s, 87s, 76s, 65s, 54s, ATo+, KTo+, QTo+, JTo
-                increase = new List<TableCard>() { TableCard._54s,TableCard._65s,TableCard._76s,TableCard._87s,TableCard._98s,TableCard._T8s,TableCard._T9s,TableCard._J9s,TableCard._JT,TableCard._JTs,TableCard._QT,TableCard._QTs,TableCard._QJ,TableCard._QJs,TableCard._KT,TableCard._KTs,TableCard._KJ,TableCard._KJs,TableCard._KQ,TableCard._KQs,TableCard._AT,TableCard._ATs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._22,TableCard._33,TableCard._44,TableCard._55,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA,};
+                increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
             else if (LooseIndex < 70)
             {
                 // 25% 22+,A7s+,K9s+,Q9s+,J9s+,T8s+,97s+,86s+,75s+,64s+,54s,A9o+,KTo+,QTo+,JTo,T9o
-                increase = new List<TableCard>() {TableCard._54s,TableCard._64s,TableCard._65s,TableCard._75s,TableCard._76s,TableCard._86s,TableCard._87s,TableCard._97s,TableCard._98s,TableCard._T8s,TableCard._T9,TableCard._T9s,TableCard._J9s,TableCard._JT,TableCard._JTs,TableCard._Q9s,TableCard._QT,TableCard._QTs,TableCard._QJ,TableCard._QJs,TableCard._K9s,TableCard._KT,TableCard._KTs,TableCard._KJ,TableCard._KJs,TableCard._KQ,TableCard._KQs,TableCard._A7s,TableCard._A8s,TableCard._A9,TableCard._A9s,TableCard._AT,TableCard._ATs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._22,TableCard._33,TableCard._44,TableCard._55,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA, };
+                increase = new List<TableCard>() { TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A7s, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
             else if (LooseIndex < 80)
             {
                 // 35% 22+,A2s+,K8s+,Q8s+,J8s+,T7s+,97s+,86s+,75s+,64s+,54s,43s,A8o+,A5o-A2o,K9o+,Q9o+,J9o+,T9o
-                increase = new List<TableCard>() {TableCard._43s,TableCard._54s,TableCard._64s,TableCard._65s,TableCard._75s,TableCard._76s,TableCard._86s,TableCard._87s,TableCard._97s,TableCard._98s,TableCard._T7s,TableCard._T8s,TableCard._T9,TableCard._T9s,TableCard._J8s,TableCard._J9,TableCard._J9s,TableCard._JT,TableCard._JTs,TableCard._Q8s,TableCard._Q9,TableCard._Q9s,TableCard._QT,TableCard._QTs,TableCard._QJ,TableCard._QJs,TableCard._K8s,TableCard._K9,TableCard._K9s,TableCard._KT,TableCard._KTs,TableCard._KJ,TableCard._KJs,TableCard._KQ,TableCard._KQs,TableCard._A2,TableCard._A2s,TableCard._A3,TableCard._A3s,TableCard._A4,TableCard._A4s,TableCard._A5,TableCard._A5s,TableCard._A6s,TableCard._A7s,TableCard._A8,TableCard._A8s,TableCard._A9,TableCard._A9s,TableCard._AT,TableCard._ATs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._22,TableCard._33,TableCard._44,TableCard._55,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA, };
+                increase = new List<TableCard>() { TableCard._43s, TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T7s, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J8s, TableCard._J9, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q8s, TableCard._Q9, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K8s, TableCard._K9, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A2, TableCard._A2s, TableCard._A3, TableCard._A3s, TableCard._A4, TableCard._A4s, TableCard._A5, TableCard._A5s, TableCard._A6s, TableCard._A7s, TableCard._A8, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
             else
             {
                 // 50% 22+,A2s+,K2s+,Q7s+,J7s+,T7s+,96s+,86s+,75s+,64s+,53s+,43s,A2o+,K5o+,Q8o+,J8o+,T8o+,98o,87o,76o,65o
-                increase = new List<TableCard>() { TableCard._43s,TableCard._53s,TableCard._54s,TableCard._64s,TableCard._65,TableCard._65s,TableCard._75s,TableCard._76,TableCard._76s,TableCard._86s,TableCard._87,TableCard._87s,TableCard._96s,TableCard._97s,TableCard._98,TableCard._98s,TableCard._T7s,TableCard._T8,TableCard._T8s,TableCard._T9,TableCard._T9s,TableCard._J7s,TableCard._J8,TableCard._J8s,TableCard._J9,TableCard._J9s,TableCard._JT,TableCard._JTs,TableCard._Q7s,TableCard._Q8,TableCard._Q8s,TableCard._Q9,TableCard._Q9s,TableCard._QT,TableCard._QTs,TableCard._QJ,TableCard._QJs,TableCard._K2s,TableCard._K3s,TableCard._K4s,TableCard._K5,TableCard._K5s,TableCard._K6,TableCard._K6s,TableCard._K7,TableCard._K7s,TableCard._K8,TableCard._K8s,TableCard._K9,TableCard._K9s,TableCard._KT,TableCard._KTs,TableCard._KJ,TableCard._KJs,TableCard._KQ,TableCard._KQs,TableCard._A2,TableCard._A2s,TableCard._A3,TableCard._A3s,TableCard._A4,TableCard._A4s,TableCard._A5,TableCard._A5s,TableCard._A6,TableCard._A6s,TableCard._A7,TableCard._A7s,TableCard._A8,TableCard._A8s,TableCard._A9,TableCard._A9s,TableCard._AT,TableCard._ATs,TableCard._AJ,TableCard._AJs,TableCard._AQ,TableCard._AQs,TableCard._AK,TableCard._AKs,TableCard._22,TableCard._33,TableCard._44,TableCard._55,TableCard._66,TableCard._77,TableCard._88,TableCard._99,TableCard._TT,TableCard._JJ,TableCard._QQ,TableCard._KK,TableCard._AA,};
+                increase = new List<TableCard>() { TableCard._43s, TableCard._53s, TableCard._54s, TableCard._64s, TableCard._65, TableCard._65s, TableCard._75s, TableCard._76, TableCard._76s, TableCard._86s, TableCard._87, TableCard._87s, TableCard._96s, TableCard._97s, TableCard._98, TableCard._98s, TableCard._T7s, TableCard._T8, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J7s, TableCard._J8, TableCard._J8s, TableCard._J9, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q7s, TableCard._Q8, TableCard._Q8s, TableCard._Q9, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K2s, TableCard._K3s, TableCard._K4s, TableCard._K5, TableCard._K5s, TableCard._K6, TableCard._K6s, TableCard._K7, TableCard._K7s, TableCard._K8, TableCard._K8s, TableCard._K9, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A2, TableCard._A2s, TableCard._A3, TableCard._A3s, TableCard._A4, TableCard._A4s, TableCard._A5, TableCard._A5s, TableCard._A6, TableCard._A6s, TableCard._A7, TableCard._A7s, TableCard._A8, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
 
             List<TableCard> decrease = Except(increase);
             Increase(increase, 0.3);
             Decrease(decrease, 0.2);
         }
-        private void UpdateFold(double LooseIndex)
+        private void ReceiveFold(double LooseIndex)
         {
             List<TableCard> increase = new List<TableCard>();
             if (LooseIndex < 10)
@@ -360,13 +397,11 @@ namespace PokerShark.Core.Poker
             Decrease(increase, 0.4);
             Increase(decrease, 0.3);
         }
-
         private List<TableCard> Except(List<TableCard> range)
         {
             List<TableCard> table = Enum.GetValues(typeof(TableCard)).Cast<TableCard>().ToList();
             return table.Except(range).ToList();
         }
-
         private void Increase(List<TableCard> range, double weight)
         {
             foreach (int card in range)
@@ -375,7 +410,6 @@ namespace PokerShark.Core.Poker
                 if (Table[card] >= 1) Table[card] = 1;
             }
         }
-
         private void Decrease(List<TableCard> range, double weight)
         {
             foreach (int card in range)
@@ -384,5 +418,6 @@ namespace PokerShark.Core.Poker
                 if (Table[card] <= 0) Table[card] = 0.1;
             }
         }
+        #endregion
     }
 }

@@ -16,11 +16,173 @@ namespace PokerShark.Core.HTN.Context
 {
     public class PokerContext : PokerBaseContext
     {
+        public String Name = "PokerShark";
+        public double ehs = -1;
+
         public PokerContext()
         {
 
         }
         #region state methods 
+
+        public List<VariableCost> GetOdds(params(double cost, double probability)[] tuples)
+        {
+            var odds = new List<VariableCost>();
+            foreach(var t in tuples)
+            {
+                odds.Add(new VariableCost(t.cost, t.probability));
+
+            }
+            return odds;
+        }
+
+        public double GetPotAmount()
+        {
+            var round = GetCurrentRound();
+            var id = round.Seats.First(s => s.Name == Name).Id;
+
+            return GetCurrentRound().Pot.Amount(id);
+        }
+
+        public List<VariableCost> BluffOdds(double amount)
+        {
+            // calculate Break even precentage.
+            double be = (double)amount / GetPotAmount() + amount;
+
+            // find fold percentage for all participating players.
+            //var foldPrecentage = GetPlayersModels().Average(m => m.FoldPercentage);
+            var foldPrecentage = GetPlayersModels().Max(m => m.FoldPercentage);
+
+            if (be >= foldPrecentage)
+            {
+                return GetOdds((GetPotAmount() + amount, 1));
+            }
+
+            return GetOdds((-1*(GetPotAmount() + amount), 1));
+        }
+
+        public List<VariableCost> FoldOdds()
+        {
+            var round = GetCurrentRound();
+            double factor = 1;
+            int count = 0;
+            // fold odds serve as a threshhold EV for calling or raising.
+            // the threshhold is choosen dynamically based on the profile of the participating players.
+            var players = round.Seats;
+            foreach (var model in GetPlayersModels())
+            {
+                var p = players.First(s => s.Id == model.Id);
+                if (p !=null && p.State != PlayerState.Folded)
+                {
+                   count++;
+                   switch (model.PlayingStyle)
+                    {
+                        case PlayingStyle.LooseAggressive:
+                            factor += 1;
+                        break;
+                        case PlayingStyle.LoosePassive:
+                            factor -= 0.5;
+                        break;
+                        case PlayingStyle.TightAggressive:
+                            factor += 4;
+                        break;
+                        case PlayingStyle.TightPassive:
+                            factor += 3;
+                        break;
+                    }
+                }
+            }
+
+
+            return GetOdds(
+                (((double)factor/count) * 2, 1)
+                );
+        }
+
+        public List<VariableCost> RaiseOdds(double amount)
+        {
+            // get ehs
+            var ehs = GetEHS();
+
+            return GetOdds((GetPotAmount() + amount , ehs), (-1 * amount, 1 - ehs));
+        }
+
+        public List<VariableCost> CallOdds()
+        {
+            // get ehs
+            var ehs = GetEHS(); ;
+            // get call amount
+            double amount = GetCallAmount();
+            return GetOdds((GetPotAmount() + amount, ehs), (-1 * amount, 1 - ehs));
+        }
+
+        public double GetCallAmount()
+        {
+            // get call amount
+            double amount = 0;
+            foreach (var action in GetValidActions())
+            {
+                if (action is CallAction)
+                {
+                    amount = action.Amount;
+                    break;
+                }
+            }
+
+            return amount;
+        }
+
+        public double GetMinRaiseAmount()
+        {
+            // get raise amount
+            double amount = 0;
+            foreach (var action in GetValidActions())
+            {
+                if (action is RaiseAction)
+                {
+                    amount = action.Amount;
+                    break;
+                }
+            }
+            return amount;
+        }
+
+        public double GetMaxRaiseAmount()
+        {
+            // get raise amount
+            double amount = 0;
+            foreach (var action in GetValidActions())
+            {
+                if (action is RaiseAction)
+                {
+                    amount = action.MaxAmount;
+                    break;
+                }
+            }
+            return amount;
+        }
+
+        public double GetEHS()
+        {
+            if (ehs == -1)
+            {
+                var round = GetCurrentRound();
+                var odds = new List<VariableCost>();
+                // get weights
+                var weights = new List<double[]>();
+                var players = round.Seats;
+                foreach (var model in GetPlayersModels())
+                {
+                    if(players.First(s => s.Id == model.Id).State == PlayerState.Participating)
+                    {
+                        weights.Add(model.weightTable.Table);
+                    }
+                }
+                // calculate ehs
+                ehs = Oracle.EHS(GetPocket(), round.Board, weights);
+            }
+            return ehs;
+        }
 
         public void SetRaiseAmount(params (int Factor, float Weight)[] amounts)
         {
@@ -32,7 +194,7 @@ namespace PokerShark.Core.HTN.Context
 
             var factor = WeightedFactors.RandomElementByWeight(e => e.Value).Key;
 
-            RaiseAmount = factor * GetGameInfo().BigBlind;
+            RaiseDecisionAmount = factor * GetGameInfo().BigBlind;
         }
         
         public void UpdatePlayerModel(String name, PyAction action)
@@ -51,7 +213,6 @@ namespace PokerShark.Core.HTN.Context
             SetPlayersModels(models);
         }
 
-
         public void ResetBoardCards()
         {
             SetState((int)State.BoardCards, new List<Card>());
@@ -59,7 +220,10 @@ namespace PokerShark.Core.HTN.Context
 
         public void ResetDecision()
         {
+            ehs = -1;
+            RaiseDecisionAmount = GetMinRaiseAmount();
             SetDecision((0, 0, 0));
+            Done = false;
         }
 
         public void AddDeadCards(List<Card> deadCards)
@@ -135,7 +299,11 @@ namespace PokerShark.Core.HTN.Context
         #endregion
 
         #region State getters
-
+        public List<PyAction> GetValidActions()
+        {
+            return (List<PyAction>)GetState((int)State.ValidActions);
+        }
+        
         public GameInfo GetGameInfo()
         {
             return (GameInfo)GetState((int)State.GameInfo);
@@ -152,13 +320,46 @@ namespace PokerShark.Core.HTN.Context
             List<Seat> seats = (List<Seat>)GetState((int)State.Seats);
             foreach (Seat seat in seats)
             {
-                if (seat.Name == "PokerShark")
+                if (seat.Name == Name)
                 {
                     return seat.Position;
                 }
             }
 
             return position;
+        }
+
+        public Double GetPaid()
+        {
+            var round = GetCurrentRound();
+            var history = round.ActionHistory;
+            var game = GetGameInfo();
+            
+            // get player id
+            var id = round.Seats.First(s => s.Name == Name).Id;
+
+            // check is player small blind
+            var smallBlind = round.Seats.First(s => s.IsSmallBlind);
+            var isSmallBlind = smallBlind.Name == Name;
+
+            // check is player big blind
+            var bigBlind = round.Seats.First(s => s.IsBigBlind);
+            var isBigBlind = bigBlind.Name == Name;
+
+            double paid = game.Ante;
+
+            if (isSmallBlind)
+            {
+                paid += game.SmallBlind;
+            }
+
+            if (isBigBlind)
+            {
+                paid += game.BigBlind;
+            }
+
+
+            return paid + history.Where(a => a.PlayerId == id).Sum(a => a.Paid);
         }
 
         public StreetState GetStage()
@@ -183,6 +384,22 @@ namespace PokerShark.Core.HTN.Context
 
         public StaticUtilityFunction GetAttitude()
         {
+            var game = GetGameInfo();
+            var round = GetCurrentRound();
+            // get current stack 
+            var initial = game.Seats.First(s => s.Name == Name).Stack;
+            var current = round.Seats.First(s => s.Name == Name).Stack;
+
+            if (current >= 2 * initial)
+            {
+                return new RiskSeeking();
+            }
+
+            if (current < initial / 2)
+            {
+                return new RiskAverse();
+            }
+
             return new RiskNeutral();
         }
 

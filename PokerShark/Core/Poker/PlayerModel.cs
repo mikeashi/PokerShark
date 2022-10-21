@@ -23,7 +23,10 @@ namespace PokerShark.Core.Poker
         public List<PyAction> History { get; internal set; }
         public double LooseIndex { get; internal set; }
         public double AggressionIndex { get; internal set; }
+        public double FoldPercentage { get; internal set; }
         public PlayingStyle PlayingStyle { get; internal set; }
+
+        public WeightTable weightTable { get; internal set; }
 
         public PlayerModel(string name, string id)
         {
@@ -33,6 +36,7 @@ namespace PokerShark.Core.Poker
             LooseIndex = 50;
             AggressionIndex = 50;
             PlayingStyle = PlayingStyle.Balanced;
+            weightTable = new WeightTable();
         }
 
         public void UpdateHistory(PyAction action)
@@ -41,6 +45,19 @@ namespace PokerShark.Core.Poker
             UpdateLooseIndex();
             UpdateAggressionIndex();
             UpdatePlayingStyle();
+            UpdateWeightTable(action);
+            UpdateFoldPercentage();
+        }
+
+        private void UpdateWeightTable(PyAction action)
+        {
+            // reset weight table on each new hand
+            if (action.Stage == StreetState.Preflop)
+            {
+                weightTable.Reset();
+            }
+            // update weight table
+            weightTable.UpdateTable(action.Stage, LooseIndex, action);
         }
 
         private void UpdateLooseIndex()
@@ -64,6 +81,15 @@ namespace PokerShark.Core.Poker
             AggressionIndex = (((double)raiseCount / History.Count) * 100);
         }
 
+        private void UpdateFoldPercentage()
+        {
+            // find number of postflop folds
+            var foldCount = History.Count(x => x is FoldAction && x.Stage != StreetState.Preflop);
+
+            // calculate fold percentage
+            FoldPercentage = (((double)foldCount / History.Count) * 100);
+        }
+        
         private void UpdatePlayingStyle()
         {
             if (LooseIndex > 50 && AggressionIndex > 50)

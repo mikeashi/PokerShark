@@ -11,6 +11,10 @@ using PokerShark.Core.Helpers;
 using System.Net.Sockets;
 using PokerShark.Core.PyPoker;
 using PokerShark.Core.Poker.Deck;
+using PokerShark.Core.Poker;
+using MathNet.Numerics.Statistics;
+using PokerShark.Core.HTN.Context;
+using System.Globalization;
 
 namespace PokerShark.Core.RPC
 {
@@ -153,9 +157,67 @@ namespace PokerShark.Core.RPC
                 var newLine = string.Format("{0},{1}", action.Name,String.Join(" - ", pocket));
                 csv.AppendLine(newLine);
                 File.AppendAllText("preflop.csv", csv.ToString());
+            }else
+            {
+                var csv = new StringBuilder();
+                var newLine = string.Format("{0},{1}, {2}", action.Name, String.Join(" - ", pocket), String.Join(" - ", round.Board));
+                csv.AppendLine(newLine);
+                File.AppendAllText("postflop.csv", csv.ToString());
             }
 
+            LogBotAction(action);
             return action.ToString();
+        }
+
+        private void LogBotAction(PyAction action)
+        {
+            var bot = (Bot)Bot;
+            var context = bot.Context;
+            var round = context.GetCurrentRound();
+            var csv = new StringBuilder();
+            // round number
+            csv.Append(round.RoundCount + " ,");
+            // stage 
+            csv.Append(round.StreetState + " ,");
+            // pocket
+            csv.Append(String.Join(" - ", context.GetPocket()) + " ,");
+            // board
+            csv.Append(String.Join(" - ", round.Board) + " ,");
+            // pot
+            csv.Append(String.Join(" - ", context.GetPotAmount()) + " ,");
+            
+            // fold odds + EV, call odds + EV , raise odds + EV, callbluffOdds, raisebluffOdds
+            if (round.StreetState != StreetState.Preflop)
+            {
+                var raiseOdds = context.RaiseOdds(context.GetMinRaiseAmount());
+                var callOdds = context.CallOdds();
+                var foldOdds = context.FoldOdds();
+                var callbluffOdds = context.BluffOdds(context.GetCallAmount()); 
+                var raisebluffOdds = context.BluffOdds(context.GetMinRaiseAmount());
+
+                csv.Append(String.Join(" |", foldOdds) + " E =" + Math.Round(foldOdds.Sum(vc => (context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability), 4).ToString(CultureInfo.InvariantCulture) + " ,");
+                csv.Append(String.Join(" |", callOdds) + " E =" + Math.Round(callOdds.Sum(vc => (context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability), 4).ToString(CultureInfo.InvariantCulture) + " ,");
+                csv.Append(String.Join(" |", raiseOdds) + " E =" + Math.Round(raiseOdds.Sum(vc => (context).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability), 4).ToString(CultureInfo.InvariantCulture) + " ,");
+                csv.Append(String.Join(" |", callbluffOdds) +" ,");
+                csv.Append(String.Join(" |", raisebluffOdds) + " ,");
+            }else
+            {
+                csv.Append(" ,");
+                csv.Append(" ,");
+                csv.Append(" ,");
+                csv.Append(" ,");
+                csv.Append(" ,");
+            }
+
+            // decision, action.
+
+            var decision = context.GetDecision();
+            csv.Append("Fold: " + decision.Fold.ToString(CultureInfo.InvariantCulture) + " | Call: "+ decision.Call.ToString(CultureInfo.InvariantCulture) + " | Raise: "+ decision.Raise.ToString(CultureInfo.InvariantCulture) + " ,");
+            csv.Append(action.Name + " ,");
+
+            // store row
+            csv.AppendLine();
+            File.AppendAllText("log.csv", csv.ToString());
         }
 
         private void HandleStreetStartedMessage(string payload)

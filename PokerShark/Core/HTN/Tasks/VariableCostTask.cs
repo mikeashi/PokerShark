@@ -19,7 +19,10 @@ namespace PokerShark.Core.HTN.Tasks
 
         public VariableCostTask(List<VariableCost> possibleCosts)
         {
-            if (possibleCosts.Sum(vc => vc.Probability) != 1) throw new Exception("Probability distribution does not add up to one.");
+            if (possibleCosts.Sum(vc => vc.Probability) != 1) {
+                Console.WriteLine("Probability distribution does not add up to one. " + possibleCosts.Sum(vc => vc.Probability));
+            }
+            //throw new Exception("Probability distribution does not add up to one.");
             PossibleCosts = possibleCosts;
         }
 
