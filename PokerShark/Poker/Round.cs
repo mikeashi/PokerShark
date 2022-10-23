@@ -139,10 +139,11 @@ namespace PokerShark.Poker
             LogAction(action);
         }
 
-        internal void EndRound(List<Player> winners)
+        internal void EndRound(List<Player> winners, List<Player> players)
         {
             RoundState = RoundState.Showdown;
             Winner = Helper.ClonePlayerList(winners);
+            Players = Helper.ClonePlayerList(players);
             LogEndRound();
         }
 
@@ -216,9 +217,11 @@ namespace PokerShark.Poker
         private void LogStartRound()
         {
             Log.Information("Starting Round {RoundCount}", RoundCount);
+            Log.Information("Players [{players}]", String.Join(" ,", Players));
+
             if (Pocket.Any())
             {
-                Log.Information("Pocket: [{Pocket}]", String.Join(" ,", Pocket));
+                Log.Information("Pocket: [{Pocket}]", String.Join(" ,", Pocket.Select(c => c.ToJson()).ToList()));
             }
         }
         private void LogStartStreet()
@@ -230,7 +233,7 @@ namespace PokerShark.Poker
 
             if (Board.Any())
             {
-                Log.Information("Board: [{Board}]", String.Join(" ,", Board));
+                Log.Information("Board: [{Board}]", String.Join(" ,", Board.Select(c => c.ToJson()).ToList()));
             }
         }
         private void LogAction(Action action)
@@ -244,7 +247,7 @@ namespace PokerShark.Poker
             if (action.Type == ActionType.Raise)
                 Log.Information("Player {Name} raised {Amount}", action.PlayerName, action.Amount);
 
-            Log.Information("Pot: {Pot}", Pot.Amount);
+            // Log.Information("Pot: {Pot}", Pot.Amount);
         }
 
         private void LogEndRound()

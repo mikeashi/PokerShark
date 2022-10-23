@@ -10,11 +10,11 @@ namespace PokerShark.Poker
     {
         #region Properties
         public List<SidePot> SidePots { get; set; }
-        public int Amount { get; private set; }
+        public double Amount { get; private set; }
         #endregion
 
         #region Constructors
-        public Pot(int amount)
+        public Pot(double amount)
         {
             Amount = amount;
             SidePots = new List<SidePot>();
@@ -50,12 +50,12 @@ namespace PokerShark.Poker
     public class SidePot
     {
         #region Properties
-        public int Amount { get; set; }
+        public double Amount { get; set; }
         public List<string> Eligibles { get; set; }
         #endregion
 
         #region Constructors
-        public SidePot(int amount, List<string> eligibles)
+        public SidePot(double amount, List<string> eligibles)
         {
             Amount = amount;
             Eligibles = eligibles;

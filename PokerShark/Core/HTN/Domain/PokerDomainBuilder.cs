@@ -196,6 +196,7 @@ namespace PokerShark.Core.HTN.Domain
             Select("PreflopSequence");
             {
                 IfInPreflop();
+                // do we need this?
                 IfNoDecisionYet();
                 PreflopEarlyPosition();
                 PreflopMiddlePosition();

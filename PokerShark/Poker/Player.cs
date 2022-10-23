@@ -72,7 +72,13 @@ namespace PokerShark.Poker
         {
             State = state;
         }
-        
+
+        public override string? ToString()
+        {
+            return String.Format("{0} : {1}", Name, Stack);
+        }
+
+
         #endregion
 
         #region Serialization

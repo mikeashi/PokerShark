@@ -8,7 +8,7 @@ namespace PokerShark.Poker.Deck
 {
     
     #region Pocket
-    internal class Pocket
+    public class Pocket
     {
         private Rank FirstCardRank;
         private Rank SecondCardRank;

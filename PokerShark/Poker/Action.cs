@@ -35,6 +35,16 @@ namespace PokerShark.Poker
         #endregion
 
         #region Constructors
+        public Action(string playerId, string playerName, double amount, double min, double max, RoundState stage, ActionType type)
+        {
+            PlayerId = playerId;
+            PlayerName = playerName;
+            Amount = amount;
+            MinAmount = min;
+            MaxAmount = max;
+            Stage = stage;
+            Type = type;
+        }
         public Action(string playerId, string playerName, double amount, RoundState stage)
         {
             PlayerId = playerId;
@@ -74,9 +84,9 @@ namespace PokerShark.Poker
         #endregion
 
         #region Methods
-        public override string? ToString()
+        public override string ToString()
         {
-            return String.Format("\"action\" : \"{0}\" , \"amount\" : \"{1}\"", GetName(), Amount);
+            return "{"+ String.Format("\"action\" : \"{0}\" , \"amount\" : \"{1}\"", GetName(), Amount) + "}";
         }
 
         private string GetName()
@@ -115,6 +125,23 @@ namespace PokerShark.Poker
             return Type == ActionType.Raise;
         }
 
+        #endregion
+
+        # region Static getters
+        public static Action GetFoldAction()
+        {
+          return new Action("fold", "fold", RoundState.NotStarted);
+        }
+
+        public static Action GetCallAction(double amount)
+        {
+            return new Action("call", "call", amount, RoundState.NotStarted);
+        }
+
+        public static Action GetRaiseAction(double min, double max)
+        {
+            return new Action("raise", "raise", min, min, max, RoundState.NotStarted);
+        }
         #endregion
     }
 

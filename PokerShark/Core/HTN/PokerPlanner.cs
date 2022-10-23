@@ -1,10 +1,10 @@
 ﻿using FluidHTN;
-using PokerShark.Core.Helpers;
 using PokerShark.Core.HTN.Context;
 using PokerShark.Core.HTN.Domain;
 using PokerShark.Core.HTN.Utility;
 using PokerShark.Core.Poker;
 using PokerShark.Core.PyPoker;
+using PokerShark.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +73,7 @@ namespace PokerShark.Core.HTN
         public static PyAction SelectAction((float Fold, float Call, float Raise) decision, List<PyAction> actions, double raiseAmount)
         {
             Dictionary<PyAction, float> WeightedActions = new Dictionary<PyAction, float>();
+            
 
             foreach (var action in actions)
             {

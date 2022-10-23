@@ -226,7 +226,7 @@ namespace PokerShark.AI
             { 7, 0.6 },
             { 8, 0.5 },
             { 9, 0.3 },
-            { 10, 0.1 }
+            { 10, 0.2 }
         };
 
         // actual weight table
@@ -242,7 +242,7 @@ namespace PokerShark.AI
         #endregion
 
         #region Methods
-        public void ReceiveAction(double LooseIndex, Action action)
+        public void ReceiveAction(PlayerModel model, Action action)
         {
             // reset weight table on each new hand
             if (action.Stage == RoundState.Preflop)
@@ -252,16 +252,13 @@ namespace PokerShark.AI
 
             if (action.Type == ActionType.Call)
             {
-                ReceiveCall(LooseIndex);
+                ReceiveCall(model);
             }
             else if (action.Type == ActionType.Raise)
             {
-                ReceiveRaise(LooseIndex);
+                ReceiveRaise(model);
             }
-            else
-            {
-                ReceiveFold(LooseIndex);
-            }
+            
         }
         public void Reset()
         {
@@ -293,25 +290,25 @@ namespace PokerShark.AI
             }
             return sb.ToString();
         }
-        private void ReceiveCall(double LooseIndex)
+        private void ReceiveCall(PlayerModel model)
         {
             List<TableCard> increase = new List<TableCard>();
-            if (LooseIndex < 10)
+            if (model.WSD > 50 && model.PFF > 75 && model.PFR > 60 || model.VPIP < 20 )
             {
                 // 8% JJ-22,AQs-AJs,KQs,AQo-AJo,KQo
                 increase = new List<TableCard>() { TableCard._KQ, TableCard._KQs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ };
             }
-            else if (LooseIndex < 30)
+            else if (model.WSD > 40 && model.PFF > 70 && model.PFR > 50 || model.VPIP < 30)
             {
                 // 13% JJ-22,AQs-ATs,KJs+,QJs,JTs,T9s,98s,87s,76s,65s,54s,AQo-ATo,KJo+
                 increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T9s, TableCard._JTs, TableCard._QJs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, };
             }
-            else if (LooseIndex < 49)
+            else if (model.WSD > 30 &&  model.PFF > 40 && model.PFR > 40 || model.VPIP < 50)
             {
                 // 16% TT-22,AJs-A9s,KTs+,QTs+,J9s+,T8s+,98s,87s,76s,65s,54s,AJo-ATo,KTo+,QTo+,JTo
                 increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, };
             }
-            else if (LooseIndex < 70)
+            else if (model.WSD > 20 && model.PFF > 40 && model.PFR > 30 || model.VPIP < 70)
             {
                 // 22% TT-22,AJs-A2s,K9s+,Q9s+,J9s+,T8s+,97s+,86s+,75s+,64s+,53s+,43s,AJo-A9o,KTo+,QTo+,JTo
                 increase = new List<TableCard>() { TableCard._43s, TableCard._53s, TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A2s, TableCard._A3s, TableCard._A4s, TableCard._A5s, TableCard._A6s, TableCard._A7s, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, };
@@ -326,30 +323,30 @@ namespace PokerShark.AI
             Increase(increase, 0.3);
             Decrease(decrease, 0.2);
         }
-        private void ReceiveRaise(double LooseIndex)
+        private void ReceiveRaise(PlayerModel model)
         {
             List<TableCard> increase = new List<TableCard>();
-            if (LooseIndex < 10)
+            if (model.WSD > 50 && model.PFF > 75 && model.PFR > 70 || model.VPIP < 10)
             {
                 // 9% 66+,AJs+,KQs,AJo+,KQo
                 increase = new List<TableCard>() { TableCard._KQ, TableCard._KQs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
-            else if (LooseIndex < 30)
+            else if (model.WSD > 40 && model.WTSD < 70 && model.PFF > 60 && model.PFR > 60 || model.VPIP < 30)
             {
                 // 15% 22+, ATs+, KJs+, QJs, JTs, T9s, 98s, 87s, 76s, 65s, AJo+, KJo+, QJo
                 increase = new List<TableCard>() { TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T9s, TableCard._JTs, TableCard._QJ, TableCard._QJs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
-            else if (LooseIndex < 60)
+            else if (model.WSD > 20 && model.WTSD < 70 && model.PFF > 55 && model.PFR > 50 || model.VPIP < 60)
             {
                 // 20% 22+, ATs+, KTs+, QTs+, J9s+, T8s+, 98s, 87s, 76s, 65s, 54s, ATo+, KTo+, QTo+, JTo
                 increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
-            else if (LooseIndex < 70)
+            else if (model.WSD > 20 && model.WTSD < 80 && model.PFF > 50 || model.VPIP < 70)
             {
                 // 25% 22+,A7s+,K9s+,Q9s+,J9s+,T8s+,97s+,86s+,75s+,64s+,54s,A9o+,KTo+,QTo+,JTo,T9o
                 increase = new List<TableCard>() { TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A7s, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
             }
-            else if (LooseIndex < 80)
+            else if (model.WSD > 10 && model.WTSD < 80 && model.PFF > 50 || model.VPIP < 80)
             {
                 // 35% 22+,A2s+,K8s+,Q8s+,J8s+,T7s+,97s+,86s+,75s+,64s+,54s,43s,A8o+,A5o-A2o,K9o+,Q9o+,J9o+,T9o
                 increase = new List<TableCard>() { TableCard._43s, TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T7s, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J8s, TableCard._J9, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q8s, TableCard._Q9, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K8s, TableCard._K9, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A2, TableCard._A2s, TableCard._A3, TableCard._A3s, TableCard._A4, TableCard._A4s, TableCard._A5, TableCard._A5s, TableCard._A6s, TableCard._A7s, TableCard._A8, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._AK, TableCard._AKs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, TableCard._QQ, TableCard._KK, TableCard._AA, };
@@ -364,39 +361,8 @@ namespace PokerShark.AI
             Increase(increase, 0.3);
             Decrease(decrease, 0.2);
         }
-        private void ReceiveFold(double LooseIndex)
-        {
-            List<TableCard> increase = new List<TableCard>();
-            if (LooseIndex < 10)
-            {
-                // 8% JJ-22,AQs-AJs,KQs,AQo-AJo,KQo
-                increase = new List<TableCard>() { TableCard._KQ, TableCard._KQs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ };
-            }
-            else if (LooseIndex < 30)
-            {
-                // 13% JJ-22,AQs-ATs,KJs+,QJs,JTs,T9s,98s,87s,76s,65s,54s,AQo-ATo,KJo+
-                increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T9s, TableCard._JTs, TableCard._QJs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, };
-            }
-            else if (LooseIndex < 49)
-            {
-                // 16% TT-22,AJs-A9s,KTs+,QTs+,J9s+,T8s+,98s,87s,76s,65s,54s,AJo-ATo,KTo+,QTo+,JTo
-                increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, };
-            }
-            else if (LooseIndex < 70)
-            {
-                // 22% TT-22,AJs-A2s,K9s+,Q9s+,J9s+,T8s+,97s+,86s+,75s+,64s+,53s+,43s,AJo-A9o,KTo+,QTo+,JTo
-                increase = new List<TableCard>() { TableCard._43s, TableCard._53s, TableCard._54s, TableCard._64s, TableCard._65s, TableCard._75s, TableCard._76s, TableCard._86s, TableCard._87s, TableCard._97s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A2s, TableCard._A3s, TableCard._A4s, TableCard._A5s, TableCard._A6s, TableCard._A7s, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, };
-            }
-            else
-            {
-                // 30% 88-22,ATs-A2s,KJs-K8s,Q8s+,J8s+,T7s+,96s+,85s+,74s+,63s+,53s+,43s,ATo-A7o,KJo-K9o,Q9o+,J9o+,T9o,98o,87o,76o,65o
-                increase = new List<TableCard>() { TableCard._43s, TableCard._53s, TableCard._54s, TableCard._63s, TableCard._64s, TableCard._65, TableCard._65s, TableCard._74s, TableCard._75s, TableCard._76, TableCard._76s, TableCard._85s, TableCard._86s, TableCard._87, TableCard._87s, TableCard._96s, TableCard._97s, TableCard._98, TableCard._98s, TableCard._T7s, TableCard._T8s, TableCard._T9, TableCard._T9s, TableCard._J8s, TableCard._J9, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._Q8s, TableCard._Q9, TableCard._Q9s, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._K8s, TableCard._K9, TableCard._K9s, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._A2s, TableCard._A3s, TableCard._A4s, TableCard._A5s, TableCard._A6s, TableCard._A7, TableCard._A7s, TableCard._A8, TableCard._A8s, TableCard._A9, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, };
-            }
-
-            List<TableCard> decrease = Except(increase);
-            Decrease(increase, 0.4);
-            Increase(decrease, 0.3);
-        }
+        
+        
         private List<TableCard> Except(List<TableCard> range)
         {
             List<TableCard> table = Enum.GetValues(typeof(TableCard)).Cast<TableCard>().ToList();

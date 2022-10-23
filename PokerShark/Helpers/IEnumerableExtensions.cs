@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokerShark.Core.Helpers
+namespace PokerShark.Helpers
 {
     public static class IEnumerableExtensions
     {
-        public static T RandomElementByWeight<T>(this IEnumerable<T> sequence, Func<T, float> weightSelector)
+        public static T? RandomElementByWeight<T>(this IEnumerable<T> sequence, Func<T, float> weightSelector)
         {
             float totalWeight = sequence.Sum(weightSelector);
             // The weight we are after...
@@ -25,7 +25,7 @@ namespace PokerShark.Core.Helpers
 
             }
 
-            return default(T);
+            return default;
         }
     }
 }

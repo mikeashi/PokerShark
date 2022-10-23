@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Goblinfactory.Konsole" Version="6.2.2" />
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
@@ -22,10 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Fluid-HTN\Fluid-HTN.csproj" />
     <ProjectReference Include="..\HoldemHand\HoldemHand.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>

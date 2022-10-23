@@ -1,17 +1,15 @@
-﻿using PokerShark.Poker;
+﻿using PokerShark.AI.HTN;
+using PokerShark.Poker;
 using PokerShark.Poker.Deck;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Action = PokerShark.Poker.Action;
 
 namespace PokerShark.AI
 {
     public class Bot
     {
-        private Game? CurrentGame;
+        public Game? CurrentGame;
+        public static string Name = "PokerShark";
+        private Context? context;
 
         /// <summary>
         ///     Start a new game
@@ -19,7 +17,11 @@ namespace PokerShark.AI
         /// <param name="game">game state object</param>
         public void StartGame(Game game)
         {
+            if (CurrentGame != null)
+                CurrentGame.Store();
             CurrentGame = game;
+            context = new Context();
+            context.Initialize(game);
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace PokerShark.AI
             // can not start a round if there is no game
             if (CurrentGame == null)
                 throw new InvalidOperationException("Game not started");
-            
+
             // start round
             CurrentGame.StartRound(roundNumber, pocket, players);
         }
@@ -72,8 +74,27 @@ namespace PokerShark.AI
             if (CurrentGame.CurrentRound == null)
                 throw new InvalidOperationException("Round not started");
 
-            // declare action
-            return validActions[1];
+            // declare action to call
+            var action = validActions[1];
+
+            // check context
+            if (context == null)
+                throw new InvalidOperationException("Context not initialized");
+
+            // initialize planner
+            var planner = new Planner();
+
+            // set valid actions
+            context.SetValidActions(validActions);
+
+            // get planner action
+            action = planner.GetAction(context);
+
+            // update stats window
+            var attitude = context.GetAttitude();
+            Windows.WindowsManager.UpdateBotStates(attitude, CurrentGame.GetBotModel());
+
+            return action;
         }
 
         /// <summary>
@@ -97,13 +118,13 @@ namespace PokerShark.AI
         ///     End round
         /// </summary>
         /// <param name="winners"> list of winners</param>
-        public void EndRound(List<Player> winners)
+        public void EndRound(List<Player> winners, List<Player> players)
         {
             // can not start a round if there is no game
             if (CurrentGame == null)
                 throw new InvalidOperationException("Game not started");
 
-            CurrentGame.EndRound(winners);
+            CurrentGame.EndRound(winners, players);
         }
     }
 }
