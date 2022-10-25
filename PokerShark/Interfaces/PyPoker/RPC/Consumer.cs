@@ -43,7 +43,6 @@ namespace PokerShark.Interfaces.PyPoker.RPC
                 Log.Error(Encoding.UTF8.GetString(body));
                 Log.Error(e.Message);
                 response = "";
-                
             }
             finally
             {

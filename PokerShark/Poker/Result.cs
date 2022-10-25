@@ -12,15 +12,23 @@ namespace PokerShark.Poker
         public int won { get; private set; }
         public int drew { get; private set; }
         public int lost { get; private set; }
+        public double InitialStack { get; private set; }
+        public double Stack { get; private set; }
 
-        public Result(Player player)
+        public Result(Player player, double initialStack)
         {
             Player = player;
             won = 0;
             drew = 0;
             lost = 0;
+            InitialStack = initialStack;
         }
 
+        public void UpdateStack(double stack)
+        {
+            Stack = stack;
+        }
+        
         public void Won()
         {
             won++;

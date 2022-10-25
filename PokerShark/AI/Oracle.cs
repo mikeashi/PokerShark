@@ -46,8 +46,17 @@ namespace PokerShark.AI
                         (-1* raiseAmount, 1-effectiveHandStrength)
                     );
         }
-        internal static List<VariableCost> CallOdds(double effectiveHandStrength, double callAmount, double potAmount)
+        internal static List<VariableCost> CallOdds(double effectiveHandStrength, double callAmount, double potAmount, List<PlayerModel> opponents, double bigBlind)
         {
+            // increase cost of call when facing a tight passive player
+            if(opponents.Count == 1 && opponents[0].PlayingStyle == PlayingStyle.TightPassive) { 
+                if(callAmount == 0)
+                {
+                    callAmount = bigBlind;
+                }
+                callAmount *= 2;
+            }
+           
             return GetOdds(
                         // winning odds
                         (potAmount, effectiveHandStrength),
@@ -81,7 +90,7 @@ namespace PokerShark.AI
                 if(opponent.PFF > 60)
                 {
                     // player has PFF, this means player usually folds weak hands
-                    factor += 1 * cost;
+                    factor += 2 * cost;
                 }
                 // player folds weak cards x 2 => fold is cheaper
                 if (opponent.PFF > 70)
@@ -90,12 +99,12 @@ namespace PokerShark.AI
                     factor += 1 * cost;
                 }
                 // player wins alot when seeing the flop => fold is cheaper
-                if (opponent.WTSD < 40 && opponent.WSD > 60)
+                if (opponent.WTSD < 40 && opponent.WSD > 49)
                 {
                     // player wins alot and does not enter the showdown alot
                     factor += 2 * cost;
                 }
-                if (opponent.WSD > 80)
+                if (opponent.WSD > 49)
                 {
                     // player wins alot and does not enter the showdown alot x 2
                     factor += 2 * cost;

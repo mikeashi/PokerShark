@@ -63,7 +63,7 @@ namespace PokerShark.AI.HTN.Domain
         }
         public DomainBuilder IfInLatePosition()
         {
-            Pointer.AddCondition(new InMiddle());
+            Pointer.AddCondition(new InLate());
             return this;
         }
         public DomainBuilder IfInBlindPosition()
@@ -81,7 +81,7 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new InSmallBlind());
             return this;
         }
-        
+
         // Round
         public DomainBuilder IfInPreflop()
         {
@@ -142,6 +142,12 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new IsPassive());
             return this;
         }
+        public DomainBuilder IfOneOpponent()
+        {
+            Pointer.AddCondition(new OneOpponent());
+            return this;
+        }
+
 
         // Pocket
         public DomainBuilder IfPocketIsOneOf(params Pocket[] pockets)
@@ -154,7 +160,7 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new PocketFromGroup() { GroupsQuery = groups.ToList() });
             return this;
         }
-        
+
         // Misc
         public DomainBuilder IfNoDecisionYet()
         {
@@ -166,6 +172,24 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new Occasionally());
             return this;
         }
+        public DomainBuilder IfRaiseOrCallDecision()
+        {
+            Pointer.AddCondition(new RaiseOrCallDecision());
+            return this;
+        }
+        public DomainBuilder IfTooFishy()
+        {
+            Pointer.AddCondition(new TooFishy());
+            return this;
+        }
+        public DomainBuilder IfCallingFish()
+        {
+            Pointer.AddCondition(new CallingFish());
+            return this;
+        }
+
+
+
 
 
 
@@ -174,31 +198,14 @@ namespace PokerShark.AI.HTN.Domain
         #region Preflop
         public DomainBuilder PreflopSequence()
         {
-            Select("Preflop");
-            {
-                IfNoDecisionYet();
-                IfInPreflop();
-                PreflopEarlyPosition();
-                PreflopMiddlePosition();
-                PreflopLatePosition();
-                PreflopBlindPosition();
-                Action("Check raise ocecunally");
-                {
-                    Condition("If Strong Raise", (ctx) => ctx.GetDecision().Raise > 0.7);
-                    Do((ctx) =>
-                    {
-                        if (new Random().Next(1, 11) > 2)
-                        {
-                            ctx.SetDecision(new Decision() { Call=1, Fold=0,Raise=0});
-                            ctx.SetCheckRaise();
-                        }
-                        return TaskStatus.Success;
-                    });
-                }
-                End();
-            }
-            End();
-
+            IfNoDecisionYet();
+            IfInPreflop();
+            PreflopEarlyPosition();
+            PreflopMiddlePosition();
+            PreflopLatePosition();
+            PreflopBlindPosition();
+            CheckRaiseSelector();
+            FishyTrap();
             return this;
         }
         private DomainBuilder PreflopEarlyPosition()
@@ -220,7 +227,6 @@ namespace PokerShark.AI.HTN.Domain
                         Do(AlwaysRaise3Or4BB);
                     }
                     End();
-
                 }
                 End();
 
@@ -229,7 +235,7 @@ namespace PokerShark.AI.HTN.Domain
                     IfFirstToRaise();
                     Action("Usually Raise on Groups 1,2");
                     {
-                        IfPocketFromGroup(1,2);
+                        IfPocketFromGroup(1, 2);
                         Do(UsuallyRaise3Or4BB);
                     }
                     End();
@@ -251,11 +257,11 @@ namespace PokerShark.AI.HTN.Domain
                     Select("Loose Game");
                     {
                         IfLooseGame();
-                        
+
                         Action("Fold AJ, KTs if Aggressive");
                         {
                             IfAggressiveGame();
-                            IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack), new Pocket(Rank.King,Rank.Ten,true));
+                            IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack), new Pocket(Rank.King, Rank.Ten, true));
                             Do(Fold);
                         }
                         End();
@@ -286,8 +292,6 @@ namespace PokerShark.AI.HTN.Domain
                                 Do(SometimesCall);
                             }
                             End();
-
-
                         }
                         End();
 
@@ -317,7 +321,7 @@ namespace PokerShark.AI.HTN.Domain
 
                     Action("Call On AJs, KQs");
                     {
-                        IfPocketIsOneOf(new Pocket(Rank.Ace,Rank.Jack,true), new Pocket(Rank.King,Rank.Queen,true));
+                        IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack, true), new Pocket(Rank.King, Rank.Queen, true));
                         Do(Call);
                     }
                     End();
@@ -334,7 +338,7 @@ namespace PokerShark.AI.HTN.Domain
                         IfLooseRaiser();
                         Action("Rasie on AQ, 99, 88");
                         {
-                            IfPocketIsOneOf(new Pocket(Rank.Ace,Rank.Queen), new Pocket(Rank.Nine, Rank.Nine), new Pocket(Rank.Eight,Rank.Eight));
+                            IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Queen), new Pocket(Rank.Nine, Rank.Nine), new Pocket(Rank.Eight, Rank.Eight));
                             Do(UsuallyRaise3Or4BB);
                         }
                         End();
@@ -360,7 +364,7 @@ namespace PokerShark.AI.HTN.Domain
 
                         Action("Usually Raise on Groups 1,2,3");
                         {
-                            IfPocketFromGroup(1, 2,3);
+                            IfPocketFromGroup(1, 2, 3);
                             Do(UsuallyRaise3Or4BB);
                         }
                         End();
@@ -372,7 +376,7 @@ namespace PokerShark.AI.HTN.Domain
                         IfTightGame();
                         Action("Fold on AJs, KQs");
                         {
-                            IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack,true), new Pocket(Rank.King,Rank.Queen,true));
+                            IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack, true), new Pocket(Rank.King, Rank.Queen, true));
                             Do(Fold);
                         }
                         End();
@@ -406,9 +410,9 @@ namespace PokerShark.AI.HTN.Domain
             {
                 IfInMiddlePosition();
 
-                Action("Always Raise on Groups 1,2, 3");
+                Action("Always Raise on Groups 1,2");
                 {
-                    IfPocketFromGroup(1, 2, 3);
+                    IfPocketFromGroup(1, 2);
                     Do(AlwaysRaise3Or4BB);
                 }
                 End();
@@ -433,7 +437,7 @@ namespace PokerShark.AI.HTN.Domain
 
                     Action("Sometimes raise on AJ, KQ");
                     {
-                        IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack), new Pocket(Rank.King,Rank.Queen));
+                        IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Jack), new Pocket(Rank.King, Rank.Queen));
                         Do(SometimesRaise3Or4BB);
                     }
                     End();
@@ -465,14 +469,14 @@ namespace PokerShark.AI.HTN.Domain
                         Action("Fold KJ, T8s on aggressive");
                         {
                             IfAggressiveGame();
-                            IfPocketIsOneOf(new Pocket(Rank.King,Rank.Jack), new Pocket(Rank.Ten,Rank.Eight,true));
+                            IfPocketIsOneOf(new Pocket(Rank.King, Rank.Jack), new Pocket(Rank.Ten, Rank.Eight, true));
                             Do(Fold);
                         }
                         End();
 
                         Action("Always Raise on Groups 4,5,6");
                         {
-                            IfPocketFromGroup(4,5,6);
+                            IfPocketFromGroup(4, 5, 6);
                             Do(AlwaysRaise3Or4BB);
                         }
                         End();
@@ -485,7 +489,7 @@ namespace PokerShark.AI.HTN.Domain
 
                         Action("Usually raise groups 4,5");
                         {
-                            IfPocketFromGroup(4,5);
+                            IfPocketFromGroup(4, 5);
                             Do(UsuallyRaise3Or4BB);
                         }
                         End();
@@ -523,16 +527,16 @@ namespace PokerShark.AI.HTN.Domain
                                         new Pocket(Rank.King, Rank.King),
                                         new Pocket(Rank.Queen, Rank.Queen),
                                         new Pocket(Rank.Ace, Rank.King),
-                                        new Pocket(Rank.Ace, Rank.King,true));
+                                        new Pocket(Rank.Ace, Rank.King, true));
                         Do(AlwaysRaise3Or4BB);
                     }
                     End();
 
                     Action("Occasionally Raise on T9s, 88");
                     {
-                       Occasionally();
-                       IfPocketIsOneOf(new Pocket(Rank.Ten, Rank.Nine,true),new Pocket(Rank.Eight, Rank.Eight));
-                       Do(AlwaysRaise3Or4BB);
+                        Occasionally();
+                        IfPocketIsOneOf(new Pocket(Rank.Ten, Rank.Nine, true), new Pocket(Rank.Eight, Rank.Eight));
+                        Do(AlwaysRaise3Or4BB);
                     }
                     End();
                 }
@@ -578,7 +582,7 @@ namespace PokerShark.AI.HTN.Domain
 
                 Action("Call on 5,6");
                 {
-                    IfPocketFromGroup(5,6);
+                    IfPocketFromGroup(5, 6);
                     Do(Call);
                 }
                 End();
@@ -607,31 +611,89 @@ namespace PokerShark.AI.HTN.Domain
             {
                 IfInBlindPosition();
 
-                Action("Always Raise on 1, 2, 3, 4");
+                Select("Big Blind");
                 {
-                    IfPocketFromGroup(1, 2, 3, 4);
-                    Do(AlwaysRaise3Or4BB);
-                }
-                End();
+                    IfInBigBlindPosition();
 
-                Select("First to pot");
-                {
-                    IfFirstToPot();
-                    Action("Call on 5");
+                    Select("First to pot");
                     {
-                        IfPocketFromGroup(5);
-                        Do(Call);
+                        IfFirstToPot();
+                        Action("Always Raise on 1, 2");
+                        {
+                            IfPocketFromGroup(1, 2);
+                            Do(AlwaysRaise3Or4BB);
+                        }
+                        End();
+
+                        Action("Call on 3,4,5");
+                        {
+                            IfPocketFromGroup(3, 4, 5);
+                            Do(Call);
+                        }
+                        End();
+                    }
+                    End();
+
+                    Select("No Raises Yet");
+                    {
+                        IfFirstToRaise();
+
+                        Action("Call on 1,2,3,4");
+                        {
+                            IfPocketFromGroup(1, 2, 3, 4);
+                            Do(Call);
+                        }
+                        End();
                     }
                     End();
                 }
                 End();
 
-                Select("No Raises Yet");
+                Select("Small Blind");
                 {
-                    IfFirstToRaise();
-                    Action("Call on 5,6");
+                    IfInSmallBlindPosition();
+
+                    Select("First to pot");
                     {
-                        IfPocketFromGroup(5,6);
+                        IfFirstToPot();
+                        Action("Always Raise on 1, 2,3,4");
+                        {
+                            IfPocketFromGroup(1, 2);
+                            Do(AlwaysRaise3Or4BB);
+                        }
+                        End();
+
+                        Action("Call on 5,6");
+                        {
+                            IfPocketFromGroup(5, 6);
+                            Do(Call);
+                        }
+                        End();
+                    }
+                    End();
+
+                    Select("No Raises Yet");
+                    {
+                        IfFirstToRaise();
+
+                        Action("Call on 1,2,3,4");
+                        {
+                            IfPocketFromGroup(1, 2, 3, 4);
+                            Do(Call);
+                        }
+                        End();
+                    }
+                    End();
+                }
+                End();
+
+                Select("Only One Opponent");
+                {
+                    IfNoDecisionYet();
+                    IfOneOpponent();
+                    Action("Call on 1,2,3,4,5");
+                    {
+                        IfPocketFromGroup(1, 2, 3, 4, 5);
                         Do(Call);
                     }
                     End();
@@ -652,6 +714,15 @@ namespace PokerShark.AI.HTN.Domain
 
         #region Postflop
         public DomainBuilder PostflopSequence(Context context)
+        {
+            ExpectedUtilitySelector("Postflop");
+            {
+                PostflopTasks(context);
+            }
+            End();
+            return this;
+        }
+        public DomainBuilder PostflopTasks(Context context)
         {
             // get round information
             var game = context.GetGame();
@@ -674,69 +745,207 @@ namespace PokerShark.AI.HTN.Domain
             var ehs = Oracle.EffectiveHandStrength(pocket, board, opponents);
 
             // Raise Actions
-            for (int i =0; min + i * bb < max; i++)
+            for (int i = 0; min + i * bb < max; i++)
             {
                 // Define action with correlating odds of the raise amount.
                 VariableCostAction("Raise: " + (min + i * bb), Oracle.RaiseOdds(ehs, min + i * bb, pot));
-                    Do((ctx) => {
-                        ctx.SetDecision(new Decision() { Call =0.2, Raise=0.8, Fold=0 });
-                        ctx.SetRaiseAmount(min + i * bb);
-                        return TaskStatus.Success;
-                    });
+                Do((ctx) =>
+                {
+                    ctx.SetDecision(new Decision() { Call = 0.2, Raise = 0.8, Fold = 0 });
+                    ctx.SetRaiseAmount(min + i * bb);
+                    return TaskStatus.Success;
+                });
                 End();
             }
 
             // Call Action
-            VariableCostAction("Call: "+ callAmount, Oracle.CallOdds(ehs, callAmount, pot));
-                Do(Call);
+            VariableCostAction("Call: " + callAmount, Oracle.CallOdds(ehs, callAmount, pot, opponents, bb));
+                Do((ctx) =>
+                {
+                        ctx.SetDecision(new Decision() { Call = 0.8, Raise = 0.2, Fold = 0 });
+                        return TaskStatus.Success;
+                });
             End();
 
             // Fold Action
             VariableCostAction("Fold", Oracle.FoldOdds(opponents));
-                Do(Fold);
+            Do(Fold);
+            End();
+
+            return this;
+        }
+        #endregion
+
+        #region Too High Cut
+        public static void TooHighCut(Context ctx)
+        {
+            var pocket = ctx.GetPocket();
+
+            // CUT if too high
+            var stack = ctx.GetCurrentStack();
+            var raise = ctx.GetMinPossibleRaiseAmount();
+            var call = ctx.GetCallAmount();
+            var amount = raise > call ? raise : call;
+            if(amount > (stack / 2))
+                ctx.SetDecision(new Decision() { Call = 0, Fold = 1, Raise = 0 });
+        }
+        #endregion
+
+        #region FishyTrap
+        public DomainBuilder FishyTrap()
+        {
+            Select("Catch some fish :)");
+            {
+                IfInPreflop();
+                IfTooFishy();
+                Action("Always raise on AA, KK, QQ, AK, AQ");
+                {
+                    IfPocketIsOneOf(new Pocket(Rank.Ace, Rank.Ace),
+                                    new Pocket(Rank.King, Rank.King),
+                                    new Pocket(Rank.Queen, Rank.Queen),
+                                    new Pocket(Rank.Ace, Rank.King),
+                                    new Pocket(Rank.Ace, Rank.Queen));
+                    Do(RaiseLikeShark);
+                }
+                End();
+
+                Action("Always Raise on Groups 1,2");
+                {
+                    IfPocketFromGroup(1, 2);
+                    Do(RaiseLikeShark);
+                }
+                End();
+
+                Select("Catch none bold fish");
+                {
+                    IfCallingFish();
+                    Action("Always Raise on Groups 3,4");
+                    {
+                        IfPocketFromGroup(3,4,5);
+                        Do(RaiseLikeShark);
+                    }
+                    End();
+
+                    Action("Always Raise on Groups 5");
+                    {
+                        IfPocketFromGroup(6,7);
+                        Do(RaiseAFish);
+                    }
+                    End();
+                }
+                End();
+
+            }
+            End();
+            return this;
+        }
+        #endregion
+
+        #region Check-Raise
+        public DomainBuilder CheckRaiseCutSelector()
+        {
+            Select("Check-Raise");
+            {
+                Condition("Check-Raise", (ctx) => ctx.GetCheckRaise());
+                Action("Always raise");
+                {
+                    Do((ctx) =>
+                    {
+                        ctx.UnsetCheckRaise();
+                        ctx.SetDecision(new Decision() { Call = 0, Fold = 0, Raise = 1 });
+                        ctx.SetRaiseAmount(ctx.GetMaxPossibleRaiseAmount());
+                        return TaskStatus.Success;
+                    });
+                }
+                End();
+            }
+            End();
+            return this;
+        }
+        public DomainBuilder CheckRaiseSelector()
+        {
+            Select("Check-Raise");
+            {
+                Action("Check raise ocecunally");
+                {
+                    Condition("If Strong Raise", (ctx) => ctx.GetDecision().Raise > 0.7);
+                    Do((ctx) =>
+                    {
+                        if (new Random().Next(1, 11) > 2)
+                        {
+                            ctx.SetDecision(new Decision() { Call = 1, Fold = 0, Raise = 0 });
+                            ctx.SetCheckRaise();
+                        }
+                        return TaskStatus.Success;
+                    });
+                }
+                End();
+            }
             End();
             return this;
         }
         #endregion
 
         #region Effects
-        public static TaskStatus AlwaysRaise3Or4BB(Context ctx)
+        private static TaskStatus AlwaysRaise3Or4BB(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0, Raise = 1 });
             ctx.SetRaiseAmount((3, 0.3f), (4, 0.7f));
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus UsuallyRaise3Or4BB(Context ctx)
+        private static TaskStatus UsuallyRaise3Or4BB(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0.1, Raise = 0.9 });
             ctx.SetRaiseAmount((3, 0.3f), (4, 0.7f));
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus SometimesRaise3Or4BB(Context ctx)
+        private static TaskStatus SometimesRaise3Or4BB(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0.3, Raise = 0.7 });
             ctx.SetRaiseAmount((3, 0.5f), (4, 0.5f));
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus CallOrRaise2Or3BB(Context ctx)
+        private static TaskStatus CallOrRaise2Or3BB(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0.4, Raise = 0.6 });
             ctx.SetRaiseAmount((2, 0.6f), (3, 0.4f));
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus SometimesCall(Context ctx)
+        private static TaskStatus SometimesCall(Context ctx)
         {
-            ctx.SetDecision(new Decision() { Fold = 0.3, Call = 0.6, Raise = 0.1 });
+            ctx.SetDecision(new Decision() { Fold = 0.4, Call = 0.6, Raise = 0 });
+            ctx.SetRaiseAmount(ctx.GetMinPossibleRaiseAmount());
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus Call(Context ctx)
+        private static TaskStatus Call(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0.9, Raise = 0.1 });
+            ctx.SetRaiseAmount(ctx.GetMinPossibleRaiseAmount());
+            TooHighCut(ctx);
             return TaskStatus.Success;
         }
-        public static TaskStatus Fold(Context ctx)
+        private static TaskStatus Fold(Context ctx)
         {
             ctx.SetDecision(new Decision() { Fold = 0.7, Call = 0.3, Raise = 0 });
+            ctx.SetRaiseAmount(ctx.GetMinPossibleRaiseAmount());
+            TooHighCut(ctx);
+            return TaskStatus.Success;
+        }
+        private static TaskStatus RaiseAFish(Context ctx)
+        {
+            ctx.SetDecision(new Decision() { Fold = 0, Call = 0, Raise = 1 });
+            ctx.SetRaiseAmount((4, 0.3f), (5, 0.7f));
+            return TaskStatus.Success;
+        }
+        private static TaskStatus RaiseLikeShark(Context ctx)
+        {
+            ctx.SetDecision(new Decision() { Fold = 0, Call = 0, Raise = 1 });
+            ctx.SetRaiseAmount(ctx.GetMaxPossibleRaiseAmount());
             return TaskStatus.Success;
         }
         #endregion

@@ -30,6 +30,8 @@ namespace PokerShark.AI.HTN
         public override Queue<IBaseDecompositionLogEntry> DecompositionLog { get; set; } = new Queue<IBaseDecompositionLogEntry>();
         public override bool LogDecomposition { get; } = true;
         public override object[] WorldState => _worldState;
+        public bool OverrideCut = false;
+        public bool PrefoldDecision = false;
         #endregion
 
         #region Initialize
@@ -48,6 +50,8 @@ namespace PokerShark.AI.HTN
             double zero = 0;
             DirectSet(State.Decision, new Decision() { Fold = zero, Call = zero, Raise = zero });
             DirectSet(State.RaiseAmount, zero);
+            OverrideCut = false;
+            PrefoldDecision = false;
         }
         #endregion
 
@@ -55,13 +59,23 @@ namespace PokerShark.AI.HTN
         // public methods
         public StaticUtilityFunction GetAttitude()
         {
-            // TODO dynamic attitude
-            // based on stack amount
-            // c > 2 * i => seeking
-            // c < i/2 => averse
-            // neutral
-            // if loose game & c > i/2 => seeking
-            return new RiskNeutral();
+            var stack = GetCurrentStack();
+            var initial = GetGame().InitialStack;
+
+            // is loose game 
+            var models = GetPlayersModels();
+            var loose = models.Sum(m => m.PlayingStyle == PlayingStyle.LooseAggressive || m.PlayingStyle == PlayingStyle.LoosePassive ? 1 : 0);
+            var tight = models.Sum(m => m.PlayingStyle == PlayingStyle.TightAggressive || m.PlayingStyle == PlayingStyle.TightPassive ? 1 : 0);
+            
+            if (loose >= tight && stack > initial * 0.5)
+                return new RiskSeeking();
+            
+            if (stack > initial * 1.5)
+                return new RiskSeeking();
+            else if (stack < initial * 0.5)
+                return new RiskAverse();
+            else
+                return new RiskNeutral();
         }
 
         // private methods
@@ -190,7 +204,7 @@ namespace PokerShark.AI.HTN
             foreach (var a in actions)
             {
                 if (a.Type == ActionType.Call)
-                    amount = a.MinAmount;
+                    amount = a.Amount;
             }
             return amount;
         }
@@ -204,6 +218,14 @@ namespace PokerShark.AI.HTN
             if (round == null)
                 return amount;
             return round.Pot.getTotalForPlayer(game.Players.First(p => p.Name == Bot.Name).Id);
+        }
+        public double GetCurrentStack()
+        {
+            var game = GetGame();
+            var round = game.CurrentRound;
+            if (round == null)
+                return 0;
+            return round.Players.First(p => p.Name == Bot.Name).Stack;
         }
 
         #endregion

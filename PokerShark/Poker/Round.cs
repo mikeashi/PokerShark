@@ -61,7 +61,7 @@ namespace PokerShark.Poker
             Pot = new Pot(pot);
             Winner = new List<Player>();
             History = new List<Action>();
-            if (Players.Any()) CalculatePositions();
+            //if (Players.Any()) CalculatePositions();
             LogStartRound();
         }
 
@@ -112,6 +112,7 @@ namespace PokerShark.Poker
             RoundState = roundState;
             Board = Helper.CloneCardList(board);
             Pot = new Pot(pot);
+            CalculatePositions();
             LogStartStreet();
         }
         

@@ -74,8 +74,6 @@ namespace PokerShark.AI
             if (CurrentGame.CurrentRound == null)
                 throw new InvalidOperationException("Round not started");
 
-            // declare action to call
-            var action = validActions[1];
 
             // check context
             if (context == null)
@@ -88,7 +86,7 @@ namespace PokerShark.AI
             context.SetValidActions(validActions);
 
             // get planner action
-            action = planner.GetAction(context);
+            var action = planner.GetAction(context);
 
             // update stats window
             var attitude = context.GetAttitude();

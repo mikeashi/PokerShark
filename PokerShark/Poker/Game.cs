@@ -32,6 +32,8 @@ namespace PokerShark.Poker
         public List<Player> Winners { get; private set; }
         private List<PlayerModel> PlayerModels { get;  set; }
         public List<Result> Results { get; private set; }
+        
+
         #endregion
 
         #region Constructors
@@ -51,7 +53,7 @@ namespace PokerShark.Poker
             Results = new List<Result>();
             foreach (var player in Players)
             {
-                Results.Add(new Result(player));
+                Results.Add(new Result(player, initialStack));
                 PlayerModels.Add(new PlayerModel(player));
             }
             // log game information 
@@ -131,6 +133,7 @@ namespace PokerShark.Poker
             foreach(var result in Results)
             {
                 var model = PlayerModels.FirstOrDefault(m => m.Player.Id == result.Player.Id);
+                result.UpdateStack(CurrentRound.Players.First(p => p.Id == result.Player.Id).Stack);
                 if (winners.Any(w => w.Id == result.Player.Id))
                 {
                     model?.AddWin();
@@ -219,11 +222,6 @@ namespace PokerShark.Poker
         #region Store
         public void Store()
         {
-            // find winners
-            var max = Rounds.Last().Players.Max(p => p.Stack);
-            Winners = Rounds.Last().Players.Where(p => p.Stack == max).ToList();
-
-
             //Log.Information("Game {GameId} ended", Id);
 
             // create logs folder

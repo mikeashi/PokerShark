@@ -163,7 +163,8 @@ namespace PokerShark.Windows
             var builder = new StringBuilder();
             foreach(var r in results)
             {
-                builder.AppendLine(String.Format("Won = {0}, drew = {1}, lost = {2}", r.won, r.drew, r.lost));
+                double roi = (r.Stack - r.InitialStack) / (r.won + r.drew + r.lost);
+                builder.AppendLine(String.Format("Won = {0}, drew = {1}, lost = {2}, WonPerHand= {3}", r.won, r.drew, r.lost, FormatNumber(roi)));
             }
 
             return builder.ToString();

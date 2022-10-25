@@ -48,18 +48,10 @@ namespace PokerShark.AI.HTN
         private Domain<Context, object> BuildDomain(Context context)
         {
             return new DomainBuilder()
-                    .Select("Check-Raise")
-                        .Condition("Check-Raise", (ctx) => ctx.GetCheckRaise())
-                        .Action("Raise")
-                            .Do((ctx) => {
-                                ctx.UnsetCheckRaise();
-                                ctx.SetDecision(new Decision() { Call=0, Fold=0,Raise=1});
-                                ctx.SetRaiseAmount(ctx.GetMaxPossibleRaiseAmount());
-                                return FluidHTN.TaskStatus.Success;
-                            })
-                        .End()
-                    .End()
+                    .CheckRaiseCutSelector()
                     .PreflopSequence()
+                    //.TooHighCutSequence()
+                    .PostflopSequence(context)
                     .Build();
         }
         private Action SelectAction(Decision decision, List<Action> validActions, double amount)
@@ -86,6 +78,11 @@ namespace PokerShark.AI.HTN
 
             if(selected.Type == ActionType.Raise)
             {
+                if(amount == -1)
+                {
+                    return validActions[1];
+                }
+                
                 return Action.GetRaiseAction(amount, amount);
             }
             

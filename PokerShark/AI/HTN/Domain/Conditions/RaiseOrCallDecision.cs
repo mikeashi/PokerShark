@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Domain.Conditions
 {
-    internal class Occasionally : ICondition<Object>
+    internal class RaiseOrCallDecision : ICondition<Object>
     {
-        public string Name { get; } = "Randomly true less than 30% of the time";
+        public string Name { get; } = "if call decision is made";
 
         public bool IsValid(IContext<object> ctx)
         {
             if (ctx is Context c)
             {
-                if (new Random().Next(1, 11) < 4)
-                {
+
+                var decision = c.GetDecision();
+                if (decision.Call > decision.Fold || decision.Raise > decision.Fold)
                     return true;
-                }
                 return false;
             }
             throw new Exception("Unexpected context type!");
