@@ -1,22 +1,6 @@
-﻿using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Serilog;
-using PokerShark.Core.HTN;
-using PokerShark.Core.Helpers;
-using System.Text.Json.Nodes;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using PokerShark.Poker;
-using PokerShark.Poker.Deck;
-using RoundState = PokerShark.Poker.RoundState;
+﻿using Serilog;
 using PokerShark.Interfaces.PyPoker;
-using PokerShark.Interfaces.PyPoker.RPC;
-using PokerShark.Tests;
+
 
 namespace PokerShark
 {

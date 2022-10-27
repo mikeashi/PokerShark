@@ -296,17 +296,17 @@ namespace PokerShark.AI
             if (action.Type == ActionType.Call)
             {
                 //ReceiveCall(model);
-                factors = Test.GetCallFactors(model.VPIP, model.PFF, model.WSD);
+                factors = AdjusmentFactors.GetCallFactors(model.VPIP, model.PFF, model.WSD);
             }
             else if (action.Type == ActionType.Raise)
             {
                 //ReceiveRaise(model);
-                factors = Test.GetCallFactors(model.VPIP, model.PFF, model.WSD);
+                factors = AdjusmentFactors.GetCallFactors(model.VPIP, model.PFF, model.WSD);
             }
             else
             {
                 // 
-                factors = Test.GetFoldFactors(model.VPIP, model.PFF, model.WSD);
+                factors = AdjusmentFactors.GetFoldFactors(model.VPIP, model.PFF, model.WSD);
             }
 
 

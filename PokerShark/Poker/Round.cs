@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog;
 using PokerShark.Poker.Deck;
-using PokerShark.Core.PyPoker;
-using PokerShark.Core.HTN.Context;
 
 namespace PokerShark.Poker
 {
