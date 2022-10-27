@@ -53,7 +53,7 @@ namespace PokerShark.AI
 
         // Won Money at Showdown (WSD):
         //   how often a player has won money
-        //   at showdown.
+        //   at showdown against other players.
         public double WSD { get; private set; }
 
         // Won When Saw Flop (WWSF):
@@ -87,7 +87,7 @@ namespace PokerShark.AI
             PFR = 50;
             PFF = 50;
             WTSD = 50;
-            WSD = 50;
+            WSD = 0;
             WWSF = 50;
             PSDF = 50;
             PostFlopWin = 0;
@@ -112,13 +112,13 @@ namespace PokerShark.AI
             UpdateWWSF();
         }
 
-        public void AddWin()
+        public void AddWinAgainstNotFoldedPlayers()
         {
             Win++;
             UpdateWSD();
         }
 
-        public void AddLost()
+        public void AddLostAgainstNotFoldedPlayers()
         {
             Lost++;
             UpdateWSD();
@@ -249,7 +249,7 @@ namespace PokerShark.AI
         #region Serialization
         public bool ShouldSerializeWeightTable()
         {
-            return false;
+            return true;
         }
 
         public bool ShouldSerializeHistory()

@@ -1,4 +1,6 @@
-﻿using PokerShark.Poker;
+﻿using Newtonsoft.Json;
+using PokerShark.Poker;
+using PokerShark.Poker.Deck;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,6 +11,30 @@ using Action = PokerShark.Poker.Action;
 
 namespace PokerShark.AI
 {
+    public class TableToJsonConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return true;
+        }
+
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        {
+            if (value == null)
+                throw new Exception("can not convert card to json");
+
+            if (value is WeightTable table)
+                writer.WriteValue(table.ToCSV());
+            else
+                throw new Exception("can not convert a none card object to json");
+        }
+    }
+    
     internal enum TableCard : int
     {
         // A
@@ -195,6 +221,7 @@ namespace PokerShark.AI
         _22,
     }
 
+    [JsonConverter(typeof(TableToJsonConverter))]
     public class WeightTable
     {
         #region Properties
@@ -216,17 +243,30 @@ namespace PokerShark.AI
         };
 
         // group weights map
+        //private Dictionary<int, double> GroupWeightMap = new Dictionary<int, double>() {
+        //    { 1, 1 },
+        //    { 2, 0.99 },
+        //    { 3, 0.85 },
+        //    { 4, 0.80 },
+        //    { 5, 0.75 },
+        //    { 6, 0.7 },
+        //    { 7, 0.6 },
+        //    { 8, 0.5 },
+        //    { 9, 0.3 },
+        //    { 10, 0.2 }
+        //};
+
         private Dictionary<int, double> GroupWeightMap = new Dictionary<int, double>() {
             { 1, 1 },
-            { 2, 0.99 },
-            { 3, 0.85 },
-            { 4, 0.80 },
-            { 5, 0.75 },
-            { 6, 0.7 },
-            { 7, 0.6 },
-            { 8, 0.5 },
-            { 9, 0.3 },
-            { 10, 0.2 }
+            { 2, 1 },
+            { 3, 1 },
+            { 4, 1 },
+            { 5, 1 },
+            { 6, 1 },
+            { 7, 1 },
+            { 8, 1 },
+            { 9, 1 },
+            { 10, 1 }
         };
 
         // actual weight table
@@ -247,18 +287,40 @@ namespace PokerShark.AI
             // reset weight table on each new hand
             if (action.Stage == RoundState.Preflop)
             {
-               Reset();
+               //Reset();
             }
+
+
+            var factors = new double[10];
 
             if (action.Type == ActionType.Call)
             {
-                ReceiveCall(model);
+                //ReceiveCall(model);
+                factors = Test.GetCallFactors(model.VPIP, model.PFF, model.WSD);
             }
             else if (action.Type == ActionType.Raise)
             {
-                ReceiveRaise(model);
+                //ReceiveRaise(model);
+                factors = Test.GetCallFactors(model.VPIP, model.PFF, model.WSD);
             }
-            
+            else
+            {
+                // 
+                factors = Test.GetFoldFactors(model.VPIP, model.PFF, model.WSD);
+            }
+
+
+            TableMap.CopyTo(Table, 0);
+            for (int i = 0; i < 169; i++)
+            {
+                var n = factors[(int)Table[i] - 1];
+                if (n > 1)
+                    n = 1;
+                if (n < 0.1)
+                    n = 0.1;
+                Table[i] = n;
+            }
+
         }
         public void Reset()
         {
@@ -361,8 +423,6 @@ namespace PokerShark.AI
             Increase(increase, 0.3);
             Decrease(decrease, 0.2);
         }
-        
-        
         private List<TableCard> Except(List<TableCard> range)
         {
             List<TableCard> table = Enum.GetValues(typeof(TableCard)).Cast<TableCard>().ToList();

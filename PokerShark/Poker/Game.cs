@@ -30,9 +30,8 @@ namespace PokerShark.Poker
         public List<Round> Rounds { get; private set; }
         public Round? CurrentRound { get; private set; }
         public List<Player> Winners { get; private set; }
-        private List<PlayerModel> PlayerModels { get;  set; }
+        public List<PlayerModel> PlayerModels { get;  set; }
         public List<Result> Results { get; private set; }
-        
 
         #endregion
 
@@ -125,8 +124,9 @@ namespace PokerShark.Poker
             if (CurrentRound.RoundState == RoundState.NotStarted)
                 throw new InvalidOperationException("Street not started");
 
-            var stage = CurrentRound.RoundState;
 
+            var stage = CurrentRound.RoundState;
+            var old_player_state = Helper.ClonePlayerList(CurrentRound.Players);
             CurrentRound.EndRound(winners, players);
 
             // update results & player models
@@ -136,10 +136,13 @@ namespace PokerShark.Poker
                 result.UpdateStack(CurrentRound.Players.First(p => p.Id == result.Player.Id).Stack);
                 if (winners.Any(w => w.Id == result.Player.Id))
                 {
-                    model?.AddWin();
                     // postflop win
                     if (stage != RoundState.Preflop)
+                    {
                         model?.AddPostFlopWin();
+                        if (old_player_state.Where(p => p.Id != result.Player.Id).Any(p => p.State != PlayerState.Folded))
+                            model?.AddWinAgainstNotFoldedPlayers();                            
+                    }
                     
                     if (winners.Count > 1)
                     {
@@ -153,9 +156,14 @@ namespace PokerShark.Poker
                 else
                 {
                     result.Lost();
-                    model?.AddLost();
+                    
+                    // postflop lost
                     if (stage != RoundState.Preflop)
+                    {
                         model?.AddPostFlopLost();
+                        if (old_player_state.Where(p => p.Id != result.Player.Id).Any(p => p.State != PlayerState.Folded))
+                            model?.AddLostAgainstNotFoldedPlayers();
+                    }
                 }
             }
 

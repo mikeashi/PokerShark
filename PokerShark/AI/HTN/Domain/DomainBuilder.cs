@@ -687,18 +687,18 @@ namespace PokerShark.AI.HTN.Domain
                 }
                 End();
 
-                Select("Only One Opponent");
-                {
-                    IfNoDecisionYet();
-                    IfOneOpponent();
-                    Action("Call on 1,2,3,4,5");
-                    {
-                        IfPocketFromGroup(1, 2, 3, 4, 5);
-                        Do(Call);
-                    }
-                    End();
-                }
-                End();
+                //Select("Only One Opponent");
+                //{
+                //    IfNoDecisionYet();
+                //    IfOneOpponent();
+                //    Action("Call on 1,2,3,4,5");
+                //    {
+                //        IfPocketFromGroup(1, 2, 3, 4, 5);
+                //        Do(Call);
+                //    }
+                //    End();
+                //}
+                //End();
 
                 Action("Fold if no decision was made");
                 {
@@ -742,36 +742,70 @@ namespace PokerShark.AI.HTN.Domain
                 return this;
 
             // calculate hand strength
-            var ehs = Oracle.EffectiveHandStrength(pocket, board, opponents);
+            var ehsC = Oracle.EffectiveHandStrength(pocket, board, opponents);
+            var ehs = ehsC.Item1;
+
+            // log evaluation 
+            var logger = new StringBuilder();
+            logger.AppendLine(roundState + ", ehs: " + ehsC + ", pot: " + pot);
 
             // Raise Actions
             for (int i = 0; min + i * bb < max; i++)
             {
+                // dont consider big raises with low odds
+                if (ehs < 0.6 && min + i * bb < max / 2)
+                    break;
+
+                logger.AppendLine(" raise: " + (min + i * bb) + ", " + String.Join(" , ",Oracle.RaiseOdds(ehs, min + i * bb, pot)));
+
                 // Define action with correlating odds of the raise amount.
                 VariableCostAction("Raise: " + (min + i * bb), Oracle.RaiseOdds(ehs, min + i * bb, pot));
                 Do((ctx) =>
                 {
-                    ctx.SetDecision(new Decision() { Call = 0.2, Raise = 0.8, Fold = 0 });
+                    if(ctx.GetRoundState() == RoundState.Flop)
+                    {
+                        // override premature raise
+                        ctx.SetDecision(new Decision() { Call = 1, Raise = 0, Fold = 0 });
+                    }
+                    else if (ctx.GetRoundState() == RoundState.Turn)
+                    {
+                        ctx.SetDecision(new Decision() { Call = 0.9, Raise = 0.1, Fold = 0 });
+                    }
+                    else if (ctx.GetRoundState() == RoundState.River)
+                    {
+                        ctx.SetDecision(new Decision() { Call = 0.5, Raise = 0.5, Fold = 0 });
+                    }
+                    else
+                    {
+                        ctx.SetDecision(new Decision() { Call = 0.3, Raise = 0.7, Fold = 0 });
+                    }
+
                     ctx.SetRaiseAmount(min + i * bb);
                     return TaskStatus.Success;
                 });
                 End();
             }
 
+
             // Call Action
+            logger.AppendLine(" call: " + callAmount + ", " + String.Join(" , ", Oracle.CallOdds(ehs, callAmount, pot, opponents, bb)));
             VariableCostAction("Call: " + callAmount, Oracle.CallOdds(ehs, callAmount, pot, opponents, bb));
                 Do((ctx) =>
                 {
                         ctx.SetDecision(new Decision() { Call = 0.8, Raise = 0.2, Fold = 0 });
+                        ctx.SetRaiseAmount(ctx.GetMinPossibleRaiseAmount());
                         return TaskStatus.Success;
                 });
             End();
 
             // Fold Action
+            logger.AppendLine(" fold " + String.Join(" , ", Oracle.FoldOdds(opponents)));
             VariableCostAction("Fold", Oracle.FoldOdds(opponents));
             Do(Fold);
             End();
-
+            
+            // log odds
+            currentRound?.OddsLog.Add(logger.ToString());
             return this;
         }
         #endregion
@@ -779,8 +813,6 @@ namespace PokerShark.AI.HTN.Domain
         #region Too High Cut
         public static void TooHighCut(Context ctx)
         {
-            var pocket = ctx.GetPocket();
-
             // CUT if too high
             var stack = ctx.GetCurrentStack();
             var raise = ctx.GetMinPossibleRaiseAmount();
@@ -821,15 +853,14 @@ namespace PokerShark.AI.HTN.Domain
                     IfCallingFish();
                     Action("Always Raise on Groups 3,4");
                     {
-                        IfPocketFromGroup(3,4,5);
+                        IfPocketFromGroup(3,4);
                         Do(RaiseLikeShark);
                     }
                     End();
 
-                    Action("Always Raise on Groups 5");
+                    Action("Always call");
                     {
-                        IfPocketFromGroup(6,7);
-                        Do(RaiseAFish);
+                        Do(CallAFish);
                     }
                     End();
                 }
@@ -931,8 +962,16 @@ namespace PokerShark.AI.HTN.Domain
         }
         private static TaskStatus Fold(Context ctx)
         {
-            ctx.SetDecision(new Decision() { Fold = 0.7, Call = 0.3, Raise = 0 });
-            ctx.SetRaiseAmount(ctx.GetMinPossibleRaiseAmount());
+            if(ctx.GetCallAmount() == 0)
+            {
+                // always call instade of folding
+                // when it does not cost anything to call.
+                ctx.SetDecision(new Decision() { Fold = 0, Call = 1, Raise = 0 });
+            }
+            else
+            {
+                ctx.SetDecision(new Decision() { Fold = 0.7, Call = 0.3, Raise = 0 });
+            }
             TooHighCut(ctx);
             return TaskStatus.Success;
         }
@@ -946,6 +985,11 @@ namespace PokerShark.AI.HTN.Domain
         {
             ctx.SetDecision(new Decision() { Fold = 0, Call = 0, Raise = 1 });
             ctx.SetRaiseAmount(ctx.GetMaxPossibleRaiseAmount());
+            return TaskStatus.Success;
+        }
+        private static TaskStatus CallAFish(Context ctx)
+        {
+            ctx.SetDecision(new Decision() { Fold = 0, Call = 1, Raise = 0 });
             return TaskStatus.Success;
         }
         #endregion

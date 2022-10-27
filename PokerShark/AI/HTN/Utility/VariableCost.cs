@@ -21,5 +21,10 @@ namespace PokerShark.AI.HTN.Utility
             Cost = cost;
             Probability = probability;
         }
+
+        public override string ToString()
+        {
+            return $"Cost: {Cost.ToString("0.00",CultureInfo.InvariantCulture)}, Probability: {Probability.ToString("0.00", CultureInfo.InvariantCulture)}";
+        }
     }
 }

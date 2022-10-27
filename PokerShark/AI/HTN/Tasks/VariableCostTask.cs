@@ -26,11 +26,6 @@ namespace PokerShark.AI.HTN.Tasks
                 return PossibleCosts.Sum(vc => ((Context)ctx).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability);
             throw new Exception("Incorrect context type.");
         }
-
-        public double GetExpectedCost(StaticUtilityFunction uf)
-        {
-            return PossibleCosts.Sum(vc => uf.CalculateUtility(vc.Cost) * vc.Probability);
-        }
     }
 
 }

@@ -95,7 +95,7 @@ namespace PokerShark.Windows
             if (botModel == null)
                 return;
             Instance?.BotStateWindow.Clear();
-            Instance?.BotStateWindow.WriteLine(FormatPlayerModel(botModel).Replace("\n", ""));
+            Instance?.BotStateWindow.WriteLine(botModel.PlayingStyle +" "+FormatPlayerModel(botModel).Replace("\n", ""));
 
             Flush();
         }

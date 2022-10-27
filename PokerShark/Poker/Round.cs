@@ -40,6 +40,8 @@ namespace PokerShark.Poker
         public Pot Pot { get; private set; }
         public List<Player> Winner { get; private set; }
         public List<Action> History { get; private set; }
+        public List<String> OddsLog { get; private set; }
+
         #endregion
 
         #region constructor
@@ -62,6 +64,7 @@ namespace PokerShark.Poker
             Winner = new List<Player>();
             History = new List<Action>();
             //if (Players.Any()) CalculatePositions();
+            OddsLog = new List<String>();
             LogStartRound();
         }
 
@@ -78,11 +81,12 @@ namespace PokerShark.Poker
             Pot = new Pot(round.Pot);
             Winner = Helper.ClonePlayerList(round.Winner);
             History = Helper.CloneHistoryList(round.History);
+            OddsLog = round.OddsLog;
         }
-        
+
         #endregion
 
-        # region Methods
+        #region Methods
         internal void StartStreet(int dealerPosition, int smallBlindPosition, int bigBlindPosition, RoundState roundState, List<Card> board, Pot pot)
         {
             // check legal positions

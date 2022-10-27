@@ -12,15 +12,15 @@ namespace PokerShark.AI
     public class Oracle
     {
         #region HandStrength
-        internal static double EffectiveHandStrength(List<Card>? Pocket, List<Card>? Board, List<PlayerModel> models)
+        internal static (double, double, double, double, double) EffectiveHandStrength(List<Card>? Pocket, List<Card>? Board, List<PlayerModel> models)
         {
             if (Pocket == null || Board == null)
-                return 0;
+                return (0, 0, 0, 0,0);
             var rawHandStrength = HandStrength(Pocket, Board, models);
             var monteCarloHandStrength = MonteCarloHandStrength(Pocket, Board, models);
             (double ppot, double npot) = HandPotential(Pocket, Board, models);
             var HS = (rawHandStrength + monteCarloHandStrength) / 2;
-            return HS + (1 - HS) * ppot;
+            return (HS + (1 - HS) * ppot - (HS * npot), rawHandStrength, monteCarloHandStrength, ppot, npot);
         }
         private static double HandStrength(List<Card> Pocket, List<Card> Board, List<PlayerModel> models)
         {
@@ -41,7 +41,7 @@ namespace PokerShark.AI
         {
             return GetOdds(
                         // winning odds
-                        (potAmount, effectiveHandStrength),
+                        (potAmount + raiseAmount, effectiveHandStrength),
                         // lossing odds
                         (-1* raiseAmount, 1-effectiveHandStrength)
                     );
@@ -59,7 +59,7 @@ namespace PokerShark.AI
            
             return GetOdds(
                         // winning odds
-                        (potAmount, effectiveHandStrength),
+                        (potAmount + callAmount, effectiveHandStrength),
                         // lossing odds
                         (-1 * callAmount, 1 - effectiveHandStrength)
                     );
@@ -99,12 +99,12 @@ namespace PokerShark.AI
                     factor += 1 * cost;
                 }
                 // player wins alot when seeing the flop => fold is cheaper
-                if (opponent.WTSD < 40 && opponent.WSD > 49)
+                if (opponent.WTSD < 40 && opponent.WSD > 30)
                 {
                     // player wins alot and does not enter the showdown alot
                     factor += 2 * cost;
                 }
-                if (opponent.WSD > 49)
+                if (opponent.WSD > 40)
                 {
                     // player wins alot and does not enter the showdown alot x 2
                     factor += 2 * cost;
@@ -125,11 +125,6 @@ namespace PokerShark.AI
                 odds.Add(new VariableCost(t.cost, t.probability));
             return odds;
         }
-
-       
         #endregion
-
-
-
     }
 }
