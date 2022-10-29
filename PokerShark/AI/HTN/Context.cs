@@ -62,13 +62,6 @@ namespace PokerShark.AI.HTN
             var stack = GetCurrentStack();
             var initial = GetGame().InitialStack;
 
-            // is loose game 
-            var models = GetPlayersModels();
-            var loose = models.Sum(m => m.PlayingStyle == PlayingStyle.LooseAggressive || m.PlayingStyle == PlayingStyle.LoosePassive ? 1 : 0);
-            var tight = models.Sum(m => m.PlayingStyle == PlayingStyle.TightAggressive || m.PlayingStyle == PlayingStyle.TightPassive ? 1 : 0);
-            
-            //if (loose >= tight && stack > initial * 0.5)
-            //    return new RiskSeeking();
             
             if (stack > initial * 1.5)
                 return new RiskSeeking();
