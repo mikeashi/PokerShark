@@ -25,12 +25,13 @@ namespace PokerShark.AI.HTN.Domain.Conditions
                 var opponents = c.GetPlayersModels();
                 var players = c.GetGame().CurrentRound?.Players;
 
+                
                 foreach (var opponent in opponents)
                 {
-                    if (opponent.VPIP > 70 && players.First(p => p.Id == opponent.Player.Id).State != Poker.PlayerState.Folded)
-                        return true;
+                    if (opponent.VPIP < 70 && players?.First(p => p.Id == opponent.Player.Id).State != Poker.PlayerState.Folded)
+                        return false;
                 }
-                return false;
+                return true;
             }
             throw new Exception("Unexpected context type!");
         }

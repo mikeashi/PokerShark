@@ -31,7 +31,7 @@ namespace PokerShark.Interfaces.PyPoker
             {
                 // keep game running forever
             }
-            
+
         }
     }
 }

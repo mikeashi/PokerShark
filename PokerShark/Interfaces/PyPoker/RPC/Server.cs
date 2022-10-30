@@ -38,6 +38,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
         
         ~Server()
         {
+            Console.Write("Server is dead");
             if (connection != null)
                 connection.Close();
         }

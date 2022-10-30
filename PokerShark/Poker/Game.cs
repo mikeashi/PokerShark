@@ -1,4 +1,5 @@
 ﻿using PokerShark.AI;
+using PokerShark.Helpers;
 using PokerShark.Poker.Deck;
 using RabbitMQ.Client;
 using Serilog;
@@ -28,9 +29,9 @@ namespace PokerShark.Poker
         public List<Player> Players { get; private set; }
         public List<Round> Rounds { get; private set; }
         public Round? CurrentRound { get; private set; }
-        public List<Player> Winners { get; private set; }
         public List<PlayerModel> PlayerModels { get;  set; }
         public List<Result> Results { get; private set; }
+        public string BotHash { get; private set; }
 
         #endregion
 
@@ -45,7 +46,6 @@ namespace PokerShark.Poker
             BigBlind = bigBlind;
             Ante = ante;
             Players = Helper.ClonePlayerList(players);
-            Winners = new List<Player>();
             Rounds = new List<Round>();
             PlayerModels = new List<PlayerModel>();
             Results = new List<Result>();
@@ -56,6 +56,7 @@ namespace PokerShark.Poker
             }
             // log game information 
             LogStart();
+            BotHash = ExecutingHash.GetExecutingFileHash();
         }
         #endregion
 
@@ -238,13 +239,26 @@ namespace PokerShark.Poker
                 Directory.CreateDirectory(path);
             }
 
-            // create today's folder
-            path = "logs/" + DateTime.Now.ToString("yyyy-MM-dd");
-            if (!Directory.Exists(path))
+            // if only one opponent create a folder for him
+            if (Players.Count == 2)
             {
-                Directory.CreateDirectory(path);
+                var opponent = Players.First(p => p.Name != Bot.Name);
+                path = "logs/" + DateTime.Now.ToString("yyyy-MM-dd") + "/" + opponent.Name;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
             }
-
+            else
+            {
+                // create today's folder
+                path = "logs/" + DateTime.Now.ToString("yyyy-MM-dd");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            
             // write game to file
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(Path.Combine(path, Id + ".json"), json);

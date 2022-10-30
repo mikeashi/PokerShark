@@ -252,13 +252,11 @@ namespace PokerShark.Poker
 
             // Log.Information("Pot: {Pot}", Pot.Amount);
         }
-
         private void LogEndRound()
         {
            Log.Information("Round {RoundCount} ended", RoundCount);
            Log.Information("Winners: [{Winners}]", String.Join(" ,", Winner.Select(w => w.Name)));
         }
-        
         #endregion
 
         #region Serialization
@@ -269,12 +267,12 @@ namespace PokerShark.Poker
 
         public bool ShouldSerializeSmallBlindPosition()
         {
-            return false;
+            return true;
         }
         
         public bool ShouldSerializeBigBlindPosition()
         {
-            return false;
+            return true;
         }
         public bool ShouldSerializeBoard()
         {

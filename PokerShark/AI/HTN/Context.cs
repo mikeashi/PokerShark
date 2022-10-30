@@ -17,6 +17,8 @@ namespace PokerShark.AI.HTN
         RaiseAmount,
         CheckRaise,
         ValidActions,
+        RecomanndedDecision,
+        RecomanndedRaiseAmount,
     }
 
     public class Context : BaseContext<object>
@@ -32,31 +34,38 @@ namespace PokerShark.AI.HTN
         public override object[] WorldState => _worldState;
         public bool OverrideCut = false;
         public bool PrefoldDecision = false;
+        public bool Done = false;
         #endregion
 
         #region Initialize
         public void Initialize(Game game)
         {
+            double zero = 0;
             base.Init();
             DirectSet(State.Game, game);
-            DirectSet(State.Decision, new Decision() { Fold = 0, Call = 0, Raise = 0 });
-            DirectSet(State.RaiseAmount, 0);
+            DirectSet(State.Decision, new Decision() { Fold = zero, Call = zero, Raise = zero });
+            DirectSet(State.RecomanndedDecision, new Decision() { Fold = zero, Call = zero, Raise = zero });
+            DirectSet(State.RaiseAmount, zero);
+            DirectSet(State.RecomanndedRaiseAmount, zero);
             DirectSet(State.CheckRaise, false);
             DirectSet(State.ValidActions, new List<Action>());
+            Done = false;
         }
 
         internal void ResetDecision()
         {
             double zero = 0;
             DirectSet(State.Decision, new Decision() { Fold = zero, Call = zero, Raise = zero });
+            DirectSet(State.RecomanndedDecision, new Decision() { Fold = zero, Call = zero, Raise = zero });
+            DirectSet(State.RecomanndedRaiseAmount, zero);
             DirectSet(State.RaiseAmount, zero);
             OverrideCut = false;
             PrefoldDecision = false;
+            Done = false;
         }
         #endregion
 
         #region Methods
-        // public methods
         public StaticUtilityFunction GetAttitude()
         {
             var stack = GetCurrentStack();
@@ -70,8 +79,6 @@ namespace PokerShark.AI.HTN
             else
                 return new RiskNeutral();
         }
-
-        // private methods
         private void DirectSet(State state, object value)
         {
             _worldState[(int)state] = value;
@@ -82,6 +89,14 @@ namespace PokerShark.AI.HTN
         public void SetDecision(Decision decision)
         {
             SetState((int)State.Decision, decision);
+        }
+        public void SetRecomanndedDecision(Decision decision)
+        {
+            SetState((int)State.RecomanndedDecision, decision);
+        }
+        public void SetRecomanndedRaiseAmount(double amount)
+        {
+            SetState((int)State.RecomanndedRaiseAmount, amount);
         }
         public void SetRaiseAmount(double amount)
         {
@@ -97,6 +112,17 @@ namespace PokerShark.AI.HTN
 
             var factor = WeightedFactors.RandomElementByWeight(e => e.Value).Key;
             SetState((int)State.RaiseAmount, factor * GetGame().BigBlind);
+        }
+        public void SetRecomanndedRaiseAmount(params (int Factor, float Weight)[] amounts)
+        {
+            Dictionary<int, float> WeightedFactors = new Dictionary<int, float>();
+            foreach (var amount in amounts)
+            {
+                WeightedFactors.Add(amount.Factor, amount.Weight);
+            }
+
+            var factor = WeightedFactors.RandomElementByWeight(e => e.Value).Key;
+            SetState((int)State.RecomanndedRaiseAmount, factor * GetGame().BigBlind);
         }
         public void SetCheckRaise()
         {
@@ -156,9 +182,17 @@ namespace PokerShark.AI.HTN
         {
             return (Decision)GetState((int)State.Decision);
         }
+        public Decision GetRecomanndedDecision()
+        {
+            return (Decision)GetState((int)State.RecomanndedDecision);
+        }
         public double GetRaiseAmount()
         {
             return (double)GetState((int)State.RaiseAmount);
+        }
+        public double GetRecomanndedRaiseAmount()
+        {
+            return (double)GetState((int)State.RecomanndedRaiseAmount);
         }
         public bool GetCheckRaise()
         {

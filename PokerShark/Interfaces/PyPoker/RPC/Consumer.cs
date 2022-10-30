@@ -40,6 +40,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
             }
             catch(Exception e)
             {
+                Console.WriteLine("Error");
                 Log.Error(Encoding.UTF8.GetString(body));
                 Log.Error(e.Message);
                 response = "";

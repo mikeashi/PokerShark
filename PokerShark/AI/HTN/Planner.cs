@@ -35,8 +35,16 @@ namespace PokerShark.AI.HTN
             context.Init();
             context.ResetDecision();
 
-            // run planner
-            _planner.Tick(_domain, context);
+            int killSwitch = 5;
+            
+            while (!context.Done)
+            {
+                if (killSwitch == 0)
+                    break;
+                // run planner
+                _planner.Tick(_domain, context);
+                killSwitch--;
+            }
 
             // parse decision
             var decision = context.GetDecision();
@@ -50,7 +58,6 @@ namespace PokerShark.AI.HTN
             return new DomainBuilder()
                     .CheckRaiseCutSelector()
                     .PreflopSequence()
-                    //.TooHighCutSequence()
                     .PostflopSequence(context)
                     .Build();
         }
