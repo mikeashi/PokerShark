@@ -934,23 +934,23 @@ namespace PokerShark.AI.HTN.Domain
                 }
                 End();
 
-                //Select("Catch none bold fish");
-                //{
-                //    IfCallingFish();
-                //    Action("Always Raise on Groups 3,4");
-                //    {
-                //        IfPocketFromGroup(3, 4);
-                //        Do(RaiseLikeShark);
-                //    }
-                //    End();
+                Select("Catch none bold fish");
+                {
+                    IfCallingFish();
+                    Action("Always Raise on Groups 3,4");
+                    {
+                        IfPocketFromGroup(3, 4);
+                        Do(RaiseLikeShark);
+                    }
+                    End();
 
-                //    Action("Always call");
-                //    {
-                //        Do(CallAFish);
-                //    }
-                //    End();
-                //}
-                //End();
+                    Action("Always call");
+                    {
+                        Do(CallAFish);
+                    }
+                    End();
+                }
+                End();
 
             }
             End();
