@@ -25,6 +25,10 @@ PokerShark builds also a model for each opponent keeping track of thier action h
     <img src="https://user-images.githubusercontent.com/25008083/198908427-9ab55251-21aa-4d3f-ad7e-721c41c27e03.png"> 
 </p>
 
+## Evaluation 
+You can check [GameAnalyzer](https://github.com/mikeashi/PokerShark/blob/master/GameAnalysis/v0.1.0/GameAnalyzer.ipynb) to see how did PokerShark perform heads-up against dummy bots. In a nutshell it had a positive AWPH against all of them.
+
+
 ## Play against PokerShark
 
 We have adopted the PyPoker project to work with PokerShark you can play using the web interface or using the console. We have provided easy to use docker image that can be started in matter of seconds. For more information please check [PokerServer](https://github.com/mikeashi/PokerServer).
