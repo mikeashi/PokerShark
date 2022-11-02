@@ -32,11 +32,11 @@ namespace PokerShark.AI.HTN.Domain
             this.CompoundTask<ExpectedUtilitySelector>(name);
             return this;
         }
-        public DomainBuilder VariableCostAction(String name, List<VariableCost> costs)
+        public DomainBuilder VariableUtilityAction(String name, List<VariableUtility> utilites)
         {
             if (this.Pointer is ExpectedUtilitySelector compoundTask)
             {
-                var parent = new VariableCostTask(costs) { Name = name };
+                var parent = new VariableUtilityTask(utilites) { Name = name };
                 _domain.Add(compoundTask, parent);
                 _pointers.Add(parent);
                 return this;
@@ -1143,7 +1143,7 @@ namespace PokerShark.AI.HTN.Domain
                 logger.AppendLine("raise: " + (minRaise + i * BigBlind) + ", " + String.Join(" , ", odds) + ", EV:" + logEV(odds, ctx));
 
                 // Define action with correlating odds of the raise amount.
-                VariableCostAction("Raise: " + (minRaise + i * BigBlind), odds);
+                VariableUtilityAction("Raise: " + (minRaise + i * BigBlind), odds);
                 Do((ctx) =>
                 {
                     if (ctx.GetRoundState() == RoundState.Flop)
@@ -1180,7 +1180,7 @@ namespace PokerShark.AI.HTN.Domain
         {
             var odds = Oracle.CallOdds(EHS, callAmount, ctx.GetPaid(), pot, opponents, BigBlind);
             logger.AppendLine("call: " + callAmount + ", " + String.Join(" , ", odds) + ", EV:" + logEV(odds, ctx));
-            VariableCostAction("Call: " + callAmount, odds);
+            VariableUtilityAction("Call: " + callAmount, odds);
             Do((ctx) =>
             {
                 ctx.SetDecision(new Decision() { Call = 0.8, Raise = 0.2, Fold = 0 });
@@ -1196,7 +1196,7 @@ namespace PokerShark.AI.HTN.Domain
             // Fold Action
             var odds = Oracle.FoldOdds(opponents, ctx.GetPaid());
             logger.AppendLine("fold " + String.Join(" , ", odds));
-            VariableCostAction("Fold", odds);
+            VariableUtilityAction("Fold", odds);
             Do(Fold);
             End();
             return this;
@@ -1317,9 +1317,9 @@ namespace PokerShark.AI.HTN.Domain
             ctx.Done = true;
             return TaskStatus.Success;
         }
-        private static string logEV(List<VariableCost> PossibleCosts, Context ctx)
+        private static string logEV(List<VariableUtility> PossibleUtility, Context ctx)
         {
-            return PossibleCosts.Sum(vc => ((Context)ctx).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability).ToString("0.00");
+            return PossibleUtility.Sum(vc => ((Context)ctx).GetAttitude().CalculateUtility(vc.Utility) * vc.Probability).ToString("0.00");
         }
         #endregion
     }

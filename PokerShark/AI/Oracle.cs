@@ -45,7 +45,7 @@ namespace PokerShark.AI
 
         };
 
-        internal static List<VariableCost> RaiseOdds(double effectiveHandStrength, double raiseAmount, double callAmount, double min, double max, double paid, double potAmount)
+        internal static List<VariableUtility> RaiseOdds(double effectiveHandStrength, double raiseAmount, double callAmount, double min, double max, double paid, double potAmount)
         {
             var callingAmount = potAmount + callAmount;
 
@@ -63,7 +63,7 @@ namespace PokerShark.AI
                         (-1 * lossingAmount, 1 - effectiveHandStrength)
                     );
         }
-        internal static List<VariableCost> CallOdds(double effectiveHandStrength, double callAmount, double paid, double potAmount, List<PlayerModel> opponents, double bigBlind)
+        internal static List<VariableUtility> CallOdds(double effectiveHandStrength, double callAmount, double paid, double potAmount, List<PlayerModel> opponents, double bigBlind)
         {
             // When facing only one TightPassive player
             // increase cost of call.
@@ -92,7 +92,7 @@ namespace PokerShark.AI
                         (-1 * lossingAmount, 1 - effectiveHandStrength)
                     );
         }
-        internal static List<VariableCost> FoldOdds(List<PlayerModel> opponents, double paid)
+        internal static List<VariableUtility> FoldOdds(List<PlayerModel> opponents, double paid)
         {
             double cost = paid;
             double factor = 1;
@@ -147,11 +147,11 @@ namespace PokerShark.AI
                        (-1 * cost, 1)
                    );
         }
-        private static List<VariableCost> GetOdds(params (double cost, double probability)[] tuples)
+        private static List<VariableUtility> GetOdds(params (double cost, double probability)[] tuples)
         {
-            var odds = new List<VariableCost>();
+            var odds = new List<VariableUtility>();
             foreach (var t in tuples)
-                odds.Add(new VariableCost(t.cost, t.probability));
+                odds.Add(new VariableUtility(t.cost, t.probability));
             return odds;
         }
 

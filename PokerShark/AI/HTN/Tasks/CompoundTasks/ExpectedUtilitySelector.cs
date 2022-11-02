@@ -28,12 +28,12 @@ namespace PokerShark.AI.HTN.Tasks.CompoundTasks
             for (var taskIndex = startIndex; taskIndex < Subtasks.Count; taskIndex++)
             {
                 var task = Subtasks[taskIndex];
-                if (task is VariableCostTask utilityTask)
+                if (task is VariableUtilityTask utilityTask)
                 {
                     if (utilityTask.IsValid(ctx) == false)
                         continue;
 
-                    var score = utilityTask.GetExpectedCost(ctx);
+                    var score = utilityTask.GetExpectedUtility(ctx);
                     if (bestScore < score)
                     {
                         bestScore = score;
