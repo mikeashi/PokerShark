@@ -1,14 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using PokerShark.Poker.Deck;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.Interfaces.PyPoker
 {
@@ -28,7 +20,7 @@ namespace PokerShark.Interfaces.PyPoker
     {
         [JsonProperty("ante", Required = Required.Always)]
         public double Ante { get; set; }
-        
+
         [JsonProperty("blind_structure", Required = Required.Always)]
         public BlindStructure BlindStructure { get; set; }
 
@@ -116,7 +108,7 @@ namespace PokerShark.Interfaces.PyPoker
 
     internal partial class ActionHistories
     {
-       
+
     }
 
     internal partial class Pot
@@ -258,5 +250,5 @@ namespace PokerShark.Interfaces.PyPoker
 
         public static readonly AmountUnionConverter Singleton = new AmountUnionConverter();
     }
-    
+
 }

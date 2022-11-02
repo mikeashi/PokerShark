@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace PokerShark.AI.HTN.Utility
 {
@@ -24,7 +19,7 @@ namespace PokerShark.AI.HTN.Utility
 
         public override string ToString()
         {
-            return $"Cost: {Cost.ToString("0.00",CultureInfo.InvariantCulture)}, Probability: {Probability.ToString("0.00", CultureInfo.InvariantCulture)}";
+            return $"Cost: {Cost.ToString("0.00", CultureInfo.InvariantCulture)}, Probability: {Probability.ToString("0.00", CultureInfo.InvariantCulture)}";
         }
     }
 }

@@ -1,15 +1,10 @@
-﻿using Newtonsoft.Json;
-using PokerShark.AI;
+﻿using PokerShark.AI;
 using PokerShark.Poker;
 using PokerShark.Poker.Deck;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Action = PokerShark.Poker.Action;
 
 namespace PokerShark.Interfaces.PyPoker.RPC
@@ -38,7 +33,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
                 var payload = Encoding.UTF8.GetString(body);
                 response = GetResponse(props.Type, payload);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Error");
                 Log.Error(Encoding.UTF8.GetString(body));
@@ -60,7 +55,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
         {
             if (type != "game.started" && Bot.CurrentGame == null)
                 return "Illegal message";
-            
+
             switch (type)
             {
                 case "game.started":

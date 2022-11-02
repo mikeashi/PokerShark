@@ -1,10 +1,5 @@
 ﻿using FluidHTN;
 using FluidHTN.Conditions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Domain.Conditions.Pot
 {

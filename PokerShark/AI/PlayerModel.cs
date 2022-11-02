@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using PokerShark.Poker;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Action = PokerShark.Poker.Action;
-using Newtonsoft.Json;
 
 namespace PokerShark.AI
 {
@@ -63,7 +58,7 @@ namespace PokerShark.AI
 
         // number of rounds won/drewn 
         public int Win { get; private set; }
-        
+
         // number of rounds lost 
         public int Lost { get; private set; }
 
@@ -154,7 +149,7 @@ namespace PokerShark.AI
             // update weight table
             WeightTable.ReceiveAction(this, action);
         }
-        
+
         private void UpdateVPIP()
         {
             // find round count
@@ -166,19 +161,19 @@ namespace PokerShark.AI
             // calculate VPIP
             VPIP = (((double)raiseCount / roundCount) * 100);
         }
-        
+
         private void UpdatePFR()
         {
             // find round count
             var roundCount = History.Count(x => x.Stage == RoundState.Preflop);
-            
+
             // find number of raises
             var raiseCount = History.Count(x => x.Stage == RoundState.Preflop && x.Type == ActionType.Raise);
 
             // calculate PFR
             PFR = (((double)raiseCount / roundCount) * 100);
         }
-        
+
         private void UpdatePFF()
         {
             // find round count
@@ -190,7 +185,7 @@ namespace PokerShark.AI
             // calculate PFF
             PFF = (((double)raiseCount / roundCount) * 100);
         }
-        
+
         private void UpdateWTSD()
         {
             // find number of folds
@@ -199,7 +194,7 @@ namespace PokerShark.AI
             // find number of rounds
             var roundCount = History.Count;
 
-            WTSD =  100 - (((double)foldCount / roundCount) * 100);
+            WTSD = 100 - (((double)foldCount / roundCount) * 100);
         }
 
         private void UpdatePSDF()
@@ -230,14 +225,14 @@ namespace PokerShark.AI
             var mid_vpip = VPIP < 70 && VPIP > 45;
             var low_vpip = VPIP <= 45;
             var high_vpip = VPIP >= 70;
-            
+
             // PFR
             var high_pfr = PFR > 50;
             var low_pfr = PFR <= 50;
 
             if (high_vpip && high_pfr) PlayingStyle = PlayingStyle.LooseAggressive;
             if (high_vpip && low_pfr) PlayingStyle = PlayingStyle.LoosePassive;
-            
+
             if (mid_vpip && high_pfr) PlayingStyle = PlayingStyle.TightAggressive;
             if (mid_vpip && low_pfr) PlayingStyle = PlayingStyle.TightPassive;
 

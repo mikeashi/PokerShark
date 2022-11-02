@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Serilog;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using PokerShark.Poker.Deck;
+using Serilog;
 
 namespace PokerShark.Poker
 {
@@ -44,10 +39,10 @@ namespace PokerShark.Poker
 
         #region constructor
         public Round(int roundCount, List<Card> pocket, List<Player> players)
-        : this(0, 0, 0, RoundState.NotStarted, players, roundCount, pocket, new List<Card>(),  new Pot(0))
+        : this(0, 0, 0, RoundState.NotStarted, players, roundCount, pocket, new List<Card>(), new Pot(0))
         {
         }
-        
+
         public Round(int dealerPosition, int smallBlindPosition, int bigBlindPosition, RoundState roundState, List<Player> players, int roundCount, List<Card> pocket, List<Card> board, Pot pot)
         {
             DealerPosition = dealerPosition;
@@ -95,7 +90,7 @@ namespace PokerShark.Poker
             if (BigBlindPosition < 0 || BigBlindPosition >= Players.Count)
                 throw new ArgumentException("Big blind position must be between 0 and " + (Players.Count - 1));
 
-            
+
             // check board cards
             if (board.Count != 0 && board.Count != 3 && board.Count != 4 && board.Count != 5)
                 throw new ArgumentException("Board cards must be 0, 3, 4 or 5");
@@ -107,7 +102,7 @@ namespace PokerShark.Poker
             // check pot amount
             if (pot.Amount < 0)
                 throw new ArgumentException("Pot amount must be positive");
-            
+
             DealerPosition = dealerPosition;
             SmallBlindPosition = smallBlindPosition;
             BigBlindPosition = bigBlindPosition;
@@ -117,7 +112,7 @@ namespace PokerShark.Poker
             CalculatePositions();
             LogStartStreet();
         }
-        
+
         internal void StoreAction(Action action, double updatedPlayerStack, PlayerState updatedPlayerState, Pot updatedPot)
         {
             // store action in round histore
@@ -128,7 +123,7 @@ namespace PokerShark.Poker
 
             if (player == null)
                 throw new ArgumentException("Player not found");
-            
+
             // update player stack
             player.UpdateStack(updatedPlayerStack);
 
@@ -215,7 +210,7 @@ namespace PokerShark.Poker
             }
         }
         #endregion
-        
+
         #region log
         private void LogStartRound()
         {
@@ -254,8 +249,8 @@ namespace PokerShark.Poker
         }
         private void LogEndRound()
         {
-           Log.Information("Round {RoundCount} ended", RoundCount);
-           Log.Information("Winners: [{Winners}]", String.Join(" ,", Winner.Select(w => w.Name)));
+            Log.Information("Round {RoundCount} ended", RoundCount);
+            Log.Information("Winners: [{Winners}]", String.Join(" ,", Winner.Select(w => w.Name)));
         }
         #endregion
 
@@ -269,7 +264,7 @@ namespace PokerShark.Poker
         {
             return true;
         }
-        
+
         public bool ShouldSerializeBigBlindPosition()
         {
             return true;

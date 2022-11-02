@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Konsole;
+﻿using Konsole;
 using PokerShark.AI;
 using PokerShark.AI.HTN.Utility;
 using PokerShark.Poker;
-using Action = PokerShark.Poker.Action;
+using System.Text;
 
 namespace PokerShark.Windows
 {
@@ -95,7 +90,7 @@ namespace PokerShark.Windows
             if (botModel == null)
                 return;
             Instance?.BotStateWindow.Clear();
-            Instance?.BotStateWindow.WriteLine(botModel.PlayingStyle +" "+FormatPlayerModel(botModel).Replace("\n", ""));
+            Instance?.BotStateWindow.WriteLine(botModel.PlayingStyle + " " + FormatPlayerModel(botModel).Replace("\n", ""));
 
             Flush();
         }
@@ -116,7 +111,7 @@ namespace PokerShark.Windows
 
             Instance?.BotStateWindow.Clear();
             Instance?.BotStateWindow.WriteLine("Game did not start yet.");
-            
+
             Flush();
         }
 
@@ -125,7 +120,7 @@ namespace PokerShark.Windows
         {
             var builder = new StringBuilder();
 
-            foreach(var model in models)
+            foreach (var model in models)
             {
                 builder.AppendLine(
                     String.Format("{0}: {1} \n {2}", model.Player.Name, model.PlayingStyle, FormatPlayerModel(model))
@@ -161,7 +156,7 @@ namespace PokerShark.Windows
         private static string FormatResults(List<Result> results)
         {
             var builder = new StringBuilder();
-            foreach(var r in results)
+            foreach (var r in results)
             {
                 double roi = (r.Stack - r.InitialStack) / (r.won + r.drew + r.lost);
                 builder.AppendLine(String.Format("Won = {0}, drew = {1}, lost = {2}, WonPerHand= {3}", r.won, r.drew, r.lost, FormatNumber(roi)));
@@ -169,10 +164,10 @@ namespace PokerShark.Windows
 
             return builder.ToString();
         }
-        
+
         private static string FormatNumber(double n)
         {
-            return FiniteOrDefault(n).ToString("0.00",System.Globalization.CultureInfo.InvariantCulture);
+            return FiniteOrDefault(n).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         private static bool HasValue(double value)

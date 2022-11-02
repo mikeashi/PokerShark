@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PokerShark.Poker;
 using PokerShark.Poker.Deck;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Action = PokerShark.Poker.Action;
 using PlayerState = PokerShark.Poker.PlayerState;
 
@@ -38,8 +33,8 @@ namespace PokerShark.Interfaces.PyPoker
 
         public static RoundStartMessage GetRoundStartMessage(string payload)
         {
-            var message =  JsonConvert.DeserializeObject<RoundStartMessage>(payload);
-            
+            var message = JsonConvert.DeserializeObject<RoundStartMessage>(payload);
+
             if (message == null)
                 throw new Exception("Could not parse round start message");
 
@@ -49,17 +44,17 @@ namespace PokerShark.Interfaces.PyPoker
         public static List<Card> GetCards(string[] cards)
         {
             List<Card> cardList = new List<Card>();
-            
+
             foreach (var card in cards)
             {
                 cardList.Add(new Card(card));
             }
-            
+
             return cardList;
         }
 
-       
-        
+
+
         public static List<Player> GetPlayers(Seat[] seats)
         {
             List<Player> players = new List<Player>();
@@ -71,7 +66,7 @@ namespace PokerShark.Interfaces.PyPoker
                 player.UpdateState(GetPlayerState(seat));
                 players.Add(player);
             }
-            
+
             return players;
         }
 
@@ -136,7 +131,7 @@ namespace PokerShark.Interfaces.PyPoker
             {
                 p.SidePots.Add(new SidePot(sidePot.Amount, sidePot.Eligibles.ToList()));
             }
-            
+
             return p;
         }
 
@@ -159,7 +154,7 @@ namespace PokerShark.Interfaces.PyPoker
 
             if (message == null)
                 throw new Exception("Could not parse winner message");
-            
+
             return GetPlayers(message.Winners);
         }
 
@@ -173,7 +168,7 @@ namespace PokerShark.Interfaces.PyPoker
             return GetPlayers(message.RoundState.Seats);
         }
 
-        
+
 
 
 
@@ -182,26 +177,26 @@ namespace PokerShark.Interfaces.PyPoker
             Action action = null;
 
             var seat = message.RoundState.Seats.Where(s => s.Uuid == message.NewAction.PlayerUuid).FirstOrDefault();
-            
-            if(seat == null)
+
+            if (seat == null)
                 throw new Exception("Could not parse new action message");
-            
+
             switch (message.NewAction.Action)
             {
                 case "fold":
-                     action = new Action(seat.Uuid, seat.Name, GetRoundState(message.RoundState.Street));
+                    action = new Action(seat.Uuid, seat.Name, GetRoundState(message.RoundState.Street));
                     break;
                 case "call":
-                     action = new Action(seat.Uuid, seat.Name, message.NewAction.Amount, GetRoundState(message.RoundState.Street));
+                    action = new Action(seat.Uuid, seat.Name, message.NewAction.Amount, GetRoundState(message.RoundState.Street));
                     break;
                 case "raise":
-                     action = new Action(seat.Uuid, seat.Name, message.NewAction.Amount, message.NewAction.Amount, message.NewAction.Amount, GetRoundState(message.RoundState.Street));
+                    action = new Action(seat.Uuid, seat.Name, message.NewAction.Amount, message.NewAction.Amount, message.NewAction.Amount, GetRoundState(message.RoundState.Street));
                     break;
             }
-            
+
             if (action == null)
                 throw new Exception("Could not parse new action message");
-            
+
             return action;
         }
         public static double GetPlayerStack(NewActionMessage message, string id)
@@ -230,8 +225,8 @@ namespace PokerShark.Interfaces.PyPoker
                 throw new Exception("Could not parse valid action message");
 
             List<Action> actions = new List<Action>();
-            
-            foreach(var action in message.ValidActions)
+
+            foreach (var action in message.ValidActions)
             {
                 switch (action.Action)
                 {
@@ -239,9 +234,9 @@ namespace PokerShark.Interfaces.PyPoker
                         actions.Add(Action.GetFoldAction());
                         break;
                     case "call":
-                        if(action.Amount.Integer == null)
+                        if (action.Amount.Integer == null)
                             throw new Exception("Could not parse valid action message");
-                        actions.Add(Action.GetCallAction((double) action.Amount.Integer));
+                        actions.Add(Action.GetCallAction((double)action.Amount.Integer));
                         break;
                     case "raise":
                         if (action.Amount.AmountClass == null)
@@ -250,9 +245,9 @@ namespace PokerShark.Interfaces.PyPoker
                         break;
                 }
             }
-            
+
             return actions;
         }
-        
+
     }
 }

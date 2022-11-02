@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace PokerShark.Poker
@@ -13,7 +8,8 @@ namespace PokerShark.Poker
     /// Represents an action type
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum ActionType {
+    public enum ActionType
+    {
         Fold,
         Call,
         Raise,
@@ -80,13 +76,13 @@ namespace PokerShark.Poker
             Stage = action.Stage;
             Type = action.Type;
         }
-        
+
         #endregion
 
         #region Methods
         public override string ToString()
         {
-            return "{"+ String.Format("\"action\" : \"{0}\" , \"amount\" : \"{1}\"", GetName(), Amount) + "}";
+            return "{" + String.Format("\"action\" : \"{0}\" , \"amount\" : \"{1}\"", GetName(), Amount) + "}";
         }
 
         private string GetName()
@@ -130,7 +126,7 @@ namespace PokerShark.Poker
         # region Static getters
         public static Action GetFoldAction()
         {
-          return new Action("fold", "fold", RoundState.NotStarted);
+            return new Action("fold", "fold", RoundState.NotStarted);
         }
 
         public static Action GetCallAction(double amount)

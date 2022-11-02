@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokerShark.Poker
+﻿namespace PokerShark.Poker
 {
     public class Pot
     {
@@ -30,7 +24,7 @@ namespace PokerShark.Poker
             }
         }
         #endregion
-        
+
         #region Methods
         public double getTotalForPlayer(string PlayerId)
         {

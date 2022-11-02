@@ -1,12 +1,5 @@
 ﻿using PokerShark.AI;
 using PokerShark.Poker;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Action = PokerShark.Poker.Action;
 
 namespace PokerShark.Tests
 {

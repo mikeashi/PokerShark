@@ -1,10 +1,5 @@
 ﻿using FluidHTN;
 using FluidHTN.Conditions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Domain.Conditions.Game
 {
@@ -19,9 +14,9 @@ namespace PokerShark.AI.HTN.Domain.Conditions.Game
                 var models = c.GetPlayersModels();
                 var aggressive = 0;
                 var passive = 0;
-                foreach(var m in models)
+                foreach (var m in models)
                 {
-                    if(m.PlayingStyle == PlayingStyle.LooseAggressive || m.PlayingStyle == PlayingStyle.TightAggressive)
+                    if (m.PlayingStyle == PlayingStyle.LooseAggressive || m.PlayingStyle == PlayingStyle.TightAggressive)
                     {
                         aggressive++;
                     }

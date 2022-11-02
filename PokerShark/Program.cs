@@ -1,6 +1,5 @@
-﻿using Serilog;
-using PokerShark.Interfaces.PyPoker;
-using PokerShark.Helpers;
+﻿using PokerShark.Interfaces.PyPoker;
+using Serilog;
 
 namespace PokerShark
 {

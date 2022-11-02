@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PokerShark.Poker
 {
@@ -18,7 +13,7 @@ namespace PokerShark.Poker
         SmallBlind,
         BigBlind,
     }
-    
+
     [JsonConverter(typeof(StringEnumConverter))]
     public enum PlayerState
     {
@@ -67,7 +62,7 @@ namespace PokerShark.Poker
         {
             Stack = amount;
         }
-        
+
         public void UpdateState(PlayerState state)
         {
             State = state;
@@ -96,7 +91,7 @@ namespace PokerShark.Poker
         {
             return State != PlayerState.NotSet;
         }
-        
+
         public bool ShouldSerializeStack()
         {
             return State != PlayerState.NotSet;

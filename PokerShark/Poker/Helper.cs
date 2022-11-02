@@ -1,15 +1,10 @@
 ﻿using PokerShark.Poker.Deck;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.Poker
 {
     public class Helper
     {
-        public static  List<Player> ClonePlayerList(List<Player> players)
+        public static List<Player> ClonePlayerList(List<Player> players)
         {
             var clonedPlayers = new List<Player>();
             foreach (var p in players)
