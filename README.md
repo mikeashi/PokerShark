@@ -61,6 +61,13 @@ If your interface manages to call these functions with the correct set of parame
 
 One thing to be noted here PokerShark is written using C#, and you might need to provide the game server with a java or a python client/player in this case we found that using RPC is a good solution PyPokerEngine and PyPokerGUI are python based and they require a python agent, but we were easily able to use RabbitMQ to create RPC queue.
 
+# Game logging
+
+Sadly we could not find a standard logging protocol for poker games such as [PGN for chess games](https://en.wikipedia.org/wiki/Portable_Game_Notation) and we found it more helpful for development purposes to log the entire game state including round history, player positions, stacks, models including action history and the odds calculated by PokerShark.
+
+The Bot will log the entire state of the game after the game is finished (when a new game starts). The logs will be located in a log folder with the current date and if the game has only one player a new folder with player name will be created. The game log file is a json file signed with the bot hash which is a md5 hash of the current version of the bot (the actual executable), so it is easy to verify which version of the bot had played the game.
+
+
 ## Read The Thesis
 will come soon x.0
 
