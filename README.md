@@ -44,6 +44,23 @@ Just make sure to start PokerShark and dont cheat using its informative console 
     <img src="https://user-images.githubusercontent.com/25008083/198908990-5e31c966-288b-4906-9657-4667620f61d3.png"> 
 </p>
 
+# Interfaces/Protocol 
+
+Currently PokerShark is only compatible with PyPokerEngine, but we have developed it to be able to support multiple formats/protocols. The current state of online poker does not provide a standard protocol to use, that is why PokerShark has its own built-in model to describe game state, it is by no means a poker engine, but a simple model that can track game state, board, player pocket and players actions.
+
+One has to create a new interface to make PokerShark able to participate in servers with a non-supported format. The `Bot` class has six methods that represent the different events that can happen during a poker game:
+
+- StartGame
+- StartRound
+- StartStreet
+- DeclareAction
+- ReceiveAction
+- EndRound
+
+If your interface manages to call these functions with the correct set of parameters, PokerShark should be able to participate in any server.
+
+One thing to be noted here PokerShark is written using C#, and you might need to provide the game server with a java or a python client/player in this case we found that using RPC is a good solution PyPokerEngine and PyPokerGUI are python based and they require a python agent, but we were easily able to use RabbitMQ to create RPC queue.
+
 ## Read The Thesis
 will come soon x.0
 
