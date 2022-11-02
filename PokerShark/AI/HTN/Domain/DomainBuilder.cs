@@ -1,6 +1,5 @@
 ﻿using FluidHTN;
 using FluidHTN.Factory;
-using Konsole.Internal;
 using PokerShark.AI.HTN.Domain.Conditions;
 using PokerShark.AI.HTN.Domain.Conditions.Game;
 using PokerShark.AI.HTN.Domain.Conditions.Pockt;
@@ -10,15 +9,9 @@ using PokerShark.AI.HTN.Domain.Conditions.Round;
 using PokerShark.AI.HTN.Tasks;
 using PokerShark.AI.HTN.Tasks.CompoundTasks;
 using PokerShark.AI.HTN.Utility;
-using PokerShark.Interfaces.PyPoker;
 using PokerShark.Poker;
 using PokerShark.Poker.Deck;
-using Serilog.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using RoundState = PokerShark.Poker.RoundState;
 using TaskStatus = FluidHTN.TaskStatus;
 
@@ -128,8 +121,13 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new ThreeBBCall());
             return this;
         }
-        
-        
+        public DomainBuilder IfZeroCostCall()
+        {
+            Pointer.AddCondition(new ZeroCostCall());
+            return this;
+        }
+
+
         // Game
         public DomainBuilder IfLooseGame()
         {
@@ -169,6 +167,17 @@ namespace PokerShark.AI.HTN.Domain
             Pointer.AddCondition(new PocketFromGroup() { GroupsQuery = groups.ToList() });
             return this;
         }
+        public DomainBuilder IfPocketEquityGreaterThan(double equity)
+        {
+            Pointer.AddCondition(new PocketEquityGreaterThan() { Equity = equity });
+            return this;
+        }
+        public DomainBuilder IfPocketEquityLessThan(double equity)
+        {
+            Pointer.AddCondition(new PocketEquityLessThan() { Equity = equity });
+            return this;
+        }
+
 
         // Recomanedations
         public DomainBuilder IfNoRecommendationYet()
@@ -271,15 +280,145 @@ namespace PokerShark.AI.HTN.Domain
                 IfInPreflop();
                 IfNoDecisionYet();
                 IfFoldRecommendation();
-                
-                Action("Fold if call amount >= 3BB");
+
+                Action("call if it does not cost anything to call");
                 {
-                    IfThreeBBCall();
+                    IfZeroCostCall();
+                    Do(Call);
+                }
+                End();
+
+                Select("Risk Averse");
+                {
+                    IfRiskAverse();
+
+                    Action("Fold if call is too expensive and risky");
+                    {
+                        IfPocketEquityLessThan(80);
+                        Condition("call > 1/3 stack", (ctx) => { return ctx.GetCallAmount() > ctx.GetCurrentStack() / 3; });
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Fold if pocket equity < 60");
+                    {
+                        IfPocketEquityLessThan(60);
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Convert recommendation to call");
+                    {
+                        Do(Call);
+                    }
+                    End();
+                }
+                End();
+
+                Select("Risk Neutral");
+                {
+                    IfRiskNeutral();
+
+                    Action("Fold if call is too expensive and risky");
+                    {
+                        IfPocketEquityLessThan(80);
+                        Condition("call > 1/2 stack", (ctx) => { return ctx.GetCallAmount() > ctx.GetCurrentStack() / 2; });
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Fold if pocket equity < 60");
+                    {
+                        IfPocketEquityLessThan(60);
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Covert recommendation to min raise when first to pot");
+                    {
+                        IfFirstToPot();
+                        Do(MinRaise);
+                    }
+                    End();
+
+                    Action("Convert recommendation to call");
+                    {
+                        Do(Call);
+                    }
+                    End();
+                }
+                End();
+
+                Select("Risk Seeking");
+                {
+                    IfRiskSeeking();
+
+                    Action("Fold if call is too expensive and risky");
+                    {
+                        IfPocketEquityLessThan(70);
+                        Condition("call > 1/2 stack", (ctx) => { return ctx.GetCallAmount() > ctx.GetCurrentStack() / 2; });
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Fold if pocket equity < 50");
+                    {
+                        IfPocketEquityLessThan(50);
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Covert recommendation to 1or2BB raise when first to pot");
+                    {
+                        IfFirstToPot();
+                        Do(Raise1Or2BB);
+                    }
+                    End();
+
+                    Action("Covert recommendation to min raise");
+                    {
+                        Do(MinRaise);
+                    }
+                    End();
+                }
+                End();
+            }
+            End();
+
+            Select("Call Recommendation");
+            {
+                IfInPreflop();
+                IfNoDecisionYet();
+                IfCallRecommendation();
+
+                Action("Fold if call to risky: RiskAverse");
+                {
+                    IfCallTooRisky();
+                    IfRiskAverse();
+                    IfPocketEquityLessThan(80);
                     Do(Fold);
                 }
                 End();
 
-                Action("Covert recommendation to call decision");
+                Action("Fold if call to risky: Risk Neutral");
+                {
+                    IfCallTooRisky();
+                    IfRiskNeutral();
+                    IfPocketEquityLessThan(70);
+                    Do(Fold);
+                }
+                End();
+
+                Action("Fold if call to risky: Risk Seeking");
+                {
+                    IfCallTooRisky();
+                    IfRiskSeeking();
+                    IfPocketEquityLessThan(60);
+                    Do(Fold);
+                }
+                End();
+
+                Action("Call if risk averse");
                 {
                     IfRiskAverse();
                     Do(Call);
@@ -295,41 +434,12 @@ namespace PokerShark.AI.HTN.Domain
 
                 Action("Covert recommendation to 1or2BB raise");
                 {
-                    IfRiskSeeking();
                     Do(Raise1Or2BB);
                 }
                 End();
-
             }
             End();
-            Select("Call Recommendation");
-            {
-                IfInPreflop();
-                IfNoDecisionYet();
-                IfCallRecommendation();
 
-                Action("Fold if call to risky");
-                {
-                    IfCallTooRisky();
-                    Do(Fold);
-                }
-                End();
-                
-                Action("Covert recommendation to min raise");
-                {
-                    IfRiskNeutral();
-                    Do(MinRaise);
-                }
-                End();
-
-                Action("Covert recommendation to 1or2BB raise");
-                {
-                    Do(Raise1Or2BB);
-                }
-                End();
-
-            }
-            End();
             Select("Raise Recommendation");
             {
                 IfInPreflop();
@@ -346,13 +456,33 @@ namespace PokerShark.AI.HTN.Domain
                     }
                     End();
 
-                    Action("Fold if call to risky");
+                    Action("Fold if call to risky: RiskAverse");
                     {
                         IfCallTooRisky();
+                        IfRiskAverse();
+                        IfPocketEquityLessThan(80);
                         Do(Fold);
                     }
                     End();
-                    
+
+                    Action("Fold if call to risky: Risk Neutral");
+                    {
+                        IfCallTooRisky();
+                        IfRiskNeutral();
+                        IfPocketEquityLessThan(70);
+                        Do(Fold);
+                    }
+                    End();
+
+                    Action("Fold if call to risky: Risk Seeking");
+                    {
+                        IfCallTooRisky();
+                        IfRiskSeeking();
+                        IfPocketEquityLessThan(60);
+                        Do(Fold);
+                    }
+                    End();
+
                     Action("Call");
                     {
                         Do(Call);
@@ -937,13 +1067,6 @@ namespace PokerShark.AI.HTN.Domain
                 Select("Catch none bold fish");
                 {
                     IfCallingFish();
-                    Action("Always Raise on Groups 3,4");
-                    {
-                        IfPocketFromGroup(3, 4);
-                        Do(RaiseLikeShark);
-                    }
-                    End();
-
                     Action("Always call");
                     {
                         Do(CallAFish);
@@ -986,7 +1109,7 @@ namespace PokerShark.AI.HTN.Domain
             // dont calculate odds if game is still in preflop.
             if (roundState == RoundState.Preflop)
                 return this;
-            
+
             // calculate hand strength
             var ehsC = Oracle.EffectiveHandStrength(pocket, board, opponents);
             var ehs = ehsC.Item1;
@@ -995,52 +1118,57 @@ namespace PokerShark.AI.HTN.Domain
             var logger = new StringBuilder();
             logger.AppendLine(roundState + ", ehs: " + ehsC + ", pot: " + pot);
 
-            PostFlopRaiseActions(min, max, bb, ehs,pot, logger);
-            PostFlopCallAction(callAmount, bb, ehs, pot, opponents,  logger);
-            PostFlopFoldAction(opponents, logger);
+            PostFlopRaiseActions(min, max, callAmount, bb, ehs, pot, logger, context);
+            PostFlopCallAction(callAmount, bb, ehs, pot, opponents, logger, context);
+            PostFlopFoldAction(opponents, logger, context);
 
             // log odds
             currentRound?.OddsLog.Add(logger.ToString());
             return this;
         }
-        public DomainBuilder PostFlopRaiseActions(double minRaise, double maxRaise, double BigBlind, double EHS,double pot, StringBuilder logger)
+        public DomainBuilder PostFlopRaiseActions(double minRaise, double maxRaise, double callAmount, double BigBlind, double EHS, double pot, StringBuilder logger, Context ctx)
         {
             // Raise Actions
             for (int i = 0; minRaise + i * BigBlind < maxRaise; i++)
             {
                 // dont consider big raises with low odds
-                if (EHS < 0.6 && minRaise + i * BigBlind < maxRaise / 2)
+                if (EHS < 0.7 && i > 3)
                     break;
 
-                logger.AppendLine(" raise: " + (minRaise + i * BigBlind) + ", " + String.Join(" , ", Oracle.RaiseOdds(EHS, minRaise + i * BigBlind, pot)));
+                // dont consider big raises with low odds
+                if (EHS < 0.8 && minRaise + i * BigBlind > maxRaise / 2)
+                    break;
+
+                var odds = Oracle.RaiseOdds(EHS, minRaise + i * BigBlind, callAmount, minRaise, maxRaise, ctx.GetPaid(), pot);
+                logger.AppendLine("raise: " + (minRaise + i * BigBlind) + ", " + String.Join(" , ", odds) + ", EV:" + logEV(odds, ctx));
 
                 // Define action with correlating odds of the raise amount.
-                VariableCostAction("Raise: " + (minRaise + i * BigBlind), Oracle.RaiseOdds(EHS, minRaise + i * BigBlind, pot));
+                VariableCostAction("Raise: " + (minRaise + i * BigBlind), odds);
                 Do((ctx) =>
                 {
                     if (ctx.GetRoundState() == RoundState.Flop)
                     {
                         // override premature raise
-                        ctx.SetDecision(new Decision() { Call = 1, Raise = 0, Fold = 0 });
+                        ctx.SetDecision(new Decision() { Call = 0.7, Raise = 0.3, Fold = 0 });
                     }
-                    else if (EHS > 0.7)
+                    else if (EHS > 0.8)
                     {
-                        ctx.SetDecision(new Decision() { Call = 0.1, Raise = 0.9, Fold = 0 });
+                        ctx.SetDecision(new Decision() { Call = 0.3, Raise = 0.7, Fold = 0 });
                     }
                     else if (ctx.GetRoundState() == RoundState.Turn)
                     {
-                       
-                       ctx.SetDecision(new Decision() { Call = 0.9, Raise = 0.1, Fold = 0 });
+
+                        ctx.SetDecision(new Decision() { Call = 0.6, Raise = 0.4, Fold = 0 });
                     }
                     else if (ctx.GetRoundState() == RoundState.River)
                     {
-                       ctx.SetDecision(new Decision() { Call = 0.5, Raise = 0.5, Fold = 0 });
+                        ctx.SetDecision(new Decision() { Call = 0.5, Raise = 0.5, Fold = 0 });
                     }
                     else
                     {
-                      ctx.SetDecision(new Decision() { Call = 0.3, Raise = 0.7, Fold = 0 });
+                        ctx.SetDecision(new Decision() { Call = 0.3, Raise = 0.7, Fold = 0 });
                     }
-                    ctx.SetRaiseAmount(minRaise + i * BigBlind);
+                    ctx.SetRaiseAmount(minRaise + (i * BigBlind));
                     ctx.Done = true;
                     return TaskStatus.Success;
                 });
@@ -1048,10 +1176,11 @@ namespace PokerShark.AI.HTN.Domain
             }
             return this;
         }
-        public DomainBuilder PostFlopCallAction(double callAmount, double BigBlind, double EHS, double pot,List<PlayerModel> opponents,  StringBuilder logger)
+        public DomainBuilder PostFlopCallAction(double callAmount, double BigBlind, double EHS, double pot, List<PlayerModel> opponents, StringBuilder logger, Context ctx)
         {
-            logger.AppendLine(" call: " + callAmount + ", " + String.Join(" , ", Oracle.CallOdds(EHS, callAmount, pot, opponents, BigBlind)));
-            VariableCostAction("Call: " + callAmount, Oracle.CallOdds(EHS, callAmount, pot, opponents, BigBlind));
+            var odds = Oracle.CallOdds(EHS, callAmount, ctx.GetPaid(), pot, opponents, BigBlind);
+            logger.AppendLine("call: " + callAmount + ", " + String.Join(" , ", odds) + ", EV:" + logEV(odds, ctx));
+            VariableCostAction("Call: " + callAmount, odds);
             Do((ctx) =>
             {
                 ctx.SetDecision(new Decision() { Call = 0.8, Raise = 0.2, Fold = 0 });
@@ -1062,12 +1191,13 @@ namespace PokerShark.AI.HTN.Domain
             End();
             return this;
         }
-        public DomainBuilder PostFlopFoldAction(List<PlayerModel> opponents,  StringBuilder logger)
+        public DomainBuilder PostFlopFoldAction(List<PlayerModel> opponents, StringBuilder logger, Context ctx)
         {
             // Fold Action
-            logger.AppendLine(" fold " + String.Join(" , ", Oracle.FoldOdds(opponents)));
-            VariableCostAction("Fold", Oracle.FoldOdds(opponents));
-                Do(Fold);
+            var odds = Oracle.FoldOdds(opponents, ctx.GetPaid());
+            logger.AppendLine("fold " + String.Join(" , ", odds));
+            VariableCostAction("Fold", odds);
+            Do(Fold);
             End();
             return this;
         }
@@ -1174,9 +1304,22 @@ namespace PokerShark.AI.HTN.Domain
         }
         private static TaskStatus CallAFish(Context ctx)
         {
-            ctx.SetDecision(new Decision() { Fold = 0, Call = 1, Raise = 0 });
+            if (ctx.GetCallAmount() > ctx.GetCurrentStack() / 2)
+            {
+                ctx.SetDecision(new Decision() { Fold = 0.8, Call = 0.2, Raise = 0 });
+
+            }
+            else
+            {
+                ctx.SetDecision(new Decision() { Fold = 0, Call = 1, Raise = 0 });
+
+            }
             ctx.Done = true;
             return TaskStatus.Success;
+        }
+        private static string logEV(List<VariableCost> PossibleCosts, Context ctx)
+        {
+            return PossibleCosts.Sum(vc => ((Context)ctx).GetAttitude().CalculateUtility(vc.Cost) * vc.Probability).ToString("0.00");
         }
         #endregion
     }

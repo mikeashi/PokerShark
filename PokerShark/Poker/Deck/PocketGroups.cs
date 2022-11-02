@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokerShark.Poker.Deck
+﻿namespace PokerShark.Poker.Deck
 {
-    
+
     #region Pocket
     public class Pocket
     {
@@ -16,17 +10,51 @@ namespace PokerShark.Poker.Deck
 
         public Pocket(Rank firstCardRank, Rank secondCardRank, bool suited = false)
         {
-            FirstCardRank = firstCardRank;
-            SecondCardRank = secondCardRank;
+            if (firstCardRank > secondCardRank)
+            {
+                FirstCardRank = firstCardRank;
+                SecondCardRank = secondCardRank;
+            }
+            else
+            {
+                FirstCardRank = secondCardRank;
+                SecondCardRank = firstCardRank;
+            }
             Suited = suited;
         }
-
         public bool Equals(List<Card> cards)
         {
             if (Suited && cards[0].Suit != cards[1].Suit) return false;
             if (cards[0].Rank == FirstCardRank && cards[1].Rank == SecondCardRank) return true;
             if (cards[0].Rank == SecondCardRank && cards[1].Rank == FirstCardRank) return true;
             return false;
+        }
+        public override string ToString()
+        {
+            return $"{RankToString(FirstCardRank)}{RankToString(SecondCardRank)}{(Suited ? "s" : "")}";
+        }
+        private string RankToString(Rank rank)
+        {
+            // convert rank to number
+            string s = "" + (int)rank;
+
+            // handle 10, Jack, Queen, King, Ace
+            if ((int)rank == 10)
+                s = "T";
+
+            if ((int)rank == 11)
+                s = "J";
+
+            if ((int)rank == 12)
+                s = "Q";
+
+            if ((int)rank == 13)
+                s = "K";
+
+            if ((int)rank == 14)
+                s = "A";
+
+            return s;
         }
     }
     #endregion
