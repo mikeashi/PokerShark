@@ -1,11 +1,4 @@
-﻿using FluidHTN.Factory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokerShark.AI
+﻿namespace PokerShark.AI
 {
     internal class AdjusmentFactors
     {

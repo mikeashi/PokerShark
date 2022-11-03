@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PokerShark.Poker
+﻿namespace PokerShark.Poker
 {
     public class Result
     {
-        public Player Player {  get; private set; }
+        public Player Player { get; private set; }
         public int won { get; private set; }
         public int drew { get; private set; }
         public int lost { get; private set; }
@@ -28,7 +22,7 @@ namespace PokerShark.Poker
         {
             Stack = stack;
         }
-        
+
         public void Won()
         {
             won++;

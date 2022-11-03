@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluidHTN;
+﻿using FluidHTN;
 using PokerShark.AI.HTN.Domain;
 using PokerShark.Helpers;
 using PokerShark.Poker;
@@ -36,13 +31,14 @@ namespace PokerShark.AI.HTN
             context.ResetDecision();
 
             int killSwitch = 5;
-            
+
             while (!context.Done)
             {
                 if (killSwitch == 0)
                     break;
                 // run planner
                 _planner.Tick(_domain, context);
+                
                 killSwitch--;
             }
 
@@ -64,35 +60,35 @@ namespace PokerShark.AI.HTN
         private Action SelectAction(Decision decision, List<Action> validActions, double amount)
         {
             Dictionary<Action, float> WeightedActions = new Dictionary<Action, float>();
-            
-            foreach(var a in validActions)
+
+            foreach (var a in validActions)
             {
                 switch (a.Type)
                 {
                     case ActionType.Fold:
-                        WeightedActions.Add(a, (float) decision.Fold);
+                        WeightedActions.Add(a, (float)decision.Fold);
                         break;
                     case ActionType.Call:
-                        WeightedActions.Add(a, (float) decision.Call);
+                        WeightedActions.Add(a, (float)decision.Call);
                         break;
                     case ActionType.Raise:
-                        WeightedActions.Add(a, (float) decision.Raise);
+                        WeightedActions.Add(a, (float)decision.Raise);
                         break;
                 }
             }
 
             var selected = WeightedActions.RandomElementByWeight(e => e.Value).Key;
 
-            if(selected.Type == ActionType.Raise)
+            if (selected.Type == ActionType.Raise)
             {
-                if(amount == -1)
+                if (amount == -1)
                 {
                     return validActions[1];
                 }
-                
+
                 return Action.GetRaiseAction(amount, amount);
             }
-            
+
             return selected;
         }
         #endregion

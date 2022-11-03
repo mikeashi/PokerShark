@@ -1,11 +1,5 @@
 ﻿using FluidHTN;
 using FluidHTN.Conditions;
-using PokerShark.AI.HTN.Domain.Conditions.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Domain.Conditions
 {
@@ -27,7 +21,7 @@ namespace PokerShark.AI.HTN.Domain.Conditions
 
                 foreach (var opponent in opponents)
                 {
-                    if (opponent.VPIP < 70 && players?.First(p => p.Id == opponent.Player.Id).State != Poker.PlayerState.Folded && opponent.PFR < 40)
+                    if (opponent.VPIP > 70 && players?.First(p => p.Id == opponent.Player.Id).State != Poker.PlayerState.Folded && opponent.PFR > 75)
                         return false;
                 }
                 return true;

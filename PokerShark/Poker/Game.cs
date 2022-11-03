@@ -1,15 +1,7 @@
 ﻿using PokerShark.AI;
 using PokerShark.Helpers;
 using PokerShark.Poker.Deck;
-using RabbitMQ.Client;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.Poker
 {
@@ -29,7 +21,7 @@ namespace PokerShark.Poker
         public List<Player> Players { get; private set; }
         public List<Round> Rounds { get; private set; }
         public Round? CurrentRound { get; private set; }
-        public List<PlayerModel> PlayerModels { get;  set; }
+        public List<PlayerModel> PlayerModels { get; set; }
         public List<Result> Results { get; private set; }
         public string BotHash { get; private set; }
 
@@ -81,7 +73,7 @@ namespace PokerShark.Poker
                 if (!Players.Any(p => p.Id == player.Id))
                     throw new ArgumentException("Player id not found");
             }
-            
+
             // start new round
             CurrentRound = new Round(roundNumber, pocket, players);
         }
@@ -110,7 +102,7 @@ namespace PokerShark.Poker
             // update model
             var model = PlayerModels.FirstOrDefault(m => m.Player.Id == action.PlayerId);
             model?.ReceiveAction(action);
-            
+
             // update profiles window
             Windows.WindowsManager.UpdateProfiles(GetOpponentModels());
         }
@@ -130,7 +122,7 @@ namespace PokerShark.Poker
             CurrentRound.EndRound(winners, players);
 
             // update results & player models
-            foreach(var result in Results)
+            foreach (var result in Results)
             {
                 var model = PlayerModels.FirstOrDefault(m => m.Player.Id == result.Player.Id);
                 result.UpdateStack(CurrentRound.Players.First(p => p.Id == result.Player.Id).Stack);
@@ -141,9 +133,9 @@ namespace PokerShark.Poker
                     {
                         model?.AddPostFlopWin();
                         if (old_player_state.Where(p => p.Id != result.Player.Id).Any(p => p.State != PlayerState.Folded))
-                            model?.AddWinAgainstNotFoldedPlayers();                            
+                            model?.AddWinAgainstNotFoldedPlayers();
                     }
-                    
+
                     if (winners.Count > 1)
                     {
                         result.Drew();
@@ -156,7 +148,7 @@ namespace PokerShark.Poker
                 else
                 {
                     result.Lost();
-                    
+
                     // postflop lost
                     if (stage != RoundState.Preflop)
                     {
@@ -169,17 +161,17 @@ namespace PokerShark.Poker
 
             // update results window
             Windows.WindowsManager.UpdateResults(Results.Where(r => r.Player.Name == Bot.Name).ToList());
-            
+
             // store round in round history
             Rounds.Add(new Round(CurrentRound));
-            
+
             // reset current round
             CurrentRound = null;
         }
         public List<PlayerModel> GetOpponentModels()
         {
             var models = new List<PlayerModel>();
-            foreach(var model in PlayerModels)
+            foreach (var model in PlayerModels)
             {
                 if (model.Player.Name != Bot.Name)
                     models.Add(model);
@@ -258,7 +250,7 @@ namespace PokerShark.Poker
                     Directory.CreateDirectory(path);
                 }
             }
-            
+
             // write game to file
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(Path.Combine(path, Id + ".json"), json);

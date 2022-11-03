@@ -1,12 +1,6 @@
 ﻿using FluidHTN;
 using FluidHTN.Conditions;
-using PokerShark.AI.HTN.Domain.Conditions.Game;
 using PokerShark.AI.HTN.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Domain.Conditions
 {
@@ -22,10 +16,10 @@ namespace PokerShark.AI.HTN.Domain.Conditions
                 var initialStack = c.GetGame().InitialStack;
                 var raise = c.GetRecomanndedRaiseAmount();
                 var attitude = c.GetAttitude();
-                
+
                 if (raise <= c.GetGame().BigBlind * 2)
                     return false;
-                
+
                 if (attitude is RiskNeutral)
                 {
                     return raise > stack / 4;

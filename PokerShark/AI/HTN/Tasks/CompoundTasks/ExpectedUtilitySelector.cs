@@ -1,10 +1,5 @@
 ﻿using FluidHTN;
 using FluidHTN.Compounds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerShark.AI.HTN.Tasks.CompoundTasks
 {
@@ -33,12 +28,12 @@ namespace PokerShark.AI.HTN.Tasks.CompoundTasks
             for (var taskIndex = startIndex; taskIndex < Subtasks.Count; taskIndex++)
             {
                 var task = Subtasks[taskIndex];
-                if (task is VariableCostTask utilityTask)
+                if (task is VariableUtilityTask utilityTask)
                 {
                     if (utilityTask.IsValid(ctx) == false)
                         continue;
 
-                    var score = utilityTask.GetExpectedCost(ctx);
+                    var score = utilityTask.GetExpectedUtility(ctx);
                     if (bestScore < score)
                     {
                         bestScore = score;

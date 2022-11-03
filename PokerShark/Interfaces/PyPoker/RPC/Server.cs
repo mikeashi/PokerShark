@@ -1,10 +1,5 @@
-﻿using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using Serilog;
 
 namespace PokerShark.Interfaces.PyPoker.RPC
@@ -19,7 +14,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
         public Server(string hostname)
         {
             Log.Information("Initializing rpc server.");
-            
+
             // init channel
             factory = new ConnectionFactory() { HostName = hostname };
             connection = factory.CreateConnection();
@@ -35,7 +30,7 @@ namespace PokerShark.Interfaces.PyPoker.RPC
             channel.BasicConsume(queue: "rpc_queue",
                   autoAck: false, consumer: consumer);
         }
-        
+
         ~Server()
         {
             Console.Write("Server is dead");

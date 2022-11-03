@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PokerShark.Poker;
-using PokerShark.Poker.Deck;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Action = PokerShark.Poker.Action;
 
 namespace PokerShark.AI
@@ -34,7 +29,7 @@ namespace PokerShark.AI
                 throw new Exception("can not convert a none card object to json");
         }
     }
-    
+
     internal enum TableCard : int
     {
         // A
@@ -226,7 +221,7 @@ namespace PokerShark.AI
     {
         #region Properties
         // standard weight table based on card groups.
-        private double[] TableMap = new double[13 * 13] { 
+        private double[] TableMap = new double[13 * 13] {
             1, 1, 2, 2, 3, 5, 5, 5, 5, 5, 5, 5, 5,
             2, 1, 2, 3, 4, 6, 7, 7, 7, 7, 7, 7, 7,
             3, 4, 1, 3, 4, 5, 7, 9, 9, 9, 9, 9, 9,
@@ -287,7 +282,7 @@ namespace PokerShark.AI
             // reset weight table on each new hand
             if (action.Stage == RoundState.Preflop)
             {
-               //Reset();
+                //Reset();
             }
 
 
@@ -355,7 +350,7 @@ namespace PokerShark.AI
         private void ReceiveCall(PlayerModel model)
         {
             List<TableCard> increase = new List<TableCard>();
-            if (model.WSD > 50 && model.PFF > 75 && model.PFR > 60 || model.VPIP < 20 )
+            if (model.WSD > 50 && model.PFF > 75 && model.PFR > 60 || model.VPIP < 20)
             {
                 // 8% JJ-22,AQs-AJs,KQs,AQo-AJo,KQo
                 increase = new List<TableCard>() { TableCard._KQ, TableCard._KQs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ };
@@ -365,7 +360,7 @@ namespace PokerShark.AI
                 // 13% JJ-22,AQs-ATs,KJs+,QJs,JTs,T9s,98s,87s,76s,65s,54s,AQo-ATo,KJo+
                 increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T9s, TableCard._JTs, TableCard._QJs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._AQ, TableCard._AQs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, TableCard._JJ, };
             }
-            else if (model.WSD > 30 &&  model.PFF > 40 && model.PFR > 40 || model.VPIP < 50)
+            else if (model.WSD > 30 && model.PFF > 40 && model.PFR > 40 || model.VPIP < 50)
             {
                 // 16% TT-22,AJs-A9s,KTs+,QTs+,J9s+,T8s+,98s,87s,76s,65s,54s,AJo-ATo,KTo+,QTo+,JTo
                 increase = new List<TableCard>() { TableCard._54s, TableCard._65s, TableCard._76s, TableCard._87s, TableCard._98s, TableCard._T8s, TableCard._T9s, TableCard._J9s, TableCard._JT, TableCard._JTs, TableCard._QT, TableCard._QTs, TableCard._QJ, TableCard._QJs, TableCard._KT, TableCard._KTs, TableCard._KJ, TableCard._KJs, TableCard._KQ, TableCard._KQs, TableCard._A9s, TableCard._AT, TableCard._ATs, TableCard._AJ, TableCard._AJs, TableCard._22, TableCard._33, TableCard._44, TableCard._55, TableCard._66, TableCard._77, TableCard._88, TableCard._99, TableCard._TT, };

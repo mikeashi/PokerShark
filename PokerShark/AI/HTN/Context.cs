@@ -71,7 +71,7 @@ namespace PokerShark.AI.HTN
             var stack = GetCurrentStack();
             var initial = GetGame().InitialStack;
 
-            
+
             if (stack > initial * 1.5)
                 return new RiskSeeking();
             else if (stack < initial * 0.5)
@@ -253,6 +253,24 @@ namespace PokerShark.AI.HTN
             if (round == null)
                 return 0;
             return round.Players.First(p => p.Name == Bot.Name).Stack;
+        }
+        public double GetPaid()
+        {
+            var game = GetGame();
+            var round = game.CurrentRound;
+            var botHistory = round?.History.Where(a => a.PlayerName == Bot.Name).ToList();
+            double blindAmount = 0;
+
+            if (round.Players.First(p => p.Name == Bot.Name).IsBigBlind)
+                blindAmount += game.BigBlind;
+
+            if (round.Players.First(p => p.Name == Bot.Name).IsSmallBlind)
+                blindAmount += game.SmallBlind;
+
+            if (botHistory == null)
+                return blindAmount;
+
+            return botHistory.Sum(a => a.Amount) - blindAmount;
         }
 
         #endregion
