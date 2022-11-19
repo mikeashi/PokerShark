@@ -1545,7 +1545,7 @@ namespace PokerShark.AI
                 {
                     win += 0.5 * weight;
                 }
-                count += 1.0 * weight;
+                count += 1.0;
             }
             return win / count;
         }
