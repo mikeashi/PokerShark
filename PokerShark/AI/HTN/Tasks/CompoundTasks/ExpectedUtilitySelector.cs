@@ -9,7 +9,7 @@ namespace PokerShark.AI.HTN.Tasks.CompoundTasks
         {
             Plan.Clear();
 
-            var task = FindMinCostTask(ctx, startIndex, out var taskIndex);
+            var task = FindBestTask(ctx, startIndex, out var taskIndex);
             if (task == null)
             {
                 result = Plan;
@@ -19,7 +19,7 @@ namespace PokerShark.AI.HTN.Tasks.CompoundTasks
             return OnDecomposeTask(ctx, task, taskIndex, null, out result);
         }
 
-        protected virtual ITask<object>? FindMinCostTask(IContext<object> ctx, int startIndex, out int bestIndex)
+        protected virtual ITask<object>? FindBestTask(IContext<object> ctx, int startIndex, out int bestIndex)
         {
             var bestScore = double.MinValue;
             bestIndex = -1;
