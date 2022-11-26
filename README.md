@@ -26,7 +26,7 @@ PokerShark builds also a model for each opponent keeping track of thier action h
 </p>
 
 ## Evaluation 
-You can check [GameAnalyzer](https://github.com/mikeashi/PokerShark/blob/master/GameAnalysis/v0.2.0/GameAnalyzer.ipynb) to see how did PokerShark perform heads-up against dummy bots. In a nutshell it had a positive AWPH against all of them.
+You can check [GameAnalyzer](https://github.com/mikeashi/PokerShark/blob/master/GameAnalysis/v0.2.2/GameAnalyzer.ipynb) to see how did PokerShark perform heads-up against dummy bots. In a nutshell it had a positive AWPH against all of them.
 
 
 ## Play against PokerShark
