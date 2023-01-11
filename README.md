@@ -26,12 +26,31 @@ PokerShark builds also a model for each opponent keeping track of thier action h
 </p>
 
 ## Evaluation 
-You can check [GameAnalyzer](https://github.com/mikeashi/PokerShark/blob/master/GameAnalysis/v0.2.2/GameAnalyzer.ipynb) to see how did PokerShark perform heads-up against dummy bots. In a nutshell it had a positive AWPH against all of them.
+You can check [GameAnalyzer](https://github.com/mikeashi/PokerShark/blob/master/GameAnalysis/v0.2.2/) folder to see how did PokerShark perform heads-up against dummy bots, human players, using dynamic and static risk attitude and the self-play experiments results. 
 
 
 ## Play against PokerShark
+PokerShark is C#-based and it requires **.NET runtime** to run.  
+To run Poker server you need **Docker** to be installed on your machine.
 
-We have adopted the PyPoker project to work with PokerShark you can play using the web interface or using the console. We have provided easy to use docker image that can be started in matter of seconds. For more information please check [PokerServer](https://github.com/mikeashi/PokerServer).
+### Instructions
+First you will need to clone the project:
+```
+git clone git@github.com:mikeashi/PokerShark.git
+cd PokerShark/
+git submodule init
+git submodule update
+```
+start the provided server image:
+```
+cd PokerServer
+./start.ps1
+```
+This will start a web server on port 80, which you can visit be navigating to http://localhost.
+You should wait until the RabbitMQ server has started, after that you can navigate to the *v0.2.2/* folder where you can start **PokerShark.exe**  
+
+### Poker Server
+We have adopted the PyPoker project to work with PokerShark you can play using the web interface or using the console. We have provided easy to use docker image that can be started in matter of seconds. For more information please check [PokerServer](https://github.com/mikeashi/PokerServer). Make sure to start the server, before starting PokerShark.
 
 <p align="center" width="100%">
     <img src="https://user-images.githubusercontent.com/25008083/198908733-0dd7e3ed-961d-4efd-89e0-0ddf9bc04c37.png"> 
@@ -43,6 +62,8 @@ Just make sure to start PokerShark and dont cheat using its informative console 
 <p align="center" width="100%">
     <img src="https://user-images.githubusercontent.com/25008083/198908990-5e31c966-288b-4906-9657-4667620f61d3.png"> 
 </p>
+
+
 
 # Interfaces/Protocol 
 
