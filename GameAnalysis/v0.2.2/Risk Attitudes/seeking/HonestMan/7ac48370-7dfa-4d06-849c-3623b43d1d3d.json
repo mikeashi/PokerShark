@@ -1,0 +1,5597 @@
+{
+  "Id": "7ac48370-7dfa-4d06-849c-3623b43d1d3d",
+  "PlayersCount": 2,
+  "InitialStack": 1000.0,
+  "MaxRound": 100,
+  "SmallBlind": 10.0,
+  "BigBlind": 20.0,
+  "Ante": 0.0,
+  "Players": [
+    {
+      "Name": "HonestMan",
+      "Id": "lkzrlyifdhkoagupdqoypw"
+    },
+    {
+      "Name": "PokerShark",
+      "Id": "zgbpibgaikywgnilpmysbp"
+    }
+  ],
+  "Rounds": [
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 950.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 1,
+      "Board": [
+        "JC",
+        "QC",
+        "3C",
+        "5H",
+        "6H"
+      ],
+      "Pocket": [
+        "TH",
+        "QS"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "River",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6895379049925789, 0,9037927844588344, 0,9037234264867309, 0,1087, 0,2486), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.69 , Cost: -60.00, Probability: 0.31, EV:-81,70\r\nraise: 40, Cost: -400.00, Probability: 0.69 , Cost: -80.00, Probability: 0.31, EV:-84,79\r\nraise: 60, Cost: -400.00, Probability: 0.69 , Cost: -100.00, Probability: 0.31, EV:-87,32\r\nraise: 80, Cost: -400.00, Probability: 0.69 , Cost: -120.00, Probability: 0.31, EV:-89,39\r\ncall: 0, Cost: 100.00, Probability: 0.69 , Cost: -40.00, Probability: 0.31, EV:108,25\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,7436161683748326, 0,8734299516908213, 0,8736856602112125, 0,0671, 0,1585), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.74 , Cost: -60.00, Probability: 0.26, EV:-84,57\r\nraise: 40, Cost: -400.00, Probability: 0.74 , Cost: -80.00, Probability: 0.26, EV:-87,12\r\nraise: 60, Cost: -400.00, Probability: 0.74 , Cost: -100.00, Probability: 0.26, EV:-89,21\r\nraise: 80, Cost: -400.00, Probability: 0.74 , Cost: -120.00, Probability: 0.26, EV:-90,92\r\nraise: 100, Cost: -400.00, Probability: 0.74 , Cost: -140.00, Probability: 0.26, EV:-92,32\r\nraise: 120, Cost: -400.00, Probability: 0.74 , Cost: -160.00, Probability: 0.26, EV:-93,46\r\nraise: 140, Cost: -400.00, Probability: 0.74 , Cost: -180.00, Probability: 0.26, EV:-94,40\r\nraise: 160, Cost: -400.00, Probability: 0.74 , Cost: -200.00, Probability: 0.26, EV:-95,17\r\nraise: 180, Cost: -400.00, Probability: 0.74 , Cost: -220.00, Probability: 0.26, EV:-95,80\r\nraise: 200, Cost: -400.00, Probability: 0.74 , Cost: -240.00, Probability: 0.26, EV:-96,31\r\nraise: 220, Cost: -400.00, Probability: 0.74 , Cost: -260.00, Probability: 0.26, EV:-96,73\r\nraise: 240, Cost: -400.00, Probability: 0.74 , Cost: -280.00, Probability: 0.26, EV:-97,08\r\nraise: 260, Cost: -400.00, Probability: 0.74 , Cost: -300.00, Probability: 0.26, EV:-97,36\r\nraise: 280, Cost: -400.00, Probability: 0.74 , Cost: -320.00, Probability: 0.26, EV:-97,59\r\nraise: 300, Cost: -400.00, Probability: 0.74 , Cost: -340.00, Probability: 0.26, EV:-97,78\r\nraise: 320, Cost: -400.00, Probability: 0.74 , Cost: -360.00, Probability: 0.26, EV:-97,94\r\nraise: 340, Cost: -400.00, Probability: 0.74 , Cost: -380.00, Probability: 0.26, EV:-98,06\r\nraise: 360, Cost: -400.00, Probability: 0.74 , Cost: -400.00, Probability: 0.26, EV:-98,17\r\nraise: 380, Cost: -400.00, Probability: 0.74 , Cost: -420.00, Probability: 0.26, EV:-98,25\r\nraise: 400, Cost: -400.00, Probability: 0.74 , Cost: -440.00, Probability: 0.26, EV:-98,32\r\nraise: 420, Cost: -400.00, Probability: 0.74 , Cost: -460.00, Probability: 0.26, EV:-98,38\r\nraise: 440, Cost: -400.00, Probability: 0.74 , Cost: -480.00, Probability: 0.26, EV:-98,43\r\nraise: 460, Cost: -400.00, Probability: 0.74 , Cost: -500.00, Probability: 0.26, EV:-98,47\r\ncall: 0, Cost: 100.00, Probability: 0.74 , Cost: -40.00, Probability: 0.26, EV:119,32\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,801938488602744, 0,802020202020202, 0,8018976318940151, 0, 0), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.80 , Cost: -60.00, Probability: 0.20, EV:-87,66\r\nraise: 40, Cost: -400.00, Probability: 0.80 , Cost: -80.00, Probability: 0.20, EV:-89,63\r\nraise: 60, Cost: -400.00, Probability: 0.80 , Cost: -100.00, Probability: 0.20, EV:-91,24\r\nraise: 80, Cost: -400.00, Probability: 0.80 , Cost: -120.00, Probability: 0.20, EV:-92,57\r\nraise: 100, Cost: -400.00, Probability: 0.80 , Cost: -140.00, Probability: 0.20, EV:-93,65\r\nraise: 120, Cost: -400.00, Probability: 0.80 , Cost: -160.00, Probability: 0.20, EV:-94,53\r\nraise: 140, Cost: -400.00, Probability: 0.80 , Cost: -180.00, Probability: 0.20, EV:-95,26\r\nraise: 160, Cost: -400.00, Probability: 0.80 , Cost: -200.00, Probability: 0.20, EV:-95,85\r\nraise: 180, Cost: -400.00, Probability: 0.80 , Cost: -220.00, Probability: 0.20, EV:-96,34\r\nraise: 200, Cost: -400.00, Probability: 0.80 , Cost: -240.00, Probability: 0.20, EV:-96,73\r\nraise: 220, Cost: -400.00, Probability: 0.80 , Cost: -260.00, Probability: 0.20, EV:-97,06\r\nraise: 240, Cost: -400.00, Probability: 0.80 , Cost: -280.00, Probability: 0.20, EV:-97,33\r\nraise: 260, Cost: -400.00, Probability: 0.80 , Cost: -300.00, Probability: 0.20, EV:-97,55\r\nraise: 280, Cost: -400.00, Probability: 0.80 , Cost: -320.00, Probability: 0.20, EV:-97,72\r\nraise: 300, Cost: -400.00, Probability: 0.80 , Cost: -340.00, Probability: 0.20, EV:-97,87\r\nraise: 320, Cost: -400.00, Probability: 0.80 , Cost: -360.00, Probability: 0.20, EV:-97,99\r\nraise: 340, Cost: -400.00, Probability: 0.80 , Cost: -380.00, Probability: 0.20, EV:-98,09\r\nraise: 360, Cost: -400.00, Probability: 0.80 , Cost: -400.00, Probability: 0.20, EV:-98,17\r\nraise: 380, Cost: -400.00, Probability: 0.80 , Cost: -420.00, Probability: 0.20, EV:-98,23\r\nraise: 400, Cost: -400.00, Probability: 0.80 , Cost: -440.00, Probability: 0.20, EV:-98,29\r\nraise: 420, Cost: -400.00, Probability: 0.80 , Cost: -460.00, Probability: 0.20, EV:-98,33\r\nraise: 440, Cost: -400.00, Probability: 0.80 , Cost: -480.00, Probability: 0.20, EV:-98,37\r\nraise: 460, Cost: -400.00, Probability: 0.80 , Cost: -500.00, Probability: 0.20, EV:-98,40\r\nraise: 480, Cost: -400.00, Probability: 0.80 , Cost: -520.00, Probability: 0.20, EV:-98,42\r\nraise: 500, Cost: -400.00, Probability: 0.80 , Cost: -540.00, Probability: 0.20, EV:-98,44\r\nraise: 520, Cost: -400.00, Probability: 0.80 , Cost: -560.00, Probability: 0.20, EV:-98,46\r\nraise: 540, Cost: -400.00, Probability: 0.80 , Cost: -580.00, Probability: 0.20, EV:-98,47\r\nraise: 560, Cost: -400.00, Probability: 0.80 , Cost: -600.00, Probability: 0.20, EV:-98,48\r\nraise: 580, Cost: -400.00, Probability: 0.80 , Cost: -620.00, Probability: 0.20, EV:-98,49\r\nraise: 600, Cost: -400.00, Probability: 0.80 , Cost: -640.00, Probability: 0.20, EV:-98,50\r\nraise: 620, Cost: -400.00, Probability: 0.80 , Cost: -660.00, Probability: 0.20, EV:-98,50\r\nraise: 640, Cost: -400.00, Probability: 0.80 , Cost: -680.00, Probability: 0.20, EV:-98,51\r\nraise: 660, Cost: -400.00, Probability: 0.80 , Cost: -700.00, Probability: 0.20, EV:-98,51\r\nraise: 680, Cost: -400.00, Probability: 0.80 , Cost: -720.00, Probability: 0.20, EV:-98,52\r\nraise: 700, Cost: -400.00, Probability: 0.80 , Cost: -740.00, Probability: 0.20, EV:-98,52\r\nraise: 720, Cost: -400.00, Probability: 0.80 , Cost: -760.00, Probability: 0.20, EV:-98,52\r\nraise: 740, Cost: -400.00, Probability: 0.80 , Cost: -780.00, Probability: 0.20, EV:-98,52\r\nraise: 760, Cost: -400.00, Probability: 0.80 , Cost: -800.00, Probability: 0.20, EV:-98,52\r\nraise: 780, Cost: -400.00, Probability: 0.80 , Cost: -820.00, Probability: 0.20, EV:-98,53\r\nraise: 800, Cost: -400.00, Probability: 0.80 , Cost: -840.00, Probability: 0.20, EV:-98,53\r\nraise: 820, Cost: -400.00, Probability: 0.80 , Cost: -860.00, Probability: 0.20, EV:-98,53\r\nraise: 840, Cost: -400.00, Probability: 0.80 , Cost: -880.00, Probability: 0.20, EV:-98,53\r\nraise: 860, Cost: -400.00, Probability: 0.80 , Cost: -900.00, Probability: 0.20, EV:-98,53\r\nraise: 880, Cost: -400.00, Probability: 0.80 , Cost: -920.00, Probability: 0.20, EV:-98,53\r\nraise: 900, Cost: -400.00, Probability: 0.80 , Cost: -940.00, Probability: 0.20, EV:-98,53\r\nraise: 920, Cost: -400.00, Probability: 0.80 , Cost: -960.00, Probability: 0.20, EV:-98,53\r\nraise: 940, Cost: -400.00, Probability: 0.80 , Cost: -980.00, Probability: 0.20, EV:-98,53\r\ncall: 0, Cost: 100.00, Probability: 0.80 , Cost: -40.00, Probability: 0.20, EV:131,27\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 2,
+      "Pocket": [
+        "5S",
+        "3C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 3,
+      "Pocket": [
+        "QC",
+        "8C"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 890.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 4,
+      "Board": [
+        "8C",
+        "3S",
+        "TS",
+        "4S",
+        "TH"
+      ],
+      "Pocket": [
+        "7S",
+        "KS"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,5835066423510411, 0,31540240518038604, 0,31523246880160133, 0,4683, 0,1663), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.58 , Cost: -30.00, Probability: 0.42, EV:-63,85\r\nraise: 40, Cost: -240.00, Probability: 0.58 , Cost: -50.00, Probability: 0.42, EV:-69,44\r\nraise: 60, Cost: -240.00, Probability: 0.58 , Cost: -70.00, Probability: 0.42, EV:-74,02\r\nraise: 80, Cost: -240.00, Probability: 0.58 , Cost: -90.00, Probability: 0.42, EV:-77,77\r\ncall: 0, Cost: 60.00, Probability: 0.58 , Cost: -10.00, Probability: 0.42, EV:44,01\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,7399512486746311, 0,7503381642512144, 0,7502891139927731, 0, 0,0138), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.74 , Cost: -30.00, Probability: 0.26, EV:-74,02\r\nraise: 40, Cost: -240.00, Probability: 0.74 , Cost: -50.00, Probability: 0.26, EV:-77,51\r\nraise: 60, Cost: -240.00, Probability: 0.74 , Cost: -70.00, Probability: 0.26, EV:-80,37\r\nraise: 80, Cost: -240.00, Probability: 0.74 , Cost: -90.00, Probability: 0.26, EV:-82,71\r\nraise: 100, Cost: -240.00, Probability: 0.74 , Cost: -110.00, Probability: 0.26, EV:-84,63\r\nraise: 120, Cost: -240.00, Probability: 0.74 , Cost: -130.00, Probability: 0.26, EV:-86,20\r\nraise: 140, Cost: -240.00, Probability: 0.74 , Cost: -150.00, Probability: 0.26, EV:-87,48\r\nraise: 160, Cost: -240.00, Probability: 0.74 , Cost: -170.00, Probability: 0.26, EV:-88,54\r\nraise: 180, Cost: -240.00, Probability: 0.74 , Cost: -190.00, Probability: 0.26, EV:-89,40\r\nraise: 200, Cost: -240.00, Probability: 0.74 , Cost: -210.00, Probability: 0.26, EV:-90,10\r\nraise: 220, Cost: -240.00, Probability: 0.74 , Cost: -230.00, Probability: 0.26, EV:-90,68\r\nraise: 240, Cost: -240.00, Probability: 0.74 , Cost: -250.00, Probability: 0.26, EV:-91,15\r\nraise: 260, Cost: -240.00, Probability: 0.74 , Cost: -270.00, Probability: 0.26, EV:-91,54\r\nraise: 280, Cost: -240.00, Probability: 0.74 , Cost: -290.00, Probability: 0.26, EV:-91,86\r\nraise: 300, Cost: -240.00, Probability: 0.74 , Cost: -310.00, Probability: 0.26, EV:-92,12\r\nraise: 320, Cost: -240.00, Probability: 0.74 , Cost: -330.00, Probability: 0.26, EV:-92,33\r\nraise: 340, Cost: -240.00, Probability: 0.74 , Cost: -350.00, Probability: 0.26, EV:-92,50\r\nraise: 360, Cost: -240.00, Probability: 0.74 , Cost: -370.00, Probability: 0.26, EV:-92,64\r\nraise: 380, Cost: -240.00, Probability: 0.74 , Cost: -390.00, Probability: 0.26, EV:-92,76\r\nraise: 400, Cost: -240.00, Probability: 0.74 , Cost: -410.00, Probability: 0.26, EV:-92,86\r\nraise: 420, Cost: -240.00, Probability: 0.74 , Cost: -430.00, Probability: 0.26, EV:-92,93\r\nraise: 440, Cost: -240.00, Probability: 0.74 , Cost: -450.00, Probability: 0.26, EV:-93,00\r\nraise: 460, Cost: -240.00, Probability: 0.74 , Cost: -470.00, Probability: 0.26, EV:-93,05\r\nraise: 480, Cost: -240.00, Probability: 0.74 , Cost: -490.00, Probability: 0.26, EV:-93,09\r\nraise: 500, Cost: -240.00, Probability: 0.74 , Cost: -510.00, Probability: 0.26, EV:-93,13\r\nraise: 520, Cost: -240.00, Probability: 0.74 , Cost: -530.00, Probability: 0.26, EV:-93,16\r\ncall: 0, Cost: 60.00, Probability: 0.74 , Cost: -10.00, Probability: 0.26, EV:58,36\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "River, ehs: (0,7279827398158888, 0,7279797979798026, 0,7279842107339319, 0, 0), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.73 , Cost: -30.00, Probability: 0.27, EV:-73,24\r\nraise: 40, Cost: -240.00, Probability: 0.73 , Cost: -50.00, Probability: 0.27, EV:-76,90\r\nraise: 60, Cost: -240.00, Probability: 0.73 , Cost: -70.00, Probability: 0.27, EV:-79,89\r\nraise: 80, Cost: -240.00, Probability: 0.73 , Cost: -90.00, Probability: 0.27, EV:-82,34\r\nraise: 100, Cost: -240.00, Probability: 0.73 , Cost: -110.00, Probability: 0.27, EV:-84,34\r\nraise: 120, Cost: -240.00, Probability: 0.73 , Cost: -130.00, Probability: 0.27, EV:-85,98\r\nraise: 140, Cost: -240.00, Probability: 0.73 , Cost: -150.00, Probability: 0.27, EV:-87,33\r\nraise: 160, Cost: -240.00, Probability: 0.73 , Cost: -170.00, Probability: 0.27, EV:-88,43\r\nraise: 180, Cost: -240.00, Probability: 0.73 , Cost: -190.00, Probability: 0.27, EV:-89,33\r\nraise: 200, Cost: -240.00, Probability: 0.73 , Cost: -210.00, Probability: 0.27, EV:-90,06\r\nraise: 220, Cost: -240.00, Probability: 0.73 , Cost: -230.00, Probability: 0.27, EV:-90,67\r\nraise: 240, Cost: -240.00, Probability: 0.73 , Cost: -250.00, Probability: 0.27, EV:-91,16\r\nraise: 260, Cost: -240.00, Probability: 0.73 , Cost: -270.00, Probability: 0.27, EV:-91,57\r\nraise: 280, Cost: -240.00, Probability: 0.73 , Cost: -290.00, Probability: 0.27, EV:-91,90\r\nraise: 300, Cost: -240.00, Probability: 0.73 , Cost: -310.00, Probability: 0.27, EV:-92,17\r\nraise: 320, Cost: -240.00, Probability: 0.73 , Cost: -330.00, Probability: 0.27, EV:-92,39\r\nraise: 340, Cost: -240.00, Probability: 0.73 , Cost: -350.00, Probability: 0.27, EV:-92,57\r\nraise: 360, Cost: -240.00, Probability: 0.73 , Cost: -370.00, Probability: 0.27, EV:-92,72\r\nraise: 380, Cost: -240.00, Probability: 0.73 , Cost: -390.00, Probability: 0.27, EV:-92,85\r\nraise: 400, Cost: -240.00, Probability: 0.73 , Cost: -410.00, Probability: 0.27, EV:-92,95\r\nraise: 420, Cost: -240.00, Probability: 0.73 , Cost: -430.00, Probability: 0.27, EV:-93,03\r\nraise: 440, Cost: -240.00, Probability: 0.73 , Cost: -450.00, Probability: 0.27, EV:-93,09\r\nraise: 460, Cost: -240.00, Probability: 0.73 , Cost: -470.00, Probability: 0.27, EV:-93,15\r\nraise: 480, Cost: -240.00, Probability: 0.73 , Cost: -490.00, Probability: 0.27, EV:-93,19\r\nraise: 500, Cost: -240.00, Probability: 0.73 , Cost: -510.00, Probability: 0.27, EV:-93,23\r\nraise: 520, Cost: -240.00, Probability: 0.73 , Cost: -530.00, Probability: 0.27, EV:-93,26\r\ncall: 0, Cost: 60.00, Probability: 0.73 , Cost: -10.00, Probability: 0.27, EV:57,26\r\nfold Cost: -10.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 900.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1100.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 5,
+      "Pocket": [
+        "7H",
+        "TC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 900.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 890.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 6,
+      "Pocket": [
+        "5H",
+        "TH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 7,
+      "Board": [
+        "JC",
+        "7C",
+        "4S",
+        "4C",
+        "KC"
+      ],
+      "Pocket": [
+        "8S",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,4036995143020242, 0,3515263644773373, 0,35150646503053656, 0,2168, 0,2515), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.40 , Cost: -60.00, Probability: 0.60, EV:-66,53\r\nraise: 40, Cost: -400.00, Probability: 0.40 , Cost: -80.00, Probability: 0.60, EV:-72,47\r\nraise: 60, Cost: -400.00, Probability: 0.40 , Cost: -100.00, Probability: 0.60, EV:-77,32\r\nraise: 80, Cost: -400.00, Probability: 0.40 , Cost: -120.00, Probability: 0.60, EV:-81,30\r\ncall: 0, Cost: 100.00, Probability: 0.40 , Cost: -40.00, Probability: 0.60, EV:49,71\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,46988830721628255, 0,3432850241545904, 0,3434856092132945, 0,2569, 0,1229), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.47 , Cost: -60.00, Probability: 0.53, EV:-70,05\r\nraise: 40, Cost: -400.00, Probability: 0.47 , Cost: -80.00, Probability: 0.53, EV:-75,32\r\nraise: 60, Cost: -400.00, Probability: 0.47 , Cost: -100.00, Probability: 0.53, EV:-79,64\r\nraise: 80, Cost: -400.00, Probability: 0.47 , Cost: -120.00, Probability: 0.53, EV:-83,17\r\ncall: 0, Cost: 100.00, Probability: 0.47 , Cost: -40.00, Probability: 0.53, EV:63,26\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,6462196429972337, 0,646195286195291, 0,646231821398205, 0, 0), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.65 , Cost: -60.00, Probability: 0.35, EV:-79,40\r\nraise: 40, Cost: -400.00, Probability: 0.65 , Cost: -80.00, Probability: 0.35, EV:-82,92\r\nraise: 60, Cost: -400.00, Probability: 0.65 , Cost: -100.00, Probability: 0.35, EV:-85,80\r\nraise: 80, Cost: -400.00, Probability: 0.65 , Cost: -120.00, Probability: 0.35, EV:-88,16\r\ncall: 0, Cost: 100.00, Probability: 0.65 , Cost: -40.00, Probability: 0.35, EV:99,38\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1040.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 8,
+      "Pocket": [
+        "5S",
+        "TC"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 970.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 9,
+      "Pocket": [
+        "3C",
+        "JS"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 970.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 990.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1010.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 10,
+      "Pocket": [
+        "5D",
+        "JS"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 990.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 970.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 11,
+      "Pocket": [
+        "AD",
+        "2S"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 990.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1010.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 12,
+      "Pocket": [
+        "2C",
+        "JC"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 990.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 13,
+      "Board": [
+        "JD",
+        "3H",
+        "JC",
+        "2S",
+        "6S"
+      ],
+      "Pocket": [
+        "4S",
+        "KD"
+      ],
+      "Pot": {
+        "Amount": 140.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "River",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,3957888462457725, 0,3746530989824258, 0,3746834002607328, 0,1823, 0,2479), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.40 , Cost: -60.00, Probability: 0.60, EV:-66,12\r\nraise: 40, Cost: -400.00, Probability: 0.40 , Cost: -80.00, Probability: 0.60, EV:-72,13\r\nraise: 60, Cost: -400.00, Probability: 0.40 , Cost: -100.00, Probability: 0.60, EV:-77,05\r\nraise: 80, Cost: -400.00, Probability: 0.40 , Cost: -120.00, Probability: 0.60, EV:-81,08\r\ncall: 0, Cost: 100.00, Probability: 0.40 , Cost: -40.00, Probability: 0.60, EV:48,09\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,33780930160856804, 0,3029307568438009, 0,30302058943900095, 0,1079, 0,1333), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.34 , Cost: -80.00, Probability: 0.66, EV:-70,12\r\nraise: 40, Cost: -560.00, Probability: 0.34 , Cost: -100.00, Probability: 0.66, EV:-75,51\r\nraise: 60, Cost: -560.00, Probability: 0.34 , Cost: -120.00, Probability: 0.66, EV:-79,93\r\nraise: 80, Cost: -560.00, Probability: 0.34 , Cost: -140.00, Probability: 0.66, EV:-83,55\r\ncall: 0, Cost: 140.00, Probability: 0.34 , Cost: -60.00, Probability: 0.66, EV:73,33\r\nfold Cost: -60.00, Probability: 1.00\r\n",
+        "River, ehs: (0,22711764749406113, 0,22686868686868691, 0,22724212780674818, 0, 0), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.23 , Cost: -80.00, Probability: 0.77, EV:-65,19\r\nraise: 40, Cost: -560.00, Probability: 0.23 , Cost: -100.00, Probability: 0.77, EV:-71,48\r\nraise: 60, Cost: -560.00, Probability: 0.23 , Cost: -120.00, Probability: 0.77, EV:-76,64\r\nraise: 80, Cost: -560.00, Probability: 0.23 , Cost: -140.00, Probability: 0.77, EV:-80,86\r\ncall: 0, Cost: 140.00, Probability: 0.23 , Cost: -60.00, Probability: 0.77, EV:34,52\r\nfold Cost: -60.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 910.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 14,
+      "Pocket": [
+        "2C",
+        "QH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1020.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 15,
+      "Board": [
+        "KC",
+        "8H",
+        "2H",
+        "3S",
+        "6S"
+      ],
+      "Pocket": [
+        "AH",
+        "3H"
+      ],
+      "Pot": {
+        "Amount": 140.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Turn",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6144207651915438, 0,37178538390379473, 0,37198748141719656, 0,469, 0,14), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.61 , Cost: -60.00, Probability: 0.39, EV:-77,71\r\nraise: 40, Cost: -400.00, Probability: 0.61 , Cost: -80.00, Probability: 0.39, EV:-81,55\r\nraise: 60, Cost: -400.00, Probability: 0.61 , Cost: -100.00, Probability: 0.39, EV:-84,69\r\nraise: 80, Cost: -400.00, Probability: 0.61 , Cost: -120.00, Probability: 0.39, EV:-87,26\r\ncall: 0, Cost: 100.00, Probability: 0.61 , Cost: -40.00, Probability: 0.39, EV:92,86\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,6081156989887521, 0,5129790660225485, 0,5131296812701666, 0,2976, 0,0972), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.61 , Cost: -60.00, Probability: 0.39, EV:-77,38\r\nraise: 40, Cost: -400.00, Probability: 0.61 , Cost: -80.00, Probability: 0.39, EV:-81,28\r\nraise: 60, Cost: -400.00, Probability: 0.61 , Cost: -100.00, Probability: 0.39, EV:-84,47\r\nraise: 80, Cost: -400.00, Probability: 0.61 , Cost: -120.00, Probability: 0.39, EV:-87,08\r\ncall: 0, Cost: 100.00, Probability: 0.61 , Cost: -40.00, Probability: 0.39, EV:91,57\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,41836340821843976, 0,41838383838384036, 0,41835319313573943, 0, 0), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.42 , Cost: -80.00, Probability: 0.58, EV:-73,71\r\nraise: 40, Cost: -560.00, Probability: 0.42 , Cost: -100.00, Probability: 0.58, EV:-78,45\r\nraise: 60, Cost: -560.00, Probability: 0.42 , Cost: -120.00, Probability: 0.58, EV:-82,33\r\nraise: 80, Cost: -560.00, Probability: 0.42 , Cost: -140.00, Probability: 0.58, EV:-85,50\r\ncall: 0, Cost: 140.00, Probability: 0.42 , Cost: -60.00, Probability: 0.58, EV:101,58\r\nfold Cost: -60.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 950.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 16,
+      "Board": [
+        "6D",
+        "3H",
+        "2C"
+      ],
+      "Pocket": [
+        "TS",
+        "9D"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1040.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 17,
+      "Pocket": [
+        "TS",
+        "6D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 950.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 18,
+      "Pocket": [
+        "JS",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1040.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 19,
+      "Pocket": [
+        "TH",
+        "5S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1020.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 20,
+      "Pocket": [
+        "2S",
+        "4H"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1050.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 950.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 21,
+      "Board": [
+        "QC",
+        "TC",
+        "4H",
+        "5H",
+        "7C"
+      ],
+      "Pocket": [
+        "JH",
+        "TD"
+      ],
+      "Pot": {
+        "Amount": 140.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "River",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,5901116382113096, 0,6192414431082315, 0,6193558839859001, 0,1813, 0,1586), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.59 , Cost: -60.00, Probability: 0.41, EV:-76,42\r\nraise: 40, Cost: -400.00, Probability: 0.59 , Cost: -80.00, Probability: 0.41, EV:-80,50\r\nraise: 60, Cost: -400.00, Probability: 0.59 , Cost: -100.00, Probability: 0.41, EV:-83,84\r\nraise: 80, Cost: -400.00, Probability: 0.59 , Cost: -120.00, Probability: 0.41, EV:-86,57\r\ncall: 0, Cost: 100.00, Probability: 0.59 , Cost: -40.00, Probability: 0.41, EV:87,88\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,5710929983506785, 0,6036070853462163, 0,6036906073658933, 0,091, 0,1137), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.57 , Cost: -60.00, Probability: 0.43, EV:-75,42\r\nraise: 40, Cost: -400.00, Probability: 0.57 , Cost: -80.00, Probability: 0.43, EV:-79,68\r\nraise: 60, Cost: -400.00, Probability: 0.57 , Cost: -100.00, Probability: 0.43, EV:-83,18\r\nraise: 80, Cost: -400.00, Probability: 0.57 , Cost: -120.00, Probability: 0.43, EV:-86,04\r\ncall: 0, Cost: 100.00, Probability: 0.57 , Cost: -40.00, Probability: 0.43, EV:83,99\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,522305294837044, 0,522289562289566, 0,5223131611107831, 0, 0), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.52 , Cost: -60.00, Probability: 0.48, EV:-72,83\r\nraise: 40, Cost: -400.00, Probability: 0.52 , Cost: -80.00, Probability: 0.48, EV:-77,58\r\nraise: 60, Cost: -400.00, Probability: 0.52 , Cost: -100.00, Probability: 0.48, EV:-81,47\r\nraise: 80, Cost: -400.00, Probability: 0.52 , Cost: -120.00, Probability: 0.48, EV:-84,66\r\ncall: 0, Cost: 100.00, Probability: 0.52 , Cost: -40.00, Probability: 0.48, EV:74,00\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1040.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 22,
+      "Pocket": [
+        "TC",
+        "QS"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1050.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 950.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 23,
+      "Pocket": [
+        "QS",
+        "4D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1050.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1040.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 24,
+      "Pocket": [
+        "9D",
+        "QH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1020.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 980.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 25,
+      "Pocket": [
+        "8H",
+        "QC"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 980.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 990.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1010.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 26,
+      "Board": [
+        "2C",
+        "6D",
+        "TS"
+      ],
+      "Pocket": [
+        "QS",
+        "5H"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1010.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1000.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1000.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 27,
+      "Pocket": [
+        "6S",
+        "2D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1000.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1020.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 980.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 28,
+      "Pocket": [
+        "4C",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1020.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 1000.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1000.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 29,
+      "Pocket": [
+        "9C",
+        "TS"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1000.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 970.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 30,
+      "Board": [
+        "AC",
+        "6D",
+        "KS"
+      ],
+      "Pocket": [
+        "9S",
+        "TC"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1020.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 31,
+      "Pocket": [
+        "2H",
+        "3D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 980.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 970.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 32,
+      "Pocket": [
+        "4C",
+        "9D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1030.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 33,
+      "Board": [
+        "6S",
+        "2D",
+        "KH",
+        "3D"
+      ],
+      "Pocket": [
+        "4H",
+        "KC"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Turn",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6709783117557842, 0,6836262719703939, 0,6837830421698572, 0,175, 0,0996), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.67 , Cost: -60.00, Probability: 0.33, EV:-80,71\r\nraise: 40, Cost: -400.00, Probability: 0.67 , Cost: -80.00, Probability: 0.33, EV:-83,99\r\nraise: 60, Cost: -400.00, Probability: 0.67 , Cost: -100.00, Probability: 0.33, EV:-86,67\r\nraise: 80, Cost: -400.00, Probability: 0.67 , Cost: -120.00, Probability: 0.33, EV:-88,86\r\ncall: 0, Cost: 100.00, Probability: 0.67 , Cost: -40.00, Probability: 0.33, EV:104,45\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,6635015544750543, 0,6557165861513669, 0,6558829970400186, 0,1614, 0,073), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.66 , Cost: -60.00, Probability: 0.34, EV:-80,32\r\nraise: 40, Cost: -400.00, Probability: 0.66 , Cost: -80.00, Probability: 0.34, EV:-83,66\r\nraise: 60, Cost: -400.00, Probability: 0.66 , Cost: -100.00, Probability: 0.34, EV:-86,41\r\nraise: 80, Cost: -400.00, Probability: 0.66 , Cost: -120.00, Probability: 0.34, EV:-88,65\r\ncall: 0, Cost: 100.00, Probability: 0.66 , Cost: -40.00, Probability: 0.34, EV:102,91\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 910.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 34,
+      "Pocket": [
+        "AS",
+        "4C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 35,
+      "Pocket": [
+        "6D",
+        "8S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 910.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 36,
+      "Pocket": [
+        "7C",
+        "QC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1090.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 37,
+      "Pocket": [
+        "9H",
+        "8S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 38,
+      "Pocket": [
+        "3C",
+        "9C"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 950.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1050.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 39,
+      "Pocket": [
+        "TD",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 950.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 940.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 40,
+      "Pocket": [
+        "6D",
+        "JH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1060.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 890.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 41,
+      "Board": [
+        "7S",
+        "AD",
+        "6H"
+      ],
+      "Pocket": [
+        "6D",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 120.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1110.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6444892247524923, 0,6727721245760176, 0,6727172808890907, 0,0434, 0,0631), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.64 , Cost: -60.00, Probability: 0.36, EV:-79,31\r\nraise: 40, Cost: -400.00, Probability: 0.64 , Cost: -80.00, Probability: 0.36, EV:-82,85\r\nraise: 60, Cost: -400.00, Probability: 0.64 , Cost: -100.00, Probability: 0.36, EV:-85,74\r\nraise: 80, Cost: -400.00, Probability: 0.64 , Cost: -120.00, Probability: 0.36, EV:-88,11\r\ncall: 0, Cost: 100.00, Probability: 0.64 , Cost: -40.00, Probability: 0.36, EV:99,02\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 880.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1120.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 42,
+      "Pocket": [
+        "4S",
+        "4D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1120.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 860.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1140.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 43,
+      "Pocket": [
+        "KS",
+        "KC"
+      ],
+      "Pot": {
+        "Amount": 80.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1140.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 60.0,
+          "MinAmount": 60.0,
+          "MaxAmount": 60.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 850.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1150.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 44,
+      "Pocket": [
+        "4H",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1150.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 900.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1100.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 45,
+      "Board": [
+        "4H",
+        "4S",
+        "3H",
+        "7C",
+        "3D"
+      ],
+      "Pocket": [
+        "QS",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 900.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,31632658850586254, 0,22987974098057362, 0,22967808799629677, 0,2032, 0,3044), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.32 , Cost: -60.00, Probability: 0.68, EV:-61,90\r\nraise: 40, Cost: -400.00, Probability: 0.32 , Cost: -80.00, Probability: 0.68, EV:-68,70\r\nraise: 60, Cost: -400.00, Probability: 0.32 , Cost: -100.00, Probability: 0.68, EV:-74,27\r\nraise: 80, Cost: -400.00, Probability: 0.32 , Cost: -120.00, Probability: 0.68, EV:-78,83\r\ncall: 0, Cost: 100.00, Probability: 0.32 , Cost: -40.00, Probability: 0.68, EV:31,81\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,2877162938084065, 0,17420289855072482, 0,17421284623303404, 0,1734, 0,1704), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.29 , Cost: -60.00, Probability: 0.71, EV:-60,38\r\nraise: 40, Cost: -400.00, Probability: 0.29 , Cost: -80.00, Probability: 0.71, EV:-67,47\r\nraise: 60, Cost: -400.00, Probability: 0.29 , Cost: -100.00, Probability: 0.71, EV:-73,27\r\nraise: 80, Cost: -400.00, Probability: 0.29 , Cost: -120.00, Probability: 0.71, EV:-78,02\r\ncall: 0, Cost: 100.00, Probability: 0.29 , Cost: -40.00, Probability: 0.71, EV:25,96\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,19772757831692878, 0,19772727272727272, 0,19772773111175684, 0, 0), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.20 , Cost: -60.00, Probability: 0.80, EV:-55,61\r\nraise: 40, Cost: -400.00, Probability: 0.20 , Cost: -80.00, Probability: 0.80, EV:-63,59\r\nraise: 60, Cost: -400.00, Probability: 0.20 , Cost: -100.00, Probability: 0.80, EV:-70,12\r\nraise: 80, Cost: -400.00, Probability: 0.20 , Cost: -120.00, Probability: 0.80, EV:-75,47\r\ncall: 0, Cost: 100.00, Probability: 0.20 , Cost: -40.00, Probability: 0.80, EV:7,53\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 46,
+      "Pocket": [
+        "2D",
+        "5S"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 930.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1070.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 47,
+      "Pocket": [
+        "8H",
+        "9S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 930.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 920.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 48,
+      "Pocket": [
+        "7H",
+        "KH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1080.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 900.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1100.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 49,
+      "Pocket": [
+        "KS",
+        "5D"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1100.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 870.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1130.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 50,
+      "Board": [
+        "TC",
+        "3C",
+        "7S"
+      ],
+      "Pocket": [
+        "TD",
+        "JH"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1130.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 850.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1150.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 51,
+      "Pocket": [
+        "QD",
+        "JD"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1150.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 830.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1170.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 52,
+      "Pocket": [
+        "7D",
+        "KC"
+      ],
+      "Pot": {
+        "Amount": 50.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1170.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 53,
+      "Board": [
+        "JH",
+        "AS",
+        "7D"
+      ],
+      "Pocket": [
+        "5D",
+        "6D"
+      ],
+      "Pot": {
+        "Amount": 120.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,21885682529903597, 0,059219858156028406, 0,05922306063731069, 0,1938, 0,3831), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.22 , Cost: -60.00, Probability: 0.78, EV:-56,73\r\nraise: 40, Cost: -400.00, Probability: 0.22 , Cost: -80.00, Probability: 0.78, EV:-64,50\r\nraise: 60, Cost: -400.00, Probability: 0.22 , Cost: -100.00, Probability: 0.78, EV:-70,86\r\nraise: 80, Cost: -400.00, Probability: 0.22 , Cost: -120.00, Probability: 0.78, EV:-76,07\r\ncall: 0, Cost: 100.00, Probability: 0.22 , Cost: -40.00, Probability: 0.78, EV:11,85\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 770.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1230.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 54,
+      "Pocket": [
+        "TH",
+        "JC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1230.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 55,
+      "Pocket": [
+        "JC",
+        "7H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 800.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1200.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 56,
+      "Pocket": [
+        "8S",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 800.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 57,
+      "Pocket": [
+        "KD",
+        "8C"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 770.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1230.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 58,
+      "Pocket": [
+        "7H",
+        "9C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1230.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1220.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 59,
+      "Pocket": [
+        "2S",
+        "4D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 780.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 730.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1270.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 60,
+      "Board": [
+        "8D",
+        "3D",
+        "JH",
+        "2S"
+      ],
+      "Pocket": [
+        "KC",
+        "TC"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1270.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Turn",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,3268596526891871, 0,2422602528522973, 0,2422917211386922, 0,1969, 0,2667), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.33 , Cost: -50.00, Probability: 0.67, EV:-58,57\r\nraise: 40, Cost: -400.00, Probability: 0.33 , Cost: -70.00, Probability: 0.67, EV:-65,97\r\nraise: 60, Cost: -400.00, Probability: 0.33 , Cost: -90.00, Probability: 0.67, EV:-72,03\r\nraise: 80, Cost: -400.00, Probability: 0.33 , Cost: -110.00, Probability: 0.67, EV:-76,99\r\ncall: 0, Cost: 100.00, Probability: 0.33 , Cost: -30.00, Probability: 0.67, EV:38,72\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 740.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1260.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 61,
+      "Pocket": [
+        "QS",
+        "4H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 740.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 790.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1210.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 62,
+      "Board": [
+        "KD",
+        "QH",
+        "AD",
+        "5D",
+        "9D"
+      ],
+      "Pocket": [
+        "2H",
+        "AH"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 790.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,5573094756111965, 0,49552883132901065, 0,4953818266210021, 0,271, 0,1511), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.56 , Cost: -30.00, Probability: 0.44, EV:-62,15\r\nraise: 40, Cost: -240.00, Probability: 0.56 , Cost: -50.00, Probability: 0.44, EV:-68,09\r\nraise: 60, Cost: -240.00, Probability: 0.56 , Cost: -70.00, Probability: 0.44, EV:-72,96\r\nraise: 80, Cost: -240.00, Probability: 0.56 , Cost: -90.00, Probability: 0.44, EV:-76,95\r\ncall: 0, Cost: 60.00, Probability: 0.56 , Cost: -10.00, Probability: 0.44, EV:41,60\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,4477461171177036, 0,4631239935587718, 0,4633008309641512, 0,1005, 0,1499), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.45 , Cost: -50.00, Probability: 0.55, EV:-65,68\r\nraise: 40, Cost: -400.00, Probability: 0.45 , Cost: -70.00, Probability: 0.55, EV:-71,76\r\nraise: 60, Cost: -400.00, Probability: 0.45 , Cost: -90.00, Probability: 0.55, EV:-76,73\r\nraise: 80, Cost: -400.00, Probability: 0.45 , Cost: -110.00, Probability: 0.55, EV:-80,80\r\ncall: 0, Cost: 100.00, Probability: 0.45 , Cost: -30.00, Probability: 0.55, EV:62,62\r\nfold Cost: -30.00, Probability: 1.00\r\n",
+        "River, ehs: (0,29385256130756093, 0,2939057239057234, 0,29382598000847976, 0, 0), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.29 , Cost: -50.00, Probability: 0.71, EV:-56,63\r\nraise: 40, Cost: -400.00, Probability: 0.29 , Cost: -70.00, Probability: 0.71, EV:-64,40\r\nraise: 60, Cost: -400.00, Probability: 0.29 , Cost: -90.00, Probability: 0.71, EV:-70,75\r\nraise: 80, Cost: -400.00, Probability: 0.29 , Cost: -110.00, Probability: 0.71, EV:-75,96\r\ncall: 0, Cost: 100.00, Probability: 0.29 , Cost: -30.00, Probability: 0.71, EV:32,19\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 800.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1200.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 63,
+      "Pocket": [
+        "2S",
+        "JC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 800.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 830.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1170.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 64,
+      "Board": [
+        "9S",
+        "7C",
+        "QS",
+        "5S",
+        "3C"
+      ],
+      "Pocket": [
+        "KD",
+        "TS"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 830.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,4442219118739317, 0,23808202281837826, 0,23792147820290105, 0,3368, 0,2118), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.44 , Cost: -30.00, Probability: 0.56, EV:-54,80\r\nraise: 40, Cost: -240.00, Probability: 0.44 , Cost: -50.00, Probability: 0.56, EV:-62,26\r\nraise: 60, Cost: -240.00, Probability: 0.44 , Cost: -70.00, Probability: 0.56, EV:-68,37\r\nraise: 80, Cost: -240.00, Probability: 0.44 , Cost: -90.00, Probability: 0.56, EV:-73,37\r\ncall: 0, Cost: 60.00, Probability: 0.44 , Cost: -10.00, Probability: 0.56, EV:31,23\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,3926091097064382, 0,1687922705314012, 0,16892956390608535, 0,2967, 0,1354), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.39 , Cost: -30.00, Probability: 0.61, EV:-51,44\r\nraise: 40, Cost: -240.00, Probability: 0.39 , Cost: -50.00, Probability: 0.61, EV:-59,60\r\nraise: 60, Cost: -240.00, Probability: 0.39 , Cost: -70.00, Probability: 0.61, EV:-66,28\r\nraise: 80, Cost: -240.00, Probability: 0.39 , Cost: -90.00, Probability: 0.61, EV:-71,74\r\ncall: 0, Cost: 60.00, Probability: 0.39 , Cost: -10.00, Probability: 0.61, EV:26,50\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "River, ehs: (0,12125596156984693, 0,12117845117845139, 0,1212947167655447, 0, 0), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.12 , Cost: -30.00, Probability: 0.88, EV:-33,80\r\nraise: 40, Cost: -240.00, Probability: 0.12 , Cost: -50.00, Probability: 0.88, EV:-45,60\r\nraise: 60, Cost: -240.00, Probability: 0.12 , Cost: -70.00, Probability: 0.88, EV:-55,26\r\nraise: 80, Cost: -240.00, Probability: 0.12 , Cost: -90.00, Probability: 0.88, EV:-63,17\r\ncall: 0, Cost: 60.00, Probability: 0.12 , Cost: -10.00, Probability: 0.88, EV:1,61\r\nfold Cost: -10.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 840.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1160.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 65,
+      "Pocket": [
+        "JH",
+        "3D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 840.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 810.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1190.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 66,
+      "Board": [
+        "AD",
+        "4D",
+        "2D"
+      ],
+      "Pocket": [
+        "8S",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1190.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 790.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1210.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 67,
+      "Pocket": [
+        "9S",
+        "TH"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1210.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 720.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1280.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 68,
+      "Board": [
+        "6H",
+        "AH",
+        "JD",
+        "5D"
+      ],
+      "Pocket": [
+        "JH",
+        "JS"
+      ],
+      "Pot": {
+        "Amount": 140.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1280.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Turn",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,7381079497977872, 0,745174221399931, 0,7451951720097232, 0,0889, 0,0399), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.74 , Cost: -50.00, Probability: 0.26, EV:-82,76\r\nraise: 40, Cost: -400.00, Probability: 0.74 , Cost: -70.00, Probability: 0.26, EV:-85,64\r\nraise: 60, Cost: -400.00, Probability: 0.74 , Cost: -90.00, Probability: 0.26, EV:-88,00\r\nraise: 80, Cost: -400.00, Probability: 0.74 , Cost: -110.00, Probability: 0.26, EV:-89,93\r\nraise: 100, Cost: -400.00, Probability: 0.74 , Cost: -130.00, Probability: 0.26, EV:-91,51\r\nraise: 120, Cost: -400.00, Probability: 0.74 , Cost: -150.00, Probability: 0.26, EV:-92,80\r\nraise: 140, Cost: -400.00, Probability: 0.74 , Cost: -170.00, Probability: 0.26, EV:-93,86\r\nraise: 160, Cost: -400.00, Probability: 0.74 , Cost: -190.00, Probability: 0.26, EV:-94,73\r\nraise: 180, Cost: -400.00, Probability: 0.74 , Cost: -210.00, Probability: 0.26, EV:-95,44\r\nraise: 200, Cost: -400.00, Probability: 0.74 , Cost: -230.00, Probability: 0.26, EV:-96,02\r\nraise: 220, Cost: -400.00, Probability: 0.74 , Cost: -250.00, Probability: 0.26, EV:-96,50\r\nraise: 240, Cost: -400.00, Probability: 0.74 , Cost: -270.00, Probability: 0.26, EV:-96,89\r\nraise: 260, Cost: -400.00, Probability: 0.74 , Cost: -290.00, Probability: 0.26, EV:-97,21\r\nraise: 280, Cost: -400.00, Probability: 0.74 , Cost: -310.00, Probability: 0.26, EV:-97,47\r\nraise: 300, Cost: -400.00, Probability: 0.74 , Cost: -330.00, Probability: 0.26, EV:-97,68\r\nraise: 320, Cost: -400.00, Probability: 0.74 , Cost: -350.00, Probability: 0.26, EV:-97,86\r\nraise: 340, Cost: -400.00, Probability: 0.74 , Cost: -370.00, Probability: 0.26, EV:-98,00\r\nraise: 360, Cost: -400.00, Probability: 0.74 , Cost: -390.00, Probability: 0.26, EV:-98,12\r\nraise: 380, Cost: -400.00, Probability: 0.74 , Cost: -410.00, Probability: 0.26, EV:-98,21\r\nraise: 400, Cost: -400.00, Probability: 0.74 , Cost: -430.00, Probability: 0.26, EV:-98,29\r\nraise: 420, Cost: -400.00, Probability: 0.74 , Cost: -450.00, Probability: 0.26, EV:-98,36\r\nraise: 440, Cost: -400.00, Probability: 0.74 , Cost: -470.00, Probability: 0.26, EV:-98,41\r\nraise: 460, Cost: -400.00, Probability: 0.74 , Cost: -490.00, Probability: 0.26, EV:-98,45\r\nraise: 480, Cost: -400.00, Probability: 0.74 , Cost: -510.00, Probability: 0.26, EV:-98,49\r\nraise: 500, Cost: -400.00, Probability: 0.74 , Cost: -530.00, Probability: 0.26, EV:-98,52\r\nraise: 520, Cost: -400.00, Probability: 0.74 , Cost: -550.00, Probability: 0.26, EV:-98,54\r\nraise: 540, Cost: -400.00, Probability: 0.74 , Cost: -570.00, Probability: 0.26, EV:-98,56\r\nraise: 560, Cost: -400.00, Probability: 0.74 , Cost: -590.00, Probability: 0.26, EV:-98,58\r\nraise: 580, Cost: -400.00, Probability: 0.74 , Cost: -610.00, Probability: 0.26, EV:-98,59\r\ncall: 0, Cost: 100.00, Probability: 0.74 , Cost: -30.00, Probability: 0.26, EV:120,04\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 700.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1300.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 69,
+      "Pocket": [
+        "8S",
+        "TD"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1300.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 690.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1310.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 70,
+      "Pocket": [
+        "AS",
+        "QH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1310.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 640.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1360.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 71,
+      "Board": [
+        "9C",
+        "4D",
+        "TD"
+      ],
+      "Pocket": [
+        "KS",
+        "6S"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1360.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,27822721528553596, 0,22170829478877607, 0,22170925576038625, 0,1652, 0,325), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.28 , Cost: -60.00, Probability: 0.72, EV:-59,88\r\nraise: 40, Cost: -400.00, Probability: 0.28 , Cost: -80.00, Probability: 0.72, EV:-67,06\r\nraise: 60, Cost: -400.00, Probability: 0.28 , Cost: -100.00, Probability: 0.72, EV:-72,94\r\nraise: 80, Cost: -400.00, Probability: 0.28 , Cost: -120.00, Probability: 0.72, EV:-77,75\r\ncall: 0, Cost: 100.00, Probability: 0.28 , Cost: -40.00, Probability: 0.72, EV:24,01\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 630.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1370.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 72,
+      "Pocket": [
+        "8S",
+        "KS"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1370.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 640.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1360.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 73,
+      "Pocket": [
+        "4D",
+        "7C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 640.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 630.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1370.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 74,
+      "Pocket": [
+        "3S",
+        "8C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1370.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 640.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1360.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 75,
+      "Pocket": [
+        "2C",
+        "6S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 640.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 610.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1390.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 76,
+      "Board": [
+        "8C",
+        "2S",
+        "8S",
+        "JC"
+      ],
+      "Pocket": [
+        "9H",
+        "JD"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1390.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Turn",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,2974559429206117, 0,18097440641381457, 0,18093240891490425, 0,2034, 0,2768), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.30 , Cost: -30.00, Probability: 0.70, EV:-45,26\r\nraise: 40, Cost: -240.00, Probability: 0.30 , Cost: -50.00, Probability: 0.70, EV:-54,69\r\nraise: 60, Cost: -240.00, Probability: 0.30 , Cost: -70.00, Probability: 0.70, EV:-62,41\r\nraise: 80, Cost: -240.00, Probability: 0.30 , Cost: -90.00, Probability: 0.70, EV:-68,74\r\ncall: 0, Cost: 60.00, Probability: 0.30 , Cost: -10.00, Probability: 0.70, EV:17,77\r\nfold Cost: -10.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 620.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1380.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 77,
+      "Pocket": [
+        "JS",
+        "2H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 620.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 570.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1430.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 78,
+      "Board": [
+        "7H",
+        "AS",
+        "5S",
+        "4S",
+        "2D"
+      ],
+      "Pocket": [
+        "6H",
+        "AD"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1430.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "River",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,5412559635787351, 0,5327012025901889, 0,5327837951151622, 0,1744, 0,137), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.54 , Cost: -30.00, Probability: 0.46, EV:-61,11\r\nraise: 40, Cost: -240.00, Probability: 0.54 , Cost: -50.00, Probability: 0.46, EV:-67,27\r\nraise: 60, Cost: -240.00, Probability: 0.54 , Cost: -70.00, Probability: 0.46, EV:-72,31\r\nraise: 80, Cost: -240.00, Probability: 0.54 , Cost: -90.00, Probability: 0.46, EV:-76,44\r\ncall: 0, Cost: 60.00, Probability: 0.54 , Cost: -10.00, Probability: 0.46, EV:40,13\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,4893623386408161, 0,4723188405797053, 0,47275067102446816, 0,1635, 0,147), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.49 , Cost: -50.00, Probability: 0.51, EV:-68,13\r\nraise: 40, Cost: -400.00, Probability: 0.49 , Cost: -70.00, Probability: 0.51, EV:-73,75\r\nraise: 60, Cost: -400.00, Probability: 0.49 , Cost: -90.00, Probability: 0.51, EV:-78,34\r\nraise: 80, Cost: -400.00, Probability: 0.49 , Cost: -110.00, Probability: 0.51, EV:-82,11\r\ncall: 0, Cost: 100.00, Probability: 0.49 , Cost: -30.00, Probability: 0.51, EV:70,85\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 580.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1420.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 79,
+      "Pocket": [
+        "6D",
+        "3D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 580.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 570.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1430.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 80,
+      "Pocket": [
+        "5D",
+        "9C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1430.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 550.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1450.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 81,
+      "Pocket": [
+        "QS",
+        "6S"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1450.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 520.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1480.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 82,
+      "Board": [
+        "9S",
+        "9C",
+        "QS"
+      ],
+      "Pocket": [
+        "KS",
+        "6C"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1480.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 530.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1470.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 83,
+      "Pocket": [
+        "2D",
+        "8H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 530.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 550.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1450.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 84,
+      "Pocket": [
+        "2S",
+        "9H"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 550.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 530.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1470.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 85,
+      "Pocket": [
+        "AD",
+        "KC"
+      ],
+      "Pot": {
+        "Amount": 80.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1470.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 60.0,
+          "MinAmount": 60.0,
+          "MaxAmount": 60.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 520.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1480.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 86,
+      "Pocket": [
+        "6C",
+        "9D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1480.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 470.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1530.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 87,
+      "Board": [
+        "9H",
+        "3S",
+        "TD"
+      ],
+      "Pocket": [
+        "5S",
+        "AH"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1530.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,3110621476654026, 0,29155103299414054, 0,29171179918051926, 0,1552, 0,3104), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.31 , Cost: -60.00, Probability: 0.69, EV:-61,62\r\nraise: 40, Cost: -400.00, Probability: 0.31 , Cost: -80.00, Probability: 0.69, EV:-68,47\r\nraise: 60, Cost: -400.00, Probability: 0.31 , Cost: -100.00, Probability: 0.69, EV:-74,09\r\nraise: 80, Cost: -400.00, Probability: 0.31 , Cost: -120.00, Probability: 0.69, EV:-78,68\r\ncall: 0, Cost: 100.00, Probability: 0.31 , Cost: -40.00, Probability: 0.69, EV:30,74\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 460.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1540.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 88,
+      "Pocket": [
+        "AD",
+        "4D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1540.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 470.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1530.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 89,
+      "Pocket": [
+        "3H",
+        "5H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 470.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 440.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1560.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 90,
+      "Board": [
+        "3H",
+        "3C",
+        "JS"
+      ],
+      "Pocket": [
+        "KS",
+        "TC"
+      ],
+      "Pot": {
+        "Amount": 60.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1560.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 91,
+      "Board": [
+        "4C",
+        "3H",
+        "8D"
+      ],
+      "Pocket": [
+        "KH",
+        "8C"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Flop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,5186431443106028, 0,5452975639839601, 0,5453561165712139, 0,1717, 0,1921), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.52 , Cost: -60.00, Probability: 0.48, EV:-72,63\r\nraise: 40, Cost: -400.00, Probability: 0.52 , Cost: -80.00, Probability: 0.48, EV:-77,42\r\nraise: 60, Cost: -400.00, Probability: 0.52 , Cost: -100.00, Probability: 0.48, EV:-81,34\r\nraise: 80, Cost: -400.00, Probability: 0.52 , Cost: -120.00, Probability: 0.48, EV:-84,55\r\ncall: 0, Cost: 100.00, Probability: 0.52 , Cost: -40.00, Probability: 0.48, EV:73,25\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 410.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1590.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 92,
+      "Pocket": [
+        "JD",
+        "7C"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 410.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 93,
+      "Pocket": [
+        "8H",
+        "AS"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 380.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1620.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 94,
+      "Pocket": [
+        "5D",
+        "7C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1620.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 95,
+      "Pocket": [
+        "9C",
+        "5C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 380.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1620.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 96,
+      "Pocket": [
+        "7H",
+        "TH"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1620.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 360.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1640.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 97,
+      "Pocket": [
+        "QS",
+        "KC"
+      ],
+      "Pot": {
+        "Amount": 70.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1640.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 380.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1620.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 98,
+      "Pocket": [
+        "5H",
+        "JD"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 380.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1610.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 99,
+      "Pocket": [
+        "7H",
+        "5C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 390.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "HonestMan",
+          "Id": "lkzrlyifdhkoagupdqoypw",
+          "Stack": 340.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1660.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 100,
+      "Board": [
+        "QD",
+        "2C",
+        "4S",
+        "8D"
+      ],
+      "Pocket": [
+        "AD",
+        "JD"
+      ],
+      "Pot": {
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "zgbpibgaikywgnilpmysbp",
+          "Stack": 1660.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "HonestMan",
+          "Stage": "Turn",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,411690132589879, 0,3368177613320982, 0,33662878615132563, 0,2222, 0,215), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.41 , Cost: -50.00, Probability: 0.59, EV:-63,56\r\nraise: 40, Cost: -400.00, Probability: 0.41 , Cost: -70.00, Probability: 0.59, EV:-70,03\r\nraise: 60, Cost: -400.00, Probability: 0.41 , Cost: -90.00, Probability: 0.59, EV:-75,33\r\nraise: 80, Cost: -400.00, Probability: 0.41 , Cost: -110.00, Probability: 0.59, EV:-79,66\r\ncall: 0, Cost: 100.00, Probability: 0.41 , Cost: -30.00, Probability: 0.59, EV:55,49\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    }
+  ],
+  "PlayerModels": [
+    {
+      "Player": {
+        "Name": "HonestMan",
+        "Id": "lkzrlyifdhkoagupdqoypw"
+      },
+      "VPIP": 58.69565217391305,
+      "PFR": 0.0,
+      "PFF": 41.30434782608695,
+      "WTSD": 60.544217687074834,
+      "PSDF": 36.36363636363637,
+      "WSD": 22.22222222222222,
+      "WWSF": 22.22222222222222,
+      "Win": 6,
+      "Lost": 21,
+      "PostFlopWin": 6,
+      "PostFlopLost": 21,
+      "PlayingStyle": "TightPassive",
+      "WeightTable": "1,1,1,1,1,0.8666666666666667,0.8666666666666667,0.8666666666666667,0.8666666666666667,0.8666666666666667,0.8666666666666667,0.8666666666666667,0.8666666666666667\r\n1,1,1,1,0.9333333333333332,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666\r\n1,0.9333333333333332,1,1,0.9333333333333332,0.8666666666666667,0.6666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.9333333333333332,0.8666666666666667,0.8666666666666667,1,1,0.9333333333333332,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.6666666666666666,0.6666666666666666,0.6666666666666666,0.8666666666666667,1,0.9333333333333332,0.8666666666666667,0.6666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.6,0.6,0.6,0.6666666666666666,0.6666666666666666,1,0.9333333333333332,0.8666666666666667,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6,0.6666666666666666,0.9333333333333332,0.8666666666666667,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.8666666666666667,0.8666666666666667,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.8666666666666667,0.6666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.6666666666666666,0.6\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6666666666666666,0.6\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6666666666666666\r\n"
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "zgbpibgaikywgnilpmysbp"
+      },
+      "VPIP": 54.54545454545454,
+      "PFR": 54.54545454545454,
+      "PFF": 45.45454545454545,
+      "WTSD": 70.08547008547009,
+      "PSDF": 0.0,
+      "WSD": 14.285714285714285,
+      "WWSF": 77.77777777777779,
+      "Win": 1,
+      "Lost": 6,
+      "PostFlopWin": 21,
+      "PostFlopLost": 6,
+      "PlayingStyle": "TightAggressive",
+      "WeightTable": "1,1,1,1,1,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9\r\n1,1,1,1,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.6666666666666666\r\n1,0.9,1,1,0.9,0.9,0.6666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.9,0.9,0.9,1,1,0.9,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,1,0.9,0.9,0.6666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.6,0.6,0.6,0.6666666666666666,0.6666666666666666,1,0.9,0.9,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6,0.6666666666666666,0.9,0.9,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.9,0.9,0.6666666666666666,0.6,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.9,0.6666666666666666,0.4666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.4666666666666666\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6,0.6666666666666666,0.6666666666666666,0.6\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6666666666666666,0.6\r\n0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.4666666666666666,0.6666666666666666\r\n"
+    }
+  ],
+  "Results": [
+    {
+      "Player": {
+        "Name": "HonestMan",
+        "Id": "lkzrlyifdhkoagupdqoypw"
+      },
+      "won": 41,
+      "drew": 0,
+      "lost": 59,
+      "InitialStack": 1000.0,
+      "Stack": 340.0
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "zgbpibgaikywgnilpmysbp"
+      },
+      "won": 59,
+      "drew": 0,
+      "lost": 41,
+      "InitialStack": 1000.0,
+      "Stack": 1660.0
+    }
+  ],
+  "BotHash": "BEEB1E1549DDD01226DC2FC912ABAE49"
+}

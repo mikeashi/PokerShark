@@ -1,0 +1,168 @@
+{
+  "Id": "9db1adc1-fee9-47cd-883c-30b09c5cf631",
+  "PlayersCount": 2,
+  "InitialStack": 1000.0,
+  "MaxRound": 100,
+  "SmallBlind": 10.0,
+  "BigBlind": 20.0,
+  "Ante": 0.0,
+  "Players": [
+    {
+      "Name": "Bold",
+      "Id": "rfutomkvrpmeuaxttkjvpl"
+    },
+    {
+      "Name": "PokerShark",
+      "Id": "erwyqqzvpzevfdgavytrjy"
+    }
+  ],
+  "Rounds": [
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Bold",
+          "Id": "rfutomkvrpmeuaxttkjvpl",
+          "Stack": 2000.0,
+          "State": "AllIn"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "erwyqqzvpzevfdgavytrjy",
+          "Stack": 0.0,
+          "State": "AllIn"
+        }
+      ],
+      "RoundCount": 1,
+      "Board": [
+        "9S",
+        "8S",
+        "7H",
+        "5S",
+        "JS"
+      ],
+      "Pocket": [
+        "KC",
+        "KD"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 0.0,
+            "Eligibles": [
+              "rfutomkvrpmeuaxttkjvpl",
+              "erwyqqzvpzevfdgavytrjy"
+            ]
+          },
+          {
+            "Amount": 0.0,
+            "Eligibles": [
+              "rfutomkvrpmeuaxttkjvpl",
+              "erwyqqzvpzevfdgavytrjy"
+            ]
+          }
+        ],
+        "Amount": 2000.0
+      },
+      "Winner": [
+        {
+          "Name": "Bold",
+          "Id": "rfutomkvrpmeuaxttkjvpl",
+          "Stack": 2000.0,
+          "State": "AllIn"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 60.0,
+          "MinAmount": 60.0,
+          "MaxAmount": 60.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Bold",
+          "Amount": 1000.0,
+          "MinAmount": 1000.0,
+          "MaxAmount": 1000.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 1000.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": []
+    }
+  ],
+  "PlayerModels": [
+    {
+      "Player": {
+        "Name": "Bold",
+        "Id": "rfutomkvrpmeuaxttkjvpl"
+      },
+      "VPIP": 100.0,
+      "PFR": 100.0,
+      "PFF": 0.0,
+      "WTSD": 100.0,
+      "PSDF": "NaN",
+      "WSD": 100.0,
+      "WWSF": 100.0,
+      "Win": 1,
+      "Lost": 0,
+      "PostFlopWin": 1,
+      "PostFlopLost": 0,
+      "PlayingStyle": "LooseAggressive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n"
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "erwyqqzvpzevfdgavytrjy"
+      },
+      "VPIP": 100.0,
+      "PFR": 50.0,
+      "PFF": 0.0,
+      "WTSD": 100.0,
+      "PSDF": "NaN",
+      "WSD": 0.0,
+      "WWSF": 0.0,
+      "Win": 0,
+      "Lost": 1,
+      "PostFlopWin": 0,
+      "PostFlopLost": 1,
+      "PlayingStyle": "LoosePassive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n"
+    }
+  ],
+  "Results": [
+    {
+      "Player": {
+        "Name": "Bold",
+        "Id": "rfutomkvrpmeuaxttkjvpl"
+      },
+      "won": 1,
+      "drew": 0,
+      "lost": 0,
+      "InitialStack": 1000.0,
+      "Stack": 2000.0
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "erwyqqzvpzevfdgavytrjy"
+      },
+      "won": 0,
+      "drew": 0,
+      "lost": 1,
+      "InitialStack": 1000.0,
+      "Stack": 0.0
+    }
+  ],
+  "BotHash": "082BDF19912625E5E0FE091DBA2B0AF6"
+}

@@ -1,0 +1,265 @@
+{
+  "Id": "bde8e79e-21a3-4698-bf32-a3a53eb1389d",
+  "PlayersCount": 2,
+  "InitialStack": 1000.0,
+  "MaxRound": 100,
+  "SmallBlind": 10.0,
+  "BigBlind": 20.0,
+  "Ante": 0.0,
+  "Players": [
+    {
+      "Name": "Random",
+      "Id": "qulbhgjkewwpaxpvyijtpz"
+    },
+    {
+      "Name": "PokerShark",
+      "Id": "cpkdaxmolehvnhfyxcmitd"
+    }
+  ],
+  "Rounds": [
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "qulbhgjkewwpaxpvyijtpz",
+          "Stack": 1010.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "cpkdaxmolehvnhfyxcmitd",
+          "Stack": 990.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 1,
+      "Pocket": [
+        "6D",
+        "4S"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "qulbhgjkewwpaxpvyijtpz",
+          "Stack": 1010.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "qulbhgjkewwpaxpvyijtpz",
+          "Stack": 559.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "cpkdaxmolehvnhfyxcmitd",
+          "Stack": 1441.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 2,
+      "Pocket": [
+        "8D",
+        "KS"
+      ],
+      "Pot": {
+        "Amount": 1333.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "cpkdaxmolehvnhfyxcmitd",
+          "Stack": 1441.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Random",
+          "Amount": 451.0,
+          "MinAmount": 451.0,
+          "MaxAmount": 451.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 882.0,
+          "MinAmount": 882.0,
+          "MaxAmount": 882.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": -1.0,
+          "MinAmount": -1.0,
+          "MaxAmount": -1.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "qulbhgjkewwpaxpvyijtpz",
+          "Stack": 0.0,
+          "State": "AllIn"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "cpkdaxmolehvnhfyxcmitd",
+          "Stack": 2000.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 3,
+      "Board": [
+        "6C",
+        "2S",
+        "3D",
+        "TC",
+        "AS"
+      ],
+      "Pocket": [
+        "8D",
+        "8C"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 509.0,
+            "Eligibles": [
+              "cpkdaxmolehvnhfyxcmitd"
+            ]
+          }
+        ],
+        "Amount": 1118.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "cpkdaxmolehvnhfyxcmitd",
+          "Stack": 2000.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 559.0,
+          "MinAmount": 559.0,
+          "MaxAmount": 559.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 1068.0,
+          "MinAmount": 1068.0,
+          "MaxAmount": 1068.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        }
+      ],
+      "OddsLog": []
+    }
+  ],
+  "PlayerModels": [
+    {
+      "Player": {
+        "Name": "Random",
+        "Id": "qulbhgjkewwpaxpvyijtpz"
+      },
+      "VPIP": 100.0,
+      "PFR": 100.0,
+      "PFF": 0.0,
+      "WTSD": 100.0,
+      "PSDF": "NaN",
+      "WSD": 0.0,
+      "WWSF": 0.0,
+      "Win": 0,
+      "Lost": 1,
+      "PostFlopWin": 0,
+      "PostFlopLost": 1,
+      "PlayingStyle": "LooseAggressive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n"
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "cpkdaxmolehvnhfyxcmitd"
+      },
+      "VPIP": 75.0,
+      "PFR": 75.0,
+      "PFF": 25.0,
+      "WTSD": 75.0,
+      "PSDF": "NaN",
+      "WSD": 100.0,
+      "WWSF": 100.0,
+      "Win": 1,
+      "Lost": 0,
+      "PostFlopWin": 1,
+      "PostFlopLost": 0,
+      "PlayingStyle": "LooseAggressive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,0.9666666666666667,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n1,1,1,1,1,1,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n1,1,1,1,1,1,0.9666666666666667,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.9666666666666667,0.9666666666666667,0.9666666666666667,1,1,1,1,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,1,1,1,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,1,1,0.9666666666666667,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,1,1,0.9666666666666667,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.9666666666666667,1,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.9666666666666667,0.9666666666666667,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999,0.7999999999999999\r\n"
+    }
+  ],
+  "Results": [
+    {
+      "Player": {
+        "Name": "Random",
+        "Id": "qulbhgjkewwpaxpvyijtpz"
+      },
+      "won": 1,
+      "drew": 0,
+      "lost": 2,
+      "InitialStack": 1000.0,
+      "Stack": 0.0
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "cpkdaxmolehvnhfyxcmitd"
+      },
+      "won": 2,
+      "drew": 0,
+      "lost": 1,
+      "InitialStack": 1000.0,
+      "Stack": 2000.0
+    }
+  ],
+  "BotHash": "BEEB1E1549DDD01226DC2FC912ABAE49"
+}

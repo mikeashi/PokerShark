@@ -1,0 +1,604 @@
+{
+  "Id": "6f91d65c-a98e-40eb-8519-67509d77c5d6",
+  "PlayersCount": 2,
+  "InitialStack": 1000.0,
+  "MaxRound": 100,
+  "SmallBlind": 10.0,
+  "BigBlind": 20.0,
+  "Ante": 0.0,
+  "Players": [
+    {
+      "Name": "Random",
+      "Id": "lcrlyisvuxkwhogpsupopm"
+    },
+    {
+      "Name": "PokerShark",
+      "Id": "odvxvbwtgvzervslhtpdpf"
+    }
+  ],
+  "Rounds": [
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 1010.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 990.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 1,
+      "Pocket": [
+        "6S",
+        "2C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 1010.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 20.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1980.0,
+          "State": "AllIn"
+        }
+      ],
+      "RoundCount": 2,
+      "Board": [
+        "KD",
+        "5C",
+        "4D",
+        "TS",
+        "5S"
+      ],
+      "Pocket": [
+        "AC",
+        "AS"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 15.0,
+            "Eligibles": [
+              "lcrlyisvuxkwhogpsupopm"
+            ]
+          }
+        ],
+        "Amount": 1980.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1980.0,
+          "State": "AllIn"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Random",
+          "Amount": 935.0,
+          "MinAmount": 935.0,
+          "MaxAmount": 935.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 935.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 22.0,
+          "MinAmount": 22.0,
+          "MaxAmount": 22.0,
+          "Stage": "Turn",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 22.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 28.0,
+          "MinAmount": 28.0,
+          "MaxAmount": 28.0,
+          "Stage": "River",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 28.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,8257370599722509, 0,9662349676225717, 0,9661610359485092, 0,2239, 0,1532), pot: 1890\r\nraise: 40, Cost: -7640.00, Probability: 0.83 , Cost: -955.00, Probability: 0.17, EV:-125008687103371000000000000000000000,00\r\ncall: 20, Cost: 1910.00, Probability: 0.83 , Cost: -935.00, Probability: 0.17, EV:-200281,88\r\nfold Cost: -915.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,8690435249302201, 0,9357487922705314, 0,9356337174174881, 0,1555, 0,0819), pot: 1932\r\ncall: 22, Cost: 1954.00, Probability: 0.87 , Cost: -957.00, Probability: 0.13, EV:-187539,89\r\nfold Cost: -935.00, Probability: 1.00\r\n",
+        "River, ehs: (0,9024010550357399, 0,9025252525252525, 0,9023389562909835, 0, 0), pot: 1982\r\ncall: 28, Cost: 2010.00, Probability: 0.90 , Cost: -985.00, Probability: 0.10, EV:-184931,54\r\nfold Cost: -957.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 30.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1970.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 3,
+      "Pocket": [
+        "JH",
+        "2H"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 30.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 20.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1980.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 4,
+      "Pocket": [
+        "AH",
+        "QC"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1980.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Random",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 30.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1970.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 5,
+      "Pocket": [
+        "AH",
+        "3D"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 30.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 50.0,
+          "State": "AllIn"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1950.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 6,
+      "Pocket": [
+        "JD",
+        "2H"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 0.0,
+            "Eligibles": [
+              "lcrlyisvuxkwhogpsupopm"
+            ]
+          }
+        ],
+        "Amount": 50.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 50.0,
+          "State": "AllIn"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Random",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 60.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1940.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 7,
+      "Pocket": [
+        "JC",
+        "3C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 60.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 50.0,
+          "State": "Folded"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1950.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 8,
+      "Pocket": [
+        "QH",
+        "QS"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 1950.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Random",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Random",
+          "Id": "lcrlyisvuxkwhogpsupopm",
+          "Stack": 0.0,
+          "State": "AllIn"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 2000.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 9,
+      "Board": [
+        "AH",
+        "6D",
+        "3D",
+        "AD",
+        "7S"
+      ],
+      "Pocket": [
+        "8S",
+        "AS"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 0.0,
+            "Eligibles": [
+              "lcrlyisvuxkwhogpsupopm",
+              "odvxvbwtgvzervslhtpdpf"
+            ]
+          }
+        ],
+        "Amount": 100.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "odvxvbwtgvzervslhtpdpf",
+          "Stack": 2000.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 30.0,
+          "MinAmount": 30.0,
+          "MaxAmount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 30.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Random",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6513853340071669, 0,6959296947271111, 0,6959391978876446, 0,1437, 0,1268), pot: 60\r\nraise: 20, Cost: -240.00, Probability: 0.65 , Cost: -60.00, Probability: 0.35, EV:-681,56\r\nraise: 40, Cost: -240.00, Probability: 0.65 , Cost: -80.00, Probability: 0.35, EV:-695,62\r\nraise: 60, Cost: -240.00, Probability: 0.65 , Cost: -100.00, Probability: 0.35, EV:-712,80\r\nraise: 80, Cost: -240.00, Probability: 0.65 , Cost: -120.00, Probability: 0.35, EV:-733,78\r\ncall: 0, Cost: 60.00, Probability: 0.65 , Cost: -40.00, Probability: 0.35, EV:12,24\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Flop, ehs: (0,6514577710019894, 0,6959296947271111, 0,6960881430449215, 0,1437, 0,1268), pot: 80\r\nraise: 40, Cost: -400.00, Probability: 0.65 , Cost: -80.00, Probability: 0.35, EV:-3534,41\r\nraise: 60, Cost: -400.00, Probability: 0.65 , Cost: -100.00, Probability: 0.35, EV:-3551,58\r\nraise: 80, Cost: -400.00, Probability: 0.65 , Cost: -120.00, Probability: 0.35, EV:-3572,56\r\nraise: 100, Cost: -400.00, Probability: 0.65 , Cost: -140.00, Probability: 0.35, EV:-3598,18\r\ncall: 20, Cost: 100.00, Probability: 0.65 , Cost: -60.00, Probability: 0.35, EV:12,53\r\nfold Cost: -40.00, Probability: 1.00\r\n"
+      ]
+    }
+  ],
+  "PlayerModels": [
+    {
+      "Player": {
+        "Name": "Random",
+        "Id": "lcrlyisvuxkwhogpsupopm"
+      },
+      "VPIP": 60.0,
+      "PFR": 60.0,
+      "PFF": 40.0,
+      "WTSD": 77.77777777777777,
+      "PSDF": 0.0,
+      "WSD": 0.0,
+      "WWSF": 0.0,
+      "Win": 0,
+      "Lost": 2,
+      "PostFlopWin": 0,
+      "PostFlopLost": 2,
+      "PlayingStyle": "TightAggressive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n1,1,1,1,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n1,1,1,1,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,1,1,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,1,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,1,1,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,1,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001,0.7000000000000001\r\n"
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "odvxvbwtgvzervslhtpdpf"
+      },
+      "VPIP": 37.5,
+      "PFR": 0.0,
+      "PFF": 62.5,
+      "WTSD": 61.53846153846153,
+      "PSDF": 0.0,
+      "WSD": 100.0,
+      "WWSF": 100.0,
+      "Win": 2,
+      "Lost": 0,
+      "PostFlopWin": 2,
+      "PostFlopLost": 0,
+      "PlayingStyle": "TightPassive",
+      "WeightTable": "1,1,1,1,0.9333333333333332,0.7333333333333334,0.7333333333333334,0.7333333333333334,0.7333333333333334,0.7333333333333334,0.7333333333333334,0.7333333333333334,0.7333333333333334\r\n1,1,1,0.9333333333333332,0.7333333333333334,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3666666666666667\r\n0.9333333333333332,0.7333333333333334,1,0.9333333333333332,0.7333333333333334,0.7333333333333334,0.3666666666666667,0.3,0.3,0.3,0.3,0.3,0.3\r\n0.7333333333333334,0.7333333333333334,0.7333333333333334,1,0.9333333333333332,0.7333333333333334,0.3666666666666667,0.3,0.3,0.3,0.3,0.3,0.3\r\n0.3666666666666667,0.3666666666666667,0.3666666666666667,0.7333333333333334,1,0.7333333333333334,0.7333333333333334,0.3666666666666667,0.3,0.3,0.3,0.3,0.3\r\n0.3,0.3,0.3,0.3666666666666667,0.3666666666666667,0.9333333333333332,0.7333333333333334,0.7333333333333334,0.3,0.3,0.3,0.3,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3666666666666667,0.7333333333333334,0.7333333333333334,0.3666666666666667,0.3,0.3,0.3,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.7333333333333334,0.7333333333333334,0.3666666666666667,0.3,0.3,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3666666666666667,0.7333333333333334,0.3666666666666667,0.3,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3666666666666667,0.3666666666666667,0.3666666666666667,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3666666666666667,0.3666666666666667,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3666666666666667,0.3\r\n0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3666666666666667\r\n"
+    }
+  ],
+  "Results": [
+    {
+      "Player": {
+        "Name": "Random",
+        "Id": "lcrlyisvuxkwhogpsupopm"
+      },
+      "won": 5,
+      "drew": 0,
+      "lost": 4,
+      "InitialStack": 1000.0,
+      "Stack": 0.0
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "odvxvbwtgvzervslhtpdpf"
+      },
+      "won": 4,
+      "drew": 0,
+      "lost": 5,
+      "InitialStack": 1000.0,
+      "Stack": 2000.0
+    }
+  ],
+  "BotHash": "082BDF19912625E5E0FE091DBA2B0AF6"
+}

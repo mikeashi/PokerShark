@@ -1,0 +1,572 @@
+{
+  "Id": "90e79d08-be4e-48fa-b35b-c09e909e6a5a",
+  "PlayersCount": 2,
+  "InitialStack": 1000.0,
+  "MaxRound": 100,
+  "SmallBlind": 10.0,
+  "BigBlind": 20.0,
+  "Ante": 0.0,
+  "Players": [
+    {
+      "Name": "Fish",
+      "Id": "xrrdbrnhxemxezrjmcwprq"
+    },
+    {
+      "Name": "PokerShark",
+      "Id": "xuarpfqjfgtpchctyxhipw"
+    }
+  ],
+  "Rounds": [
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 930.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1070.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 1,
+      "Board": [
+        "8H",
+        "KD",
+        "9H",
+        "AS",
+        "9C"
+      ],
+      "Pocket": [
+        "4C",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 140.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1070.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Turn",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,4178675577899541, 0,5296022201665125, 0,5293244428365944, 0,1314, 0,3275), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.42 , Cost: -60.00, Probability: 0.58, EV:-67,29\r\nraise: 40, Cost: -400.00, Probability: 0.42 , Cost: -80.00, Probability: 0.58, EV:-73,08\r\nraise: 60, Cost: -400.00, Probability: 0.42 , Cost: -100.00, Probability: 0.58, EV:-77,82\r\nraise: 80, Cost: -400.00, Probability: 0.42 , Cost: -120.00, Probability: 0.58, EV:-81,70\r\ncall: 0, Cost: 100.00, Probability: 0.42 , Cost: -40.00, Probability: 0.58, EV:52,61\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,8487993186163247, 0,9014492753623189, 0,9015086370959753, 0,0984, 0,0692), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.85 , Cost: -60.00, Probability: 0.15, EV:-90,15\r\nraise: 40, Cost: -400.00, Probability: 0.85 , Cost: -80.00, Probability: 0.15, EV:-91,65\r\nraise: 60, Cost: -400.00, Probability: 0.85 , Cost: -100.00, Probability: 0.15, EV:-92,88\r\nraise: 80, Cost: -400.00, Probability: 0.85 , Cost: -120.00, Probability: 0.15, EV:-93,89\r\nraise: 100, Cost: -400.00, Probability: 0.85 , Cost: -140.00, Probability: 0.15, EV:-94,72\r\nraise: 120, Cost: -400.00, Probability: 0.85 , Cost: -160.00, Probability: 0.15, EV:-95,39\r\nraise: 140, Cost: -400.00, Probability: 0.85 , Cost: -180.00, Probability: 0.15, EV:-95,95\r\nraise: 160, Cost: -400.00, Probability: 0.85 , Cost: -200.00, Probability: 0.15, EV:-96,40\r\nraise: 180, Cost: -400.00, Probability: 0.85 , Cost: -220.00, Probability: 0.15, EV:-96,77\r\nraise: 200, Cost: -400.00, Probability: 0.85 , Cost: -240.00, Probability: 0.15, EV:-97,07\r\nraise: 220, Cost: -400.00, Probability: 0.85 , Cost: -260.00, Probability: 0.15, EV:-97,32\r\nraise: 240, Cost: -400.00, Probability: 0.85 , Cost: -280.00, Probability: 0.15, EV:-97,53\r\nraise: 260, Cost: -400.00, Probability: 0.85 , Cost: -300.00, Probability: 0.15, EV:-97,69\r\nraise: 280, Cost: -400.00, Probability: 0.85 , Cost: -320.00, Probability: 0.15, EV:-97,83\r\nraise: 300, Cost: -400.00, Probability: 0.85 , Cost: -340.00, Probability: 0.15, EV:-97,94\r\nraise: 320, Cost: -400.00, Probability: 0.85 , Cost: -360.00, Probability: 0.15, EV:-98,03\r\nraise: 340, Cost: -400.00, Probability: 0.85 , Cost: -380.00, Probability: 0.15, EV:-98,11\r\nraise: 360, Cost: -400.00, Probability: 0.85 , Cost: -400.00, Probability: 0.15, EV:-98,17\r\nraise: 380, Cost: -400.00, Probability: 0.85 , Cost: -420.00, Probability: 0.15, EV:-98,22\r\nraise: 400, Cost: -400.00, Probability: 0.85 , Cost: -440.00, Probability: 0.15, EV:-98,26\r\nraise: 420, Cost: -400.00, Probability: 0.85 , Cost: -460.00, Probability: 0.15, EV:-98,29\r\nraise: 440, Cost: -400.00, Probability: 0.85 , Cost: -480.00, Probability: 0.15, EV:-98,32\r\nraise: 460, Cost: -400.00, Probability: 0.85 , Cost: -500.00, Probability: 0.15, EV:-98,34\r\nraise: 480, Cost: -400.00, Probability: 0.85 , Cost: -520.00, Probability: 0.15, EV:-98,36\r\nraise: 500, Cost: -400.00, Probability: 0.85 , Cost: -540.00, Probability: 0.15, EV:-98,38\r\nraise: 520, Cost: -400.00, Probability: 0.85 , Cost: -560.00, Probability: 0.15, EV:-98,39\r\nraise: 540, Cost: -400.00, Probability: 0.85 , Cost: -580.00, Probability: 0.15, EV:-98,40\r\nraise: 560, Cost: -400.00, Probability: 0.85 , Cost: -600.00, Probability: 0.15, EV:-98,41\r\nraise: 580, Cost: -400.00, Probability: 0.85 , Cost: -620.00, Probability: 0.15, EV:-98,41\r\nraise: 600, Cost: -400.00, Probability: 0.85 , Cost: -640.00, Probability: 0.15, EV:-98,42\r\nraise: 620, Cost: -400.00, Probability: 0.85 , Cost: -660.00, Probability: 0.15, EV:-98,42\r\nraise: 640, Cost: -400.00, Probability: 0.85 , Cost: -680.00, Probability: 0.15, EV:-98,43\r\nraise: 660, Cost: -400.00, Probability: 0.85 , Cost: -700.00, Probability: 0.15, EV:-98,43\r\nraise: 680, Cost: -400.00, Probability: 0.85 , Cost: -720.00, Probability: 0.15, EV:-98,43\r\nraise: 700, Cost: -400.00, Probability: 0.85 , Cost: -740.00, Probability: 0.15, EV:-98,44\r\nraise: 720, Cost: -400.00, Probability: 0.85 , Cost: -760.00, Probability: 0.15, EV:-98,44\r\nraise: 740, Cost: -400.00, Probability: 0.85 , Cost: -780.00, Probability: 0.15, EV:-98,44\r\nraise: 760, Cost: -400.00, Probability: 0.85 , Cost: -800.00, Probability: 0.15, EV:-98,44\r\nraise: 780, Cost: -400.00, Probability: 0.85 , Cost: -820.00, Probability: 0.15, EV:-98,44\r\nraise: 800, Cost: -400.00, Probability: 0.85 , Cost: -840.00, Probability: 0.15, EV:-98,44\r\nraise: 820, Cost: -400.00, Probability: 0.85 , Cost: -860.00, Probability: 0.15, EV:-98,44\r\nraise: 840, Cost: -400.00, Probability: 0.85 , Cost: -880.00, Probability: 0.15, EV:-98,44\r\nraise: 860, Cost: -400.00, Probability: 0.85 , Cost: -900.00, Probability: 0.15, EV:-98,44\r\nraise: 880, Cost: -400.00, Probability: 0.85 , Cost: -920.00, Probability: 0.15, EV:-98,44\r\nraise: 900, Cost: -400.00, Probability: 0.85 , Cost: -940.00, Probability: 0.15, EV:-98,44\r\nraise: 920, Cost: -400.00, Probability: 0.85 , Cost: -960.00, Probability: 0.15, EV:-98,44\r\nraise: 940, Cost: -400.00, Probability: 0.85 , Cost: -980.00, Probability: 0.15, EV:-98,44\r\ncall: 0, Cost: 100.00, Probability: 0.85 , Cost: -40.00, Probability: 0.15, EV:140,86\r\nfold Cost: -40.00, Probability: 1.00\r\n",
+        "River, ehs: (0,8604799868609859, 0,8606060606060606, 0,8604169499884486, 0, 0), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.86 , Cost: -80.00, Probability: 0.14, EV:-93,41\r\nraise: 40, Cost: -560.00, Probability: 0.86 , Cost: -100.00, Probability: 0.14, EV:-94,55\r\nraise: 60, Cost: -560.00, Probability: 0.86 , Cost: -120.00, Probability: 0.14, EV:-95,48\r\nraise: 80, Cost: -560.00, Probability: 0.86 , Cost: -140.00, Probability: 0.14, EV:-96,24\r\nraise: 100, Cost: -560.00, Probability: 0.86 , Cost: -160.00, Probability: 0.14, EV:-96,86\r\nraise: 120, Cost: -560.00, Probability: 0.86 , Cost: -180.00, Probability: 0.14, EV:-97,38\r\nraise: 140, Cost: -560.00, Probability: 0.86 , Cost: -200.00, Probability: 0.14, EV:-97,79\r\nraise: 160, Cost: -560.00, Probability: 0.86 , Cost: -220.00, Probability: 0.14, EV:-98,14\r\nraise: 180, Cost: -560.00, Probability: 0.86 , Cost: -240.00, Probability: 0.14, EV:-98,42\r\nraise: 200, Cost: -560.00, Probability: 0.86 , Cost: -260.00, Probability: 0.14, EV:-98,65\r\nraise: 220, Cost: -560.00, Probability: 0.86 , Cost: -280.00, Probability: 0.14, EV:-98,83\r\nraise: 240, Cost: -560.00, Probability: 0.86 , Cost: -300.00, Probability: 0.14, EV:-98,99\r\nraise: 260, Cost: -560.00, Probability: 0.86 , Cost: -320.00, Probability: 0.14, EV:-99,11\r\nraise: 280, Cost: -560.00, Probability: 0.86 , Cost: -340.00, Probability: 0.14, EV:-99,22\r\nraise: 300, Cost: -560.00, Probability: 0.86 , Cost: -360.00, Probability: 0.14, EV:-99,30\r\nraise: 320, Cost: -560.00, Probability: 0.86 , Cost: -380.00, Probability: 0.14, EV:-99,37\r\nraise: 340, Cost: -560.00, Probability: 0.86 , Cost: -400.00, Probability: 0.14, EV:-99,43\r\nraise: 360, Cost: -560.00, Probability: 0.86 , Cost: -420.00, Probability: 0.14, EV:-99,47\r\nraise: 380, Cost: -560.00, Probability: 0.86 , Cost: -440.00, Probability: 0.14, EV:-99,51\r\nraise: 400, Cost: -560.00, Probability: 0.86 , Cost: -460.00, Probability: 0.14, EV:-99,54\r\nraise: 420, Cost: -560.00, Probability: 0.86 , Cost: -480.00, Probability: 0.14, EV:-99,57\r\nraise: 440, Cost: -560.00, Probability: 0.86 , Cost: -500.00, Probability: 0.14, EV:-99,59\r\nraise: 460, Cost: -560.00, Probability: 0.86 , Cost: -520.00, Probability: 0.14, EV:-99,60\r\nraise: 480, Cost: -560.00, Probability: 0.86 , Cost: -540.00, Probability: 0.14, EV:-99,62\r\nraise: 500, Cost: -560.00, Probability: 0.86 , Cost: -560.00, Probability: 0.14, EV:-99,63\r\nraise: 520, Cost: -560.00, Probability: 0.86 , Cost: -580.00, Probability: 0.14, EV:-99,64\r\nraise: 540, Cost: -560.00, Probability: 0.86 , Cost: -600.00, Probability: 0.14, EV:-99,65\r\nraise: 560, Cost: -560.00, Probability: 0.86 , Cost: -620.00, Probability: 0.14, EV:-99,65\r\nraise: 580, Cost: -560.00, Probability: 0.86 , Cost: -640.00, Probability: 0.14, EV:-99,66\r\nraise: 600, Cost: -560.00, Probability: 0.86 , Cost: -660.00, Probability: 0.14, EV:-99,66\r\nraise: 620, Cost: -560.00, Probability: 0.86 , Cost: -680.00, Probability: 0.14, EV:-99,67\r\nraise: 640, Cost: -560.00, Probability: 0.86 , Cost: -700.00, Probability: 0.14, EV:-99,67\r\nraise: 660, Cost: -560.00, Probability: 0.86 , Cost: -720.00, Probability: 0.14, EV:-99,67\r\nraise: 680, Cost: -560.00, Probability: 0.86 , Cost: -740.00, Probability: 0.14, EV:-99,67\r\nraise: 700, Cost: -560.00, Probability: 0.86 , Cost: -760.00, Probability: 0.14, EV:-99,67\r\nraise: 720, Cost: -560.00, Probability: 0.86 , Cost: -780.00, Probability: 0.14, EV:-99,68\r\nraise: 740, Cost: -560.00, Probability: 0.86 , Cost: -800.00, Probability: 0.14, EV:-99,68\r\nraise: 760, Cost: -560.00, Probability: 0.86 , Cost: -820.00, Probability: 0.14, EV:-99,68\r\nraise: 780, Cost: -560.00, Probability: 0.86 , Cost: -840.00, Probability: 0.14, EV:-99,68\r\nraise: 800, Cost: -560.00, Probability: 0.86 , Cost: -860.00, Probability: 0.14, EV:-99,68\r\nraise: 820, Cost: -560.00, Probability: 0.86 , Cost: -880.00, Probability: 0.14, EV:-99,68\r\nraise: 840, Cost: -560.00, Probability: 0.86 , Cost: -900.00, Probability: 0.14, EV:-99,68\r\nraise: 860, Cost: -560.00, Probability: 0.86 , Cost: -920.00, Probability: 0.14, EV:-99,68\r\nraise: 880, Cost: -560.00, Probability: 0.86 , Cost: -940.00, Probability: 0.14, EV:-99,68\r\nraise: 900, Cost: -560.00, Probability: 0.86 , Cost: -960.00, Probability: 0.14, EV:-99,68\r\nraise: 920, Cost: -560.00, Probability: 0.86 , Cost: -980.00, Probability: 0.14, EV:-99,68\r\ncall: 0, Cost: 140.00, Probability: 0.86 , Cost: -60.00, Probability: 0.14, EV:256,60\r\nfold Cost: -60.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 950.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1050.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 2,
+      "Pocket": [
+        "JH",
+        "4H"
+      ],
+      "Pot": {
+        "Amount": 40.0
+      },
+      "Winner": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 950.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 960.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1040.0,
+          "State": "Folded"
+        }
+      ],
+      "RoundCount": 3,
+      "Pocket": [
+        "7S",
+        "2C"
+      ],
+      "Pot": {
+        "Amount": 30.0
+      },
+      "Winner": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 960.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Stage": "Preflop",
+          "Type": "Fold"
+        }
+      ],
+      "OddsLog": []
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 870.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1130.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 4,
+      "Board": [
+        "3S",
+        "QH",
+        "QD",
+        "JS",
+        "3C"
+      ],
+      "Pocket": [
+        "KC",
+        "AC"
+      ],
+      "Pot": {
+        "Amount": 180.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1130.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 50.0,
+          "MinAmount": 50.0,
+          "MaxAmount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 50.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Flop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "River",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,6295132583060015, 0,7368177613320999, 0,7368744568049278, 0,1916, 0,2141), pot: 100\r\nraise: 20, Cost: -400.00, Probability: 0.63 , Cost: -50.00, Probability: 0.37, EV:-76,38\r\nraise: 40, Cost: -400.00, Probability: 0.63 , Cost: -70.00, Probability: 0.37, EV:-80,45\r\nraise: 60, Cost: -400.00, Probability: 0.63 , Cost: -90.00, Probability: 0.37, EV:-83,78\r\nraise: 80, Cost: -400.00, Probability: 0.63 , Cost: -110.00, Probability: 0.37, EV:-86,51\r\ncall: 0, Cost: 100.00, Probability: 0.63 , Cost: -30.00, Probability: 0.37, EV:98,57\r\nfold Cost: -30.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,6164806072057494, 0,6227053140096618, 0,6225696998471811, 0,2068, 0,1352), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.62 , Cost: -70.00, Probability: 0.38, EV:-80,73\r\nraise: 40, Cost: -560.00, Probability: 0.62 , Cost: -90.00, Probability: 0.38, EV:-84,18\r\nraise: 60, Cost: -560.00, Probability: 0.62 , Cost: -110.00, Probability: 0.38, EV:-87,01\r\nraise: 80, Cost: -560.00, Probability: 0.62 , Cost: -130.00, Probability: 0.38, EV:-89,32\r\ncall: 0, Cost: 140.00, Probability: 0.62 , Cost: -50.00, Probability: 0.38, EV:173,26\r\nfold Cost: -50.00, Probability: 1.00\r\n",
+        "River, ehs: (0,6089082724874154, 0,6085858585858586, 0,609069479438194, 0, 0), pot: 140\r\nraise: 20, Cost: -560.00, Probability: 0.61 , Cost: -70.00, Probability: 0.39, EV:-80,35\r\nraise: 40, Cost: -560.00, Probability: 0.61 , Cost: -90.00, Probability: 0.39, EV:-83,87\r\nraise: 60, Cost: -560.00, Probability: 0.61 , Cost: -110.00, Probability: 0.39, EV:-86,76\r\nraise: 80, Cost: -560.00, Probability: 0.61 , Cost: -130.00, Probability: 0.39, EV:-89,12\r\ncall: 0, Cost: 140.00, Probability: 0.61 , Cost: -50.00, Probability: 0.39, EV:170,65\r\nfold Cost: -50.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 1,
+      "BigBlindPosition": 0,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 830.0,
+          "State": "Participating"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1170.0,
+          "State": "Participating"
+        }
+      ],
+      "RoundCount": 5,
+      "Board": [
+        "5D",
+        "TC",
+        "8H",
+        "4H",
+        "AH"
+      ],
+      "Pocket": [
+        "JS",
+        "KS"
+      ],
+      "Pot": {
+        "Amount": 80.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 1170.0,
+          "State": "Participating"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "Flop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 20.0,
+          "MinAmount": 20.0,
+          "MaxAmount": 20.0,
+          "Stage": "Turn",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Turn",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 0.0,
+          "Stage": "River",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": [
+        "Flop, ehs: (0,46593351249477744, 0,4592969472710453, 0,4595044593780196, 0,2296, 0,256), pot: 40\r\nraise: 20, Cost: -160.00, Probability: 0.47 , Cost: -30.00, Probability: 0.53, EV:-51,03\r\nraise: 40, Cost: -160.00, Probability: 0.47 , Cost: -50.00, Probability: 0.53, EV:-58,20\r\nraise: 60, Cost: -160.00, Probability: 0.47 , Cost: -70.00, Probability: 0.53, EV:-64,07\r\nraise: 80, Cost: -160.00, Probability: 0.47 , Cost: -90.00, Probability: 0.53, EV:-68,88\r\ncall: 0, Cost: 40.00, Probability: 0.47 , Cost: -10.00, Probability: 0.53, EV:17,83\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "Turn, ehs: (0,34560416635691976, 0,34830917874396133, 0,34823172453704176, 0,1036, 0,2015), pot: 40\r\nraise: 20, Cost: -160.00, Probability: 0.35 , Cost: -30.00, Probability: 0.65, EV:-44,54\r\nraise: 40, Cost: -160.00, Probability: 0.35 , Cost: -50.00, Probability: 0.65, EV:-53,33\r\nraise: 60, Cost: -160.00, Probability: 0.35 , Cost: -70.00, Probability: 0.65, EV:-60,53\r\nraise: 80, Cost: -160.00, Probability: 0.35 , Cost: -90.00, Probability: 0.65, EV:-66,42\r\ncall: 0, Cost: 40.00, Probability: 0.35 , Cost: -10.00, Probability: 0.65, EV:10,77\r\nfold Cost: -10.00, Probability: 1.00\r\n",
+        "River, ehs: (0,32311501944443927, 0,32323232323232326, 0,32305636755049727, 0, 0), pot: 80\r\nraise: 20, Cost: -320.00, Probability: 0.32 , Cost: -50.00, Probability: 0.68, EV:-57,63\r\nraise: 40, Cost: -320.00, Probability: 0.32 , Cost: -70.00, Probability: 0.68, EV:-65,07\r\nraise: 60, Cost: -320.00, Probability: 0.32 , Cost: -90.00, Probability: 0.68, EV:-71,16\r\nraise: 80, Cost: -320.00, Probability: 0.32 , Cost: -110.00, Probability: 0.68, EV:-76,15\r\ncall: 0, Cost: 80.00, Probability: 0.32 , Cost: -30.00, Probability: 0.68, EV:22,06\r\nfold Cost: -30.00, Probability: 1.00\r\n"
+      ]
+    },
+    {
+      "SmallBlindPosition": 0,
+      "BigBlindPosition": 1,
+      "Players": [
+        {
+          "Name": "Fish",
+          "Id": "xrrdbrnhxemxezrjmcwprq",
+          "Stack": 0.0,
+          "State": "AllIn"
+        },
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 2000.0,
+          "State": "AllIn"
+        }
+      ],
+      "RoundCount": 6,
+      "Board": [
+        "5D",
+        "5H",
+        "4D",
+        "6C",
+        "6S"
+      ],
+      "Pocket": [
+        "AS",
+        "KH"
+      ],
+      "Pot": {
+        "SidePots": [
+          {
+            "Amount": 340.0,
+            "Eligibles": [
+              "xuarpfqjfgtpchctyxhipw"
+            ]
+          },
+          {
+            "Amount": 0.0,
+            "Eligibles": [
+              "xuarpfqjfgtpchctyxhipw"
+            ]
+          }
+        ],
+        "Amount": 1660.0
+      },
+      "Winner": [
+        {
+          "Name": "PokerShark",
+          "Id": "xuarpfqjfgtpchctyxhipw",
+          "Stack": 2000.0,
+          "State": "AllIn"
+        }
+      ],
+      "History": [
+        {
+          "PlayerName": "Fish",
+          "Amount": 20.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        },
+        {
+          "PlayerName": "PokerShark",
+          "Amount": 1170.0,
+          "MinAmount": 1170.0,
+          "MaxAmount": 1170.0,
+          "Stage": "Preflop",
+          "Type": "Raise"
+        },
+        {
+          "PlayerName": "Fish",
+          "Amount": 1170.0,
+          "Stage": "Preflop",
+          "Type": "Call"
+        }
+      ],
+      "OddsLog": []
+    }
+  ],
+  "PlayerModels": [
+    {
+      "Player": {
+        "Name": "Fish",
+        "Id": "xrrdbrnhxemxezrjmcwprq"
+      },
+      "VPIP": 100.0,
+      "PFR": 0.0,
+      "PFF": 0.0,
+      "WTSD": 100.0,
+      "PSDF": 0.0,
+      "WSD": 0.0,
+      "WWSF": 0.0,
+      "Win": 0,
+      "Lost": 4,
+      "PostFlopWin": 0,
+      "PostFlopLost": 4,
+      "PlayingStyle": "LoosePassive",
+      "WeightTable": "1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n1,1,1,1,1,1,1,1,1,1,1,1,1\r\n"
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "xuarpfqjfgtpchctyxhipw"
+      },
+      "VPIP": 66.66666666666666,
+      "PFR": 50.0,
+      "PFF": 33.33333333333333,
+      "WTSD": 86.66666666666667,
+      "PSDF": 0.0,
+      "WSD": 100.0,
+      "WWSF": 100.0,
+      "Win": 4,
+      "Lost": 0,
+      "PostFlopWin": 4,
+      "PostFlopLost": 0,
+      "PlayingStyle": "TightPassive",
+      "WeightTable": "1,1,1,1,0.9333333333333332,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8333333333333334\r\n1,1,1,0.9333333333333332,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.9333333333333332,0.8333333333333334,1,0.9333333333333332,0.8333333333333334,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.8333333333333334,0.8333333333333334,0.8333333333333334,1,0.9333333333333332,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.8333333333333334,1,0.8333333333333334,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.9333333333333332,0.8333333333333334,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.8333333333333334,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.8333333333333334,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.8333333333333334,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333,0.5333333333333333\r\n"
+    }
+  ],
+  "Results": [
+    {
+      "Player": {
+        "Name": "Fish",
+        "Id": "xrrdbrnhxemxezrjmcwprq"
+      },
+      "won": 2,
+      "drew": 0,
+      "lost": 4,
+      "InitialStack": 1000.0,
+      "Stack": 0.0
+    },
+    {
+      "Player": {
+        "Name": "PokerShark",
+        "Id": "xuarpfqjfgtpchctyxhipw"
+      },
+      "won": 4,
+      "drew": 0,
+      "lost": 2,
+      "InitialStack": 1000.0,
+      "Stack": 2000.0
+    }
+  ],
+  "BotHash": "BEEB1E1549DDD01226DC2FC912ABAE49"
+}
